@@ -1,0 +1,23 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                 "Email": "megarainbow29@gmail.com",
+                 "Name": "1280px"
+            }
+        ],
+        "Category": "Application Launchers",
+        "Description": "Simple custom full-height sidebar menu, inspired by Budgie.",
+        "EnabledByDefault": true,
+        "Icon": "go-first-symbolic-rtl",
+        "Id": "Sidebar-Menu",
+        "License": "GPL-2.0+",
+        "Name": "Sidebar Menu",
+        "Website": "https://github.com/1280px/Plasma6-Sidebar-Menu"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-Provides": [
+        "org.kde.plasma.launchermenu"
+    ]
+}
