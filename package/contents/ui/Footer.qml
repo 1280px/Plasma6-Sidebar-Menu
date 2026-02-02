@@ -3,7 +3,7 @@ import org.kde.plasma.components 3.0 as PC3
 import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.coreaddons 1.0 as KCoreAddons
 import org.kde.kquickcontrolsaddons 2.0
-//import org.kde.plasma.private.quicklaunch 1.0
+// import org.kde.plasma.private.quicklaunch 1.0
 import QtQuick.Controls 2.15
 import org.kde.ksvg 1.0 as KSvg
 import org.kde.plasma.plasma5support 2.0 as P5Support
@@ -18,15 +18,17 @@ import org.kde.plasma.private.sessions as Sessions
 
 RowLayout
 {
-    id:footerComponent
-    width: (rootItem.resizeWidth()  == 0 ? rootItem.calc_width : rootItem.resizeWidth())
+    id: footerComponent
+    width: (rootItem.resizeWidth() == 0 ? rootItem.calc_width : rootItem.resizeWidth())
     Sessions.SessionManagement
     {
         id: cmd_desk
     }
-    //cmd commands
+
+    // Commands exectuion handler
     P5Support.DataSource
-    {   id: executable
+    {
+        id: executable
         engine: "executable"
         connectedSources: []
         onNewData: {
@@ -44,11 +46,13 @@ RowLayout
         }
         signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
     }
-    RowLayout
-    {
+
+RowLayout
+{
     Layout.alignment: Qt.AlignHcenter | Qt.AlignBottom
-    Item { Layout.fillWidth: true}
-            PC3.ToolButton
+    Item { Layout.fillWidth: true }
+
+        PC3.ToolButton
             {
                 icon.name:   "system-shutdown"
                 onClicked: cmd_desk.requestShutdown()
@@ -62,7 +66,7 @@ RowLayout
             {
                 icon.name:   "system-reboot"
                 visible:  true !== "" && Plasmoid.configuration.rebootEnabled
-                onClicked: cmd_desk.requestReboot() //executable.exec(restartCMD)
+                onClicked: cmd_desk.requestReboot() // executable.exec(restartCMD)
                 ToolTip.delay: 200
                 ToolTip.timeout: 1000
                 ToolTip.visible: hovered
@@ -73,7 +77,7 @@ RowLayout
             {
                 icon.name:  "system-log-out"
                 visible:  true !== "" && Plasmoid.configuration.logOutEnabled
-                onClicked: cmd_desk.requestLogout()//executable.exec(logOutCMD);
+                onClicked: cmd_desk.requestLogout()// executable.exec(logOutCMD);
                 ToolTip.delay: 200
                 ToolTip.timeout: 1000
                 ToolTip.visible: hovered
@@ -83,8 +87,8 @@ RowLayout
             PC3.ToolButton
             {
                 icon.name: "system-suspend"
-                visible: true !== "" && Plasmoid.configuration.sleepEnabled // Asegúrate de tener la configuración para habilitar la hibernación
-                onClicked: cmd_desk.suspend() // Comando para hibernar el sistema
+                visible: true !== "" && Plasmoid.configuration.sleepEnabled
+                onClicked: cmd_desk.suspend()
                 ToolTip.delay: 200
                 ToolTip.timeout: 1000
                 ToolTip.visible: hovered
@@ -102,9 +106,9 @@ RowLayout
             }
             PC3.ToolButton
             {
-                icon.name: "dialog-error" // Icono de error
+                icon.name: "dialog-error"
                 visible: true !== "" && Plasmoid.configuration.forceQuitEnabled
-                onClicked: executable.exec(forceQuitCMD) // Ejecuta xkill para forzar el cierre
+                onClicked: executable.exec(forceQuitCMD)
                 ToolTip.delay: 200
                 ToolTip.timeout: 1000
                 ToolTip.visible: hovered
@@ -122,9 +126,9 @@ RowLayout
             }
             PC3.ToolButton
             {
-                icon.name: "system-software-install" // Ícono asociado con Plasma Discover
+                icon.name: "system-software-install"
                 visible: true !== "" && Plasmoid.configuration.appStoreEnabled
-                onClicked: executable.exec(appStoreCMD) // Comando para abrir Plasma Discover
+                onClicked: executable.exec(appStoreCMD)
                 ToolTip.delay: 200
                 ToolTip.timeout: 1000
                 ToolTip.visible: hovered
@@ -144,13 +148,13 @@ RowLayout
             {
                 icon.name: "info"
                 visible: true !== "" && Plasmoid.configuration.aboutThisComputerEnabled
-                onClicked: { movePopupController.movePopup(100, 100)  /* Llama a la función de C++*/ }//executable.exec(aboutThisComputerCMD)
+                onClicked: { movePopupController.movePopup(100, 100) } // executable.exec(aboutThisComputerCMD)
                 ToolTip.delay: 200
                 ToolTip.timeout: 1000
                 ToolTip.visible: hovered
                 ToolTip.text: i18n("About System")
             }
-       Item { Layout.fillWidth: true }
-       }
-    }
 
+       Item { Layout.fillWidth: true }
+    }
+}

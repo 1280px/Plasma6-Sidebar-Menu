@@ -34,19 +34,19 @@ PlasmoidItem
     preferredRepresentation: isDash ?fullRepresentation : null
     fullRepresentation: isDash ? compactRepresentation : menuRepresentation
 
-    //propiedades de configuracion
+    // Configuration properties
     property bool showFavorites : Plasmoid.configuration.showFavoritesFirst
     property Item dragSource: null
     property bool searching: false
 
-    //teclado
+    // Keyboard
     property int currentColumn : 0
     property int currentRow : 0
     property int currentIndex: 0
     property int count: 0
-    property string keyIn  : ""
+    property string keyIn: ""
 
-    //comandos
+    // Commands
     readonly property string aboutThisComputerCMD: Plasmoid.configuration.aboutThisComputerSettings
     readonly property string systemPreferencesCMD: Plasmoid.configuration.systemPreferencesSettings
     readonly property string homeCMD: Plasmoid.configuration.homeSettings
@@ -54,7 +54,7 @@ PlasmoidItem
     readonly property string forceQuitCMD: Plasmoid.configuration.forceQuitSettings
     property bool view_any_controls : Plasmoid.configuration.rebootEnabled || Plasmoid.configuration.shutDownEnabled || Plasmoid.configuration.aboutThisComputerEnabled || Plasmoid.configuration.systemPreferencesEnabled || Plasmoid.configuration.appStoreEnabled || Plasmoid.configuration.forceQuitEnabled ||  Plasmoid.configuration.sleepEnabled || Plasmoid.configuration.lockScreenEnabled  || Plasmoid.configuration.logOutEnabled ||  Plasmoid.configuration.homeEnabled
 
-    //propiedades de imagen e iconos
+    // Images & Icons Properties
     property int sizeImage: Kirigami.Units.iconSizes.large * 2.5
     property int cellSizeHeight: iconSize + Kirigami.Units.gridUnit * 2 + (2 * Math.max(highlightItemSvg.margins.top +  highlightItemSvg.margins.bottom, highlightItemSvg.margins.left + highlightItemSvg.margins.right))
     property int cellSizeWidth: cellSizeHeight + Kirigami.Units.gridUnit
@@ -68,14 +68,13 @@ PlasmoidItem
 
     Plasmoid.icon: Plasmoid.configuration.useCustomButtonImage ? Plasmoid.configuration.customButtonImage : Plasmoid.configuration.icon
 
-    //models
+    // Models
     property QtObject globalFavorites: rootModel.favoritesModel
     property QtObject systemFavorites: rootModel.systemFavoritesModel
     Kicker.RootModel
     {
         id: rootModel
         autoPopulate: false
-        appNameFormat: 0
         flat: true
         sorted: true
         showSeparators: false
@@ -107,13 +106,18 @@ PlasmoidItem
         favoritesModel: globalFavorites
         runners:
         {
-            const results = ["krunner_services",
-            "krunner_systemsettings",
-            "krunner_sessions",
-            "krunner_powerdevil",
-            "calculator",
-            "unitconverter"];
-            if (Plasmoid.configuration.useExtraRunners) {results.push(...Plasmoid.configuration.extraRunners);}
+            const results = [
+                "krunner_services",
+                "krunner_systemsettings",
+                "krunner_sessions",
+                "krunner_powerdevil",
+                "calculator",
+                "unitconverter"
+            ];
+            if (Plasmoid.configuration.useExtraRunners)
+            {
+                results.push(...Plasmoid.configuration.extraRunners);
+            }
             return results;
         }
     }
@@ -135,8 +139,6 @@ PlasmoidItem
     {
         target: Plasmoid.configuration
         function onFavoriteAppsChanged () { globalFavorites.favorites = Plasmoid.configuration.favoriteApps;}
-        function onFavoriteSystemActionsChanged () {systemFavorites.favorites = Plasmoid.configuration.favoriteSystemActions;}
-        function onHiddenApplicationsChanged(){ rootModel.refresh();}
     }
     Connections
     {
@@ -151,7 +153,7 @@ PlasmoidItem
         }
     }
 
-    //components IU
+    // Components UI
     PlasmaExtras.Menu
     {   id: contextMenu
         PlasmaExtras.MenuItem {action: Plasmoid.internalAction("configure")}
@@ -160,7 +162,7 @@ PlasmoidItem
     {
         id: delegateHighlight
         visible: false
-        z: -1 // otherwise it shows ontop of the icon/label and tints them slightly
+        z: -1 // Otherwise it shows on top of the icon/label and tints them slightly
     }
     Kirigami.Heading
     {
@@ -169,7 +171,8 @@ PlasmoidItem
      width: 0
      level: 5
     }
-    //Svg
+
+    // Svg
     KSvg.FrameSvgItem
     {
         id : panelSvg
@@ -203,7 +206,7 @@ PlasmoidItem
         imagePath: "dialogs/background"
     }
 
-    PC3 .Label
+    PC3.Label
     {
         id: toolTipDelegate
         width: contentWidth
@@ -220,7 +223,8 @@ PlasmoidItem
             onTriggered: processRunner.runMenuEditor()
         }
     ]
-    //Components
+
+    // Components
     Timer {
         id: justOpenedTimer
         repeat: false
@@ -247,8 +251,7 @@ PlasmoidItem
         dragHelper.dropped.connect(resetDragSource);
     }
 
-    //functions
-    onSystemFavoritesChanged:{}
+    // Functions
     function updateSvgMetrics() {}
     function resetDragSource() { dragSource = null;}
     function toggle() { kicker.expanded=!kicker.expanded}

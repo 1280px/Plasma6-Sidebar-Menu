@@ -2,7 +2,7 @@ import org.kde.plasma.components 3.0 as PC3
 import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.coreaddons 1.0 as KCoreAddons
 import org.kde.kquickcontrolsaddons 2.0
-//import org.kde.plasma.private.quicklaunch 1.0
+// import org.kde.plasma.private.quicklaunch 1.0
 import QtQuick.Controls 2.15
 import org.kde.ksvg 1.0 as KSvg
 import org.kde.plasma.plasma5support 2.0 as P5Support
@@ -50,7 +50,7 @@ RowLayout
     Rectangle
     {
         width:  60
-        color: 'transparent'
+        color: "transparent"
     }
 
     Item {Layout.fillWidth: true}
@@ -59,21 +59,22 @@ RowLayout
     {
         Layout.alignment: Qt.AlignHCenter |  Qt.AlignVCenter
         visible: iconUser.source !== "" && Plasmoid.configuration.showInfoUser
+
         Rectangle
         {
             Layout.alignment: Qt.AlignHCenter |  Qt.AlignVCenter
             width: kicker.sizeImage*0.83
             height: width
-            color: 'transparent'
+            color: "transparent"
             Rectangle
             {
                 id: alo_user
                 anchors.centerIn: parent
                 width: kicker.sizeImage*0.83
                 height: width
-                color: 'white'
+                color: "white"
                 radius: userShape
-                clip: true  // Esto recorta el contenido del rectángulo
+                clip: true  // This cilps rectangle's contents
                 visible: iconUser.source !== "" && Plasmoid.configuration.showInfoUser
                 z: 1
                 Rectangle
@@ -107,10 +108,10 @@ RowLayout
                 anchors.centerIn: parent
                 width: kicker.sizeImage*.7
                 height: width
-                color: 'transparent'
+                color: "transparent"
                 z: 2
                 radius: userShape
-                clip: true  // Esto recorta el contenido del rectángulo
+                clip: true  // This cilps rectangle's contents
                 visible: iconUser.source !== "" && Plasmoid.configuration.showInfoUser
                 Rectangle
                 {
@@ -155,7 +156,6 @@ RowLayout
         TextMetrics
         {
             id: headingMetrics
-            //font: dummyHeading.font
         }
     }
     Item {Layout.fillWidth: true}
@@ -189,10 +189,8 @@ RowLayout
             target: kicker
             property: "hideOnWindowDeactivate"
             value: !Plasmoid.configuration.pin
-            // there should be no other bindings, so don't waste resources
+            // There should be no other bindings, so don't waste resources
         }
         onToggled: Plasmoid.configuration.pin = checked
     }
 }
-
-

@@ -43,45 +43,43 @@ KCM.SimpleKCM
     }
     ColumnLayout
     {
-
-        // Checkbox for Reset/Reiniciar
         RowLayout {
             CheckBox {
                 id: rebootEnabled
-                text: i18n("Reset / Reiniciar")
+                text: i18n("Reset")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     rebootSettings.enabled = checked
                 }
             }
         }
-        // Checkbox for Shut down/Apagar
+
         RowLayout {
             CheckBox {
                 id: shutDownEnabled
-                text: i18n("Shut down / Apagar")
+                text: i18n("Shut down")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     shutDownSettings.enabled = checked
                 }
             }
         }
-        // Checkbox for Log Out
+
         RowLayout {
             CheckBox {
                 id: logOutEnabled
-                text: i18n("Log Out / Cerrar sesión")
+                text: i18n("Log Out")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     logOutSettings.enabled = checked
                 }
             }
         }
-        // Checkbox for About This Computer
+
         RowLayout {
             CheckBox {
                 id: aboutThisComputerEnabled
-                text: i18n("About This Computer / Acerca de este equipo")
+                text: i18n("About This Computer")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     aboutThisComputerSettings.enabled = checked
@@ -101,11 +99,11 @@ KCM.SimpleKCM
                 }
             }
         }
-        // Checkbox for System Preferences
+
         RowLayout {
             CheckBox {
                 id: systemPreferencesEnabled
-                text: i18n("System Preferences / Preferencias del sistema")
+                text: i18n("System Preferences")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     systemPreferencesSettings.enabled = checked
@@ -126,11 +124,11 @@ KCM.SimpleKCM
                 }
             }
         }
-        // Checkbox for System Preferences
+
         RowLayout {
             CheckBox {
                 id: homeEnabled
-                text: i18n("home / Directorio de usuario")
+                text: i18n("Home Directory")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     homeSettings.enabled = checked
@@ -151,11 +149,11 @@ KCM.SimpleKCM
                 }
             }
         }
-        // Checkbox for App Store
+
         RowLayout {
             CheckBox {
                 id: appStoreEnabled
-                text: i18n("App Store / App Store")
+                text: i18n("App Store")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     appStoreSettings.enabled = checked
@@ -175,11 +173,11 @@ KCM.SimpleKCM
                 }
             }
         }
-        // Checkbox for Force Quit
+
         RowLayout {
             CheckBox {
                 id: forceQuitEnabled
-                text: i18n("Force Quit / Forzar salida")
+                text: i18n("Force Quit")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     forceQuitSettings.enabled = checked
@@ -199,22 +197,22 @@ KCM.SimpleKCM
                 }
             }
         }
-        // Checkbox for Sleep
+
         RowLayout {
             CheckBox {
                 id: sleepEnabled
-                text: i18n("Sleep / Suspender")
+                text: i18n("Sleep")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     sleepSettings.enabled = checked
                 }
             }
         }
-        // Checkbox for Lock Screen
+
         RowLayout {
             CheckBox {
                 id: lockScreenEnabled
-                text: i18n("Lock Screen / Bloquear pantalla")
+                text: i18n("Lock Screen")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     lockScreenSettings.enabled = checked

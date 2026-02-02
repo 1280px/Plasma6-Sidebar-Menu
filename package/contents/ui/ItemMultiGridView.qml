@@ -81,7 +81,7 @@ PlasmaComponents.ScrollView {
 
         flickableDirection: Flickable.VerticalFlick
         contentHeight: itemColumn.implicitHeight
-        //focusPolicy: Qt.NoFocus
+        // focusPolicy: Qt.NoFocus
 
         Column {
             id: itemColumn

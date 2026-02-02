@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dittomenu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-02 05:51+0700\n"
+"POT-Creation-Date: 2026-02-02 06:51+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Edward Karate <edward.karate@ya.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,140 +57,128 @@ msgstr ""
 msgid "Show in Favorites"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Avatar User Shape"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Circle"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "RoundCorner"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Square"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "App icons size:"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Small"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Medium"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Large"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Huge"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "App number of columns"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "App number of rows"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Porcent Heading Opacity"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Porcent Fotter Opacity"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Reset / Reiniciar"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Reset"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Shut down / Apagar"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Shut down"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Log Out / Cerrar sesión"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Log Out"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "About This Computer / Acerca de este equipo"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "About This Computer"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
+#: ../contents/ui/config/ConfigBehavior.qml
 msgctxt "@action:button"
 msgid "Reset command"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "System Preferences / Preferencias del sistema"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "System Preferences"
+msgstr "Параметры системы"
+
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Home Directory"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "home / Directorio de usuario"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "App Store"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "App Store / App Store"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Force Quit"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Force Quit / Forzar salida"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Sleep"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Sleep / Suspender"
-msgstr ""
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Lock Screen"
+msgstr "Заблокировать"
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Lock Screen / Bloquear pantalla"
-msgstr ""
-
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Icon:"
 msgstr "Значок"
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgctxt "@item:inmenu Reset icon to default"
 msgid "Clear Icon"
 msgstr "Очистить значок"
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show favorites first"
 msgstr "Сначала показать избранное"
 
-#: ../contents/ui/ConfigGeneral.qml
-msgid "Show labels in two lines"
-msgstr "Отображать метки в две строки"
-
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show user"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show search text input"
 msgstr ""
-
-#: ../contents/ui/ConfigGeneral.qml
-msgid "Unhide all hidden applications"
-msgstr "Показать все скрытые приложения"
-
-#: ../contents/ui/ConfigGeneral.qml
-msgid "Unhidden!"
-msgstr "Показаны!"
 
 #: ../contents/ui/Footer.qml
 msgid "Leave ..."
@@ -201,16 +189,8 @@ msgid "Reboot ..."
 msgstr ""
 
 #: ../contents/ui/Footer.qml
-msgid "Log Out"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
 msgid "Hibernate"
 msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Lock Screen"
-msgstr "Заблокировать"
 
 #: ../contents/ui/Footer.qml
 msgid "Force Close ..."
@@ -223,10 +203,6 @@ msgstr "Домашняя папка"
 #: ../contents/ui/Footer.qml
 msgid "Open Plasma Discover"
 msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "System Preferences"
-msgstr "Параметры системы"
 
 #: ../contents/ui/Footer.qml
 msgid "About System"
@@ -244,9 +220,13 @@ msgstr ""
 msgid "Edit Applications…"
 msgstr ""
 
+#: ../contents/ui/MenuRepresentation.qml
+msgid "key : "
+msgstr ""
+
 #: ../contents/ui/Search.qml
 msgid "Type here to search ..."
-msgstr "Введите текст для поиска..."
+msgstr "ГООООООООООООООООООООООООЛ"
 
 #: ../contents/ui/Search.qml
 msgid "Favorites"
@@ -255,6 +235,24 @@ msgstr "Избранное"
 #: ../contents/ui/Search.qml
 msgid "All apps"
 msgstr "Все приложения"
+
+#~ msgid "Menu position"
+#~ msgstr "Положение меню"
+
+#~ msgid "Default"
+#~ msgstr "По умолчанию"
+
+#~ msgid "Center bottom"
+#~ msgstr "Снизу по центру"
+
+#~ msgid "Show labels in two lines"
+#~ msgstr "Отображать метки в две строки"
+
+#~ msgid "Unhide all hidden applications"
+#~ msgstr "Показать все скрытые приложения"
+
+#~ msgid "Unhidden!"
+#~ msgstr "Показаны!"
 
 #~ msgid "Ditto Menu"
 #~ msgstr "Ditto Menu"
@@ -272,17 +270,8 @@ msgstr "Все приложения"
 #~ msgid "Choose..."
 #~ msgstr "Выбрать..."
 
-#~ msgid "Menu position"
-#~ msgstr "Положение меню"
-
-#~ msgid "Default"
-#~ msgstr "По умолчанию"
-
 #~ msgid "Center"
 #~ msgstr "Центр"
-
-#~ msgid "Center bottom"
-#~ msgstr "Снизу по центру"
 
 #~ msgid "Number of columns"
 #~ msgstr "Количество колонок"

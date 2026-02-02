@@ -17,16 +17,6 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA .        *
  ***************************************************************************/
 
-//import QtQuick 2.15
-//import QtQuick.Controls 2.15
-//import QtQuick.Dialogs 1.2
-//import QtQuick.Layouts 1.0
-//import org.kde.plasma.core 2.0 as PlasmaCore
-//import org.kde.plasma.components 2.0 as PlasmaComponents
-//import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
-//import org.kde.draganddrop 2.0 as DragDrop
-//import org.kde.kirigami 2.4 as Kirigami
-
 import QtQuick 2.15
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.15
@@ -47,14 +37,8 @@ KCM.SimpleKCM {
     property bool cfg_useCustomButtonImage: plasmoid.configuration.useCustomButtonImage
     property string cfg_customButtonImage: plasmoid.configuration.customButtonImageaboutThisComputerSettings
     property alias cfg_showFavoritesFirst: showFavoritesFirst.checked
-    property alias cfg_labels2lines: labels2lines.checked
-    //property alias cfg_displayPosition: displayPosition.currentIndex
     property alias cfg_showInfoUser: showInfoUser.checked
     property alias cfg_showSearch: showSearch.checked
-    //property alias cfg_showGridFirst: showGridFirst.checked
-
-
-
 
     function getIcon()
     {
@@ -169,31 +153,10 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        /*ComboBox {
-
-            Kirigami.FormData.label: i18n("Menu position")
-            id: displayPosition
-            model: [
-                i18n("Default"),
-                i18n("Float Center"),
-                i18n("Center bottom"),
-                i18n("Center Top"),
-                i18n("Center left"),
-                i18n("Center Right"),
-            ]            
-        }*/
-
         CheckBox {
             id: showFavoritesFirst
             Kirigami.FormData.label: i18n("Show favorites first")
         }
-
-        CheckBox {
-            id: labels2lines
-            text: i18n("Show labels in two lines")
-            visible: false // TODO
-        }
-
 
         CheckBox {
             id: showInfoUser
@@ -204,27 +167,5 @@ KCM.SimpleKCM {
             id: showSearch
             Kirigami.FormData.label: i18n("Show search text input")
         }
-
-        /*CheckBox {
-            id: showGridFirst
-            Kirigami.FormData.label: i18n("Show Grid First to Search")
-        }*/
-
-        RowLayout
-        {
-
-            visible: false
-            Button {
-                text: i18n("Unhide all hidden applications")
-                onClicked: {
-                    plasmoid.configuration.hiddenApplications = [""];
-                    unhideAllAppsPopup.text = i18n("Unhidden!");
-                }
-            }
-            Label {
-                id: unhideAllAppsPopup
-            }
-        }
-
     }
 }

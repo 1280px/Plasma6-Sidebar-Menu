@@ -3,7 +3,7 @@ import org.kde.plasma.components 3.0 as PC3
 import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.coreaddons 1.0 as KCoreAddons
 import org.kde.kquickcontrolsaddons 2.0
-//import org.kde.plasma.private.quicklaunch 1.0
+// import org.kde.plasma.private.quicklaunch 1.0
 import QtQuick.Controls 2.15
 import org.kde.ksvg 1.0 as KSvg
 import org.kde.plasma.plasma5support 2.0 as P5Support
@@ -23,7 +23,7 @@ Item
     {
     id: searchComponent
     width: rootItem.resizeWidth()  == 0 ? rootItem.calc_width : rootItem.resizeWidth()
-    //Item { Layout.fillWidth: true}
+    // Item { Layout.fillWidth: true }
     PC3.TextField
         {
             id: searchField
@@ -90,7 +90,7 @@ Item
 
             Kirigami.Icon
             {
-                source: 'search'
+                source: "search"
                 anchors
                 {
                     left: searchField.left
@@ -105,7 +105,7 @@ Item
     PC3.ToolButton
         {
             id: btnFavorites
-            icon.name: 'favorites'
+            icon.name: "favorites"
             visible: rootItem.searchvisible
             flat: !kicker.showFavorites
             onClicked:

@@ -68,34 +68,21 @@ Item {
         return l > 128 ? "dark" : "light";
     }
 
-    Kirigami.Icon {
-        source: root.useCustomButtonImage ? Plasmoid.configuration.customButtonImage : Qt.resolvedUrl(getIcon())
-        id: buttonIcon
-        anchors.fill: parent
-        readonly property double aspectRatio: root.vertical
-        ? implicitHeight / implicitWidth
-        : implicitWidth / implicitHeight
-        active: mouseArea.containsMouse && !justOpenedTimer.running
-
-
-    }
-    /*
     Kirigami.Icon
     {
+        source: root.useCustomButtonImage ? Plasmoid.configuration.customButtonImage : Plasmoid.configuration.icon
         id: buttonIcon
         anchors.fill: parent
         readonly property double aspectRatio: root.vertical
             ? implicitHeight / implicitWidth
             : implicitWidth / implicitHeight
-
         active: mouseArea.containsMouse && !justOpenedTimer.running
-        source: root.useCustomButtonImage ? Plasmoid.configuration.customButtonImage : Plasmoid.configuration.icon
         // A custom icon could also be rectangular. However, if a square, custom, icon is given, assume it
         // to be an icon and round it to the nearest icon size again to avoid scaling artifacts.
         roundToIconSize: !root.useCustomButtonImage || aspectRatio === 1
         onSourceChanged: root.updateSizeHints()
     }
-    */
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent

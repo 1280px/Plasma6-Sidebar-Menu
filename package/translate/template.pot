@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sidebar-Menu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-02 05:51+0700\n"
+"POT-Creation-Date: 2026-02-02 06:51+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,139 +57,127 @@ msgstr ""
 msgid "Show in Favorites"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Avatar User Shape"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Circle"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "RoundCorner"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Square"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "App icons size:"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Small"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Medium"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Large"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Huge"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "App number of columns"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "App number of rows"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Porcent Heading Opacity"
 msgstr ""
 
-#: ../contents/ui/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Porcent Fotter Opacity"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Reset / Reiniciar"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Reset"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Shut down / Apagar"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Shut down"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Log Out / Cerrar sesión"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Log Out"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "About This Computer / Acerca de este equipo"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "About This Computer"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
+#: ../contents/ui/config/ConfigBehavior.qml
 msgctxt "@action:button"
 msgid "Reset command"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "System Preferences / Preferencias del sistema"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "System Preferences"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "home / Directorio de usuario"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Home Directory"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "App Store / App Store"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "App Store"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Force Quit / Forzar salida"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Force Quit"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Sleep / Suspender"
+#: ../contents/ui/config/ConfigBehavior.qml
+msgid "Sleep"
 msgstr ""
 
-#: ../contents/ui/ConfigBehavior.qml
-msgid "Lock Screen / Bloquear pantalla"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Lock Screen"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Icon:"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgctxt "@item:inmenu Reset icon to default"
 msgid "Clear Icon"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show favorites first"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
-msgid "Show labels in two lines"
-msgstr ""
-
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show user"
 msgstr ""
 
-#: ../contents/ui/ConfigGeneral.qml
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show search text input"
-msgstr ""
-
-#: ../contents/ui/ConfigGeneral.qml
-msgid "Unhide all hidden applications"
-msgstr ""
-
-#: ../contents/ui/ConfigGeneral.qml
-msgid "Unhidden!"
 msgstr ""
 
 #: ../contents/ui/Footer.qml
@@ -201,15 +189,7 @@ msgid "Reboot ..."
 msgstr ""
 
 #: ../contents/ui/Footer.qml
-msgid "Log Out"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
 msgid "Hibernate"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Lock Screen"
 msgstr ""
 
 #: ../contents/ui/Footer.qml
@@ -222,10 +202,6 @@ msgstr ""
 
 #: ../contents/ui/Footer.qml
 msgid "Open Plasma Discover"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "System Preferences"
 msgstr ""
 
 #: ../contents/ui/Footer.qml
@@ -242,6 +218,10 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Edit Applications…"
+msgstr ""
+
+#: ../contents/ui/MenuRepresentation.qml
+msgid "key : "
 msgstr ""
 
 #: ../contents/ui/Search.qml

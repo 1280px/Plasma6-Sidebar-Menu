@@ -46,7 +46,7 @@ FocusScope {
     }
 
     onFocusChanged: {
-        //if (!focus && !root.keyEventProxy.activeFocus) {
+        // if (!focus && !root.keyEventProxy.activeFocus) {
         if (!focus) {
             currentIndex = -1;
         }
@@ -73,19 +73,6 @@ FocusScope {
         return Math.ceil(count / columns) - 1;
     }
 
-    /*function tryActivate(row, col) {
-        if (count) {
-            var columns = Math.floor(width / itemGrid.cellWidth);
-            var rows = Math.ceil(count / columns);
-            row = Math.min(row, rows - 1);
-            col = Math.min(col, columns - 1);
-            currentIndex = Math.min(row ? ((Math.max(1, row) * columns) + col)
-                                        : col,
-                                    count - 1);
-
-            focus = true;
-        }
-    }*/
     function tryActivate(row, col)
     {
         if (count)
@@ -117,10 +104,10 @@ FocusScope {
     DropArea {
         id: dropArea
 
-        //Rectangle {
-        //color: "red"
+        // Rectangle {
+        // color: "red"
         //    anchors.fill: parent
-        //}
+        // }
 
         anchors.fill: parent
 
@@ -359,9 +346,9 @@ FocusScope {
 
                 onItemContainsMouseChanged: containsMouse => {
                                                 if (!containsMouse) {
-                                                    //if (!actionMenu.opened) {
+                                                    // if (!actionMenu.opened) {
                                                     //    gridView.currentIndex = -1;
-                                                    //}
+                                                    // }
 
                                                     hoverArea.pressX = -1;
                                                     hoverArea.pressY = -1;
@@ -377,7 +364,7 @@ FocusScope {
         MouseArea {
             id: hoverArea
 
-            //anchors.fill: parent
+            // anchors.fill: parent
             width:  itemGrid.width - Kirigami.Units.gridUnit
             height: itemGrid.height
 
@@ -483,7 +470,7 @@ FocusScope {
     }
 }
 
-//keys press
+// Better key press handler implementation, TODO replace current one with this one
 /*Keys.onPressed: (event) =>
  { *
  event.accepted = true; // Asume que todos los eventos se aceptan a menos que se especifique lo contrario

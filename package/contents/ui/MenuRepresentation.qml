@@ -13,17 +13,18 @@
 import org.kde.plasma.components 3.0 as PC3
 import org.kde.plasma.private.kicker 0.1 as Kicker
 import org.kde.coreaddons 1.0 as KCoreAddons
-//import org.kde.plasma.private.quicklaunch 1.0
+// import org.kde.plasma.private.quicklaunch 1.0
 import org.kde.ksvg 1.0 as KSvg
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import QtQml 2.15
 import org.kde.kirigami 2.0  as Kirigami
 import org.kde.plasma.plasmoid 2.0
-   FocusScope
-   {
+
+
+FocusScope
+{
     id: rootItem
-    property bool showGridFirst: Plasmoid.configuration.showGridFirst // Propiedad de configuración
     property bool searchvisible : Plasmoid.configuration.showSearch
     property int visible_items: (Plasmoid.configuration.showInfoUser ? headingSvg.height : 0) + (rootItem.searchvisible == true ? rowSearchField.height : 0) + ( kicker.view_any_controls == true ? footer.height : 0)+ Kirigami.Units.gridUnit
     property int cuadricula_hg : (kicker.cellSizeHeight *  Plasmoid.configuration.numberRows)
@@ -40,8 +41,9 @@ import org.kde.plasma.plasmoid 2.0
     Layout.minimumHeight:space_height
     Layout.maximumHeight:space_height
     focus: true
-    KCoreAddons.KUser {   id: kuser  }
-    //ghrapics
+    KCoreAddons.KUser { id: kuser }
+
+    // Graphics
     KSvg.FrameSvgItem
     {
         id : headingSvg
@@ -65,20 +67,24 @@ import org.kde.plasma.plasmoid 2.0
         x: backgroundSvg.margins.left
         imagePath: "widgets/plasmoidheading"
         prefix: "header"
-        transform: Rotation { angle: 180; origin.x: width / 2;}
+        transform: Rotation { angle: 180; origin.x: width / 2; }
         opacity: Plasmoid.configuration.transparencyFooter * 0.01
     }
 
-    /*Text{
+    // DEBUGGING
+    Text
+    {
         id: count
-        text: i18n("key : " + kicker.keyIn)
-    }*/
-    //contenedor del menu
+        text: kicker.keyIn
+    }
+
+    // Menu container
     ColumnLayout
     {
         id:container
         Layout.preferredHeight: rootItem.space_height
-        //encabezado
+
+        // Heading
         Item
         {
             id: encabezado
@@ -91,9 +97,8 @@ import org.kde.plasma.plasmoid 2.0
                    sourceComponent: headComponent
                    onLoaded:
                    {
-                       // Aquí puedes acceder a pinButton después de que se haya cargado
                        var pinButton = head_.item.pinButton;
-                       // Ahora puedes usar pinButton en tu lógica
+
                        if (!activeFocus && kicker.hideOnWindowDeactivate === false)
                        {
                            if (!pinButton.checked) {turnclose();}
@@ -101,30 +106,34 @@ import org.kde.plasma.plasmoid 2.0
                    }
             }
         }
-        //cuadrilla
+
+        // Grid
         Item
         {
             id: gridComponent
             width: rootItem.space_width
             Layout.preferredHeight:(resizeHeight() == 0 ? rootItem.cuadricula_hg  : resizeHeight() -rootItem.visible_items)
-            //cuadrilla para favoritos
+
+            // Grid for favourites
             ItemGridView
             {
-            id: globalFavoritesGrid
-            visible: (Plasmoid.configuration.showFavoritesFirst || kicker.showFavorites)  && (!kicker.searching && kicker.showFavorites)
-            dragEnabled: true
-            dropEnabled: true
-            height: rootItem.resizeHeight() == 0 ? rootItem.cuadricula_hg  : rootItem.resizeHeight() - rootItem.visible_items
-            width: rootItem.width
-            focus: true
-            cellWidth:   kicker.cellSizeWidth
-            cellHeight:  kicker.cellSizeHeight
-            iconSize:    kicker.iconSize
-            onKeyNavUp:  searchLoader.item.gofocus();
-            //evento de tecla para favoritos
-            Keys.onPressed:(event)=>
-                {   kicker.keyIn = "favoritos : " + event.key;
-                    if(event.modifiers & Qt.ControlModifier ||event.modifiers & Qt.ShiftModifier)
+                id: globalFavoritesGrid
+                visible: (Plasmoid.configuration.showFavoritesFirst || kicker.showFavorites)  && (!kicker.searching && kicker.showFavorites)
+                dragEnabled: true
+                dropEnabled: true
+                height: rootItem.resizeHeight() == 0 ? rootItem.cuadricula_hg  : rootItem.resizeHeight() - rootItem.visible_items
+                width: rootItem.width
+                focus: true
+                cellWidth:   kicker.cellSizeWidth
+                cellHeight:  kicker.cellSizeHeight
+                iconSize:    kicker.iconSize
+                onKeyNavUp:  searchLoader.item.gofocus();
+
+                // Favourites key event
+                Keys.onPressed:(event) =>
+                {
+                    kicker.keyIn = "Favourites: " + event.key;
+                    if (event.modifiers & Qt.ControlModifier || event.modifiers & Qt.ShiftModifier)
                     {
                         searchLoader.item.gofocus();
                         return
@@ -141,18 +150,21 @@ import org.kde.plasma.plasmoid 2.0
                     }
                 }
             }
+
             Item
             {
                 id: mainGrids
                 visible: (!Plasmoid.configuration.showFavoritesFirst && !kicker.showFavorites ) || kicker.searching || !kicker.showFavorites //TODO
                 width: rootItem.width
-                //contenedor de cuadrilla para todas la app y la busqueda
+
+                // Container used by both apps and search
                 Item
                 {
                     id: mainColumn
                     width: rootItem.width
                     property Item visibleGrid: allAppsGrid
-                    //cuadrilla apps.
+
+                    // Grid for apps
                     ItemGridView
                     {
                         id: allAppsGrid
@@ -169,62 +181,81 @@ import org.kde.plasma.plasmoid 2.0
                         onOpacityChanged: { if (opacity == 1) { mainColumn.visibleGrid = allAppsGrid; } }
                         onKeyNavUp: searchLoader.item.gofocus()
                     }
-                    //cuadrilla de resultados de busqueda
+
+                    // Grid for search results
                     ItemMultiGridView
                     {
                         id: runnerGrid
                         width: rootItem.width
                         height: rootItem.resizeHeight() == 0 ? rootItem.cuadricula_hg  : rootItem.resizeHeight() - rootItem.visible_items
-                        cellWidth:   kicker.cellSizeWidth
-                        cellHeight:  kicker.cellSizeHeight
+                        cellWidth: kicker.cellSizeWidth
+                        cellHeight: kicker.cellSizeHeight
                         enabled: (opacity == 1.0) ? 1 : 0
-                        z:  enabled ? 5 : -1
+                        z: enabled ? 5 : -1
                         model: runnerModel
                         grabFocus: true
                         opacity: kicker.searching ? 1.0 : 0.0
                         onOpacityChanged: { if (opacity == 1.0) { mainColumn.visibleGrid = runnerGrid;}}
                         onKeyNavUp: searchLoader.item.gofocus()
                     }
-                    //ambas tienen la funcion try Activate
-                    function tryActivate(row, col) { if (visibleGrid){visibleGrid.tryActivate(row, col);} }
-                    //ambas cuadrillas responden al evento key
-                    Keys.onPressed: (event)=>
-                    {   kicker.keyIn = "cuadrilla o busqueda : " + event.key;
-                        if(event.modifiers & Qt.ControlModifier ||event.modifiers & Qt.ShiftModifier)
+
+                    // Grid activation function
+                    function tryActivate(row, col)
+                    {
+                        if (visibleGrid)
+                        {
+                            visibleGrid.tryActivate(row, col);
+                        }
+                    }
+
+                    // Keys that are reactionary to events
+                    Keys.onPressed: (event) =>
+                    {
+                        kicker.keyIn = "Grids or Search: " + event.key;
+
+                        if (event.modifiers & Qt.ControlModifier || event.modifiers & Qt.ShiftModifier)
                         {searchLoader.item.gofocus();
-                            return;}
+                            return;
+                        }
                         if (event.key === Qt.Key_Tab)
-                        {event.accepted = true;
+                        {
+                            event.accepted = true;
                             searchLoader.item.gofocus();
                         }
                         else if (event.key === Qt.Key_Backspace)
                         {event.accepted = true;
-                            if(kicker.searching){searchLoader.item.backspace();}
+                            if (kicker.searching)
+                            {
+                                searchLoader.item.backspace();
+                            }
                             searchLoader.item.gofocus();
                         }
                         else if (event.key === Qt.Key_Escape)
-                        {event.accepted = true;
+                        {
+                            event.accepted = true;
                             if(kicker.searching){rootItem.reset()}
                             else {rootItem.turnclose();}
                         }
                         else if (event.text !== "")
-                        {event.accepted = true;
+                        {
+                            event.accepted = true;
                             searchLoader.item.appendText(event.text);
                         }
                     }
                 }
             }
         }
-        //buscador
+
         Item
-        {   id: rowSearchField
+        {
+            id: rowSearchField
             visible: rootItem.searchvisible
             Layout.preferredHeight:45
             width: rootItem.space_width
             Loader{id: searchLoader
                    sourceComponent: searchComponent}
         }
-        //controles
+
         Item
         {
             id: footer
@@ -236,12 +267,15 @@ import org.kde.plasma.plasmoid 2.0
              sourceComponent: footerComponent}
         }
     }
-    //press key in menu representation
-    Keys.onPressed: (event)=>
-    {
-        kicker.keyIn = "menurepresentation : " + event.key;
 
-        event.accepted = true; // Asume que todos los eventos se aceptan a menos que se especifique lo contrario
+    // Press key in menu representation
+    Keys.onPressed: (event) =>
+    {
+        kicker.keyIn = "Menu Representation: " + event.key;
+
+        // Assume all events are accepted prompted otherwise
+        event.accepted = true;
+
         if (event.modifiers & (Qt.ControlModifier | Qt.ShiftModifier)) { searchLoader.item.gofocus(); return;}
         switch (event.key)
         {
@@ -272,72 +306,82 @@ import org.kde.plasma.plasmoid 2.0
         searchLoader.item.gofocus();
     }
 
-    //component
-    Component {id: footerComponent; Footer{}}
-    Component {id: searchComponent; Search{}}
-    Component {id: headComponent;     Head{}}
+    Component { id: footerComponent; Footer{} }
+    Component { id: searchComponent; Search{} }
+    Component { id: headComponent; Head{} }
 
-    //otras funciones
     function isLetterOrNumber(text) {
-        // Verifica si el texto es una letra o un número
         return /^[a-zA-Z0-9]$/.test(text);
     }
+
     function turnclose()
-    {   searchLoader.item.emptysearch()
+    {
+        searchLoader.item.emptysearch()
         kicker.searching=false;
-        //showFavorites=false; /* si esta activada siempre que reinicie la pantalla del menu sera el all apps*/
         if (kicker.showFavorites) {globalFavoritesGrid.tryActivate(0,0);}
         else {mainColumn.tryActivate(0,0);}
         kicker.expanded = false;
         return
     }
     function reset()
-    {   searchLoader.item.emptysearch()
+    {
+        searchLoader.item.emptysearch()
         kicker.searching=false;
         if (kicker.showFavorites) {globalFavoritesGrid.tryActivate(0,0);}
         else {mainColumn.tryActivate(0,0);}
 
     }
     function resizeWidth()
-    {   var screenAvail = kicker.availableScreenRect;
+    {
+        var screenAvail = kicker.availableScreenRect;
         var screenGeom = kicker.screenGeometry;
         var screen = Qt.rect(screenAvail.x + screenGeom.x,screenAvail.y + screenGeom.y,screenAvail.width, screenAvail.height);
         if (screen.width > (kicker.cellSizeWidth *  Plasmoid.configuration.numberColumns) + Kirigami.Units.gridUnit){ return 0; }
         else { return screen.width - Kirigami.Units.gridUnit * 2 ; }
     }
     function resizeHeight()
-    {   var screenAvail = kicker.availableScreenRect;
+    {
+        var screenAvail = kicker.availableScreenRect;
         var screenGeom = kicker.screenGeometry;
         var screen = Qt.rect(screenAvail.x + screenGeom.x,screenAvail.y + screenGeom.y,screenAvail.width, screenAvail.height);
         if (screen.height > (kicker.cellSizeHeight *  Plasmoid.configuration.numberRows) + rootItem.visible_items + Kirigami.Units.gridUnit * 1.5) {return 0;}
         else { return screen.height - Kirigami.Units.gridUnit * 2;}
     }
     function updateLayouts()
-    {   rootItem.searchvisible = Plasmoid.configuration.showSearch;
+    {
+        rootItem.searchvisible = Plasmoid.configuration.showSearch;
         rootItem.visible_items = (Plasmoid.configuration.showInfoUser ? headingSvg.height : 0) + (rootItem.searchvisible == true ? rowSearchField.height : 0) + ( kicker.view_any_controls == true ? footer.height : 0)+ Kirigami.Units.gridUnit
         rootItem.cuadricula_hg = (kicker.cellSizeHeight *  Plasmoid.configuration.numberRows);
         rootItem.calc_width = (kicker.cellSizeWidth *  Plasmoid.configuration.numberColumns) + Kirigami.Units.gridUnit;
         rootItem.calc_height = rootItem.cuadricula_hg  + rootItem.visible_items;
         rootItem.userShape = calculateUserShape(Plasmoid.configuration.userShape);
-        kicker.keyIn="me actualice";
+        kicker.keyIn="Layout updated";
     }
     function calculateUserShape(shape)
-    {   switch (shape) {
+    {
+        switch (shape) {
         case 0: return (kicker.sizeImage * 0.85) / 2;
         case 1: return 8;
         case 2: return 0;
         default:return (kicker.sizeImage * 0.85) / 2;}
     }
     function setModels()
-    {   globalFavoritesGrid.model = globalFavorites
-        allAppsGrid.model = rootModel.modelForRow(0);}
+    {
+        globalFavoritesGrid.model = globalFavorites
+        allAppsGrid.model = rootModel.modelForRow(0);
+    }
 
     onActiveFocusChanged:
     {
         if (!activeFocus && kicker.hideOnWindowDeactivate === false)
         {
-        // Verificar si el item del Loader está disponible
-        if (head_.item && head_.item.pinButton) {if (!head_.item.pinButton.checked) { turnclose();}}
+            if (head_.item && head_.item.pinButton)
+            {
+                if (!head_.item.pinButton.checked)
+                {
+                    turnclose();
+                }
+            }
         }
     }
 
