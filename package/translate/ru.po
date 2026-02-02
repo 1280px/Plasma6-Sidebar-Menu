@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dittomenu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-02 06:51+0700\n"
+"POT-Creation-Date: 2026-02-03 02:52+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Edward Karate <edward.karate@ya.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgid "Square"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "App icons size:"
+msgid "Icons size:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
@@ -94,19 +94,19 @@ msgid "Huge"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "App number of columns"
+msgid "Number of columns:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "App number of rows"
+msgid "Number of rows:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Porcent Heading Opacity"
+msgid "Header opacity, %:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Porcent Fotter Opacity"
+msgid "Fotter opacity, %:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigBehavior.qml
@@ -218,10 +218,6 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Edit Applications…"
-msgstr ""
-
-#: ../contents/ui/MenuRepresentation.qml
-msgid "key : "
 msgstr ""
 
 #: ../contents/ui/Search.qml

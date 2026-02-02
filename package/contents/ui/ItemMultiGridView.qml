@@ -15,14 +15,12 @@ import org.kde.plasma.plasmoid
 
 PlasmaComponents.ScrollView {
     id: itemMultiGrid
+    width: parent.width
+    implicitHeight: itemColumn.implicitHeight
 
     anchors {
         top: parent.top
     }
-
-    width: parent.width
-
-    implicitHeight: itemColumn.implicitHeight
 
     signal keyNavLeft(int subGridIndex)
     signal keyNavRight(int subGridIndex)
@@ -30,11 +28,9 @@ PlasmaComponents.ScrollView {
     signal keyNavDown()
 
     property bool grabFocus: false
-
     property alias model: repeater.model
     property alias count: repeater.count
     property alias flickableItem: flickable
-
     property int cellWidth
     property int cellHeight
 
@@ -43,16 +39,15 @@ PlasmaComponents.ScrollView {
     }
 
     function tryActivate(row, col) { // FIXME TODO: Cleanup messy algo.
-        if (flickable.contentY > 0) {
+        if (flickable.contentY > 0)
             row = 0;
-        }
 
         var target = null;
         var rows = 0;
 
         for (var i = 0; i < repeater.count; i++) {
             var grid = subGridAt(i);
-            if(grid.count > 0 ){
+            if (grid.count > 0) {
                 if (rows <= row) {
                     target = grid;
                     rows += grid.lastRow() + 2; // Header counts as one.
@@ -78,14 +73,12 @@ PlasmaComponents.ScrollView {
 
     Flickable {
         id: flickable
-
         flickableDirection: Flickable.VerticalFlick
         contentHeight: itemColumn.implicitHeight
         // focusPolicy: Qt.NoFocus
 
         Column {
             id: itemColumn
-
             width: itemMultiGrid.width - Kirigami.Units.gridUnit
 
             Repeater {
@@ -121,7 +114,7 @@ PlasmaComponents.ScrollView {
                         textFormat: Text.PlainText
                     }
 
-                    Rectangle{
+                    Rectangle {
                         anchors.right: parent.right
                         anchors.left: gridViewLabel.right
                         anchors.leftMargin: Kirigami.Units.largeSpacing
@@ -206,14 +199,15 @@ PlasmaComponents.ScrollView {
                         onKeyNavUp: {
                             if (index > 0) {
                                 var i;
-                                for (i = index; i > 0 ; i--) {
-                                    var prevGrid = subGridAt(i-1);
-                                    if(prevGrid.count > 0 ){
+                                for (i = index; i > 0; i--) {
+                                    var prevGrid = subGridAt(i - 1);
+                                    if (prevGrid.count > 0) {
                                         prevGrid.tryActivate(prevGrid.lastRow(), currentCol());
                                         break;
                                     }
                                 }
-                                if(i === 0){
+
+                                if (i === 0) {
                                     itemMultiGrid.keyNavUp();
                                 }
                                 // var prevGrid = subGridAt(index - 1);
@@ -226,14 +220,14 @@ PlasmaComponents.ScrollView {
                         onKeyNavDown: {
                             if (index < repeater.count - 1) {
                                 var i;
-                                for (i = index; i < repeater.count - 1 ; i++) {
-                                    var grid = subGridAt(i+1);
-                                    if(grid.count > 0 ){
+                                for (i = index; i < repeater.count - 1; i++) {
+                                    var grid = subGridAt(i + 1);
+                                    if (grid.count > 0 ) {
                                         grid.tryActivate(0, currentCol());
                                         break;
                                     }
                                 }
-                                if(i === repeater.count){
+                                if (i === repeater.count) {
                                     itemMultiGrid.keyNavDown();
                                 }
                                 // subGridAt(index + 1).tryActivate(0, currentCol());

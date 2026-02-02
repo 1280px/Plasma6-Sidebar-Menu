@@ -5,82 +5,67 @@
 */
 
 import QtQuick 2.15
-import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.0
+
 import org.kde.draganddrop 2.0 as DragDrop
-import org.kde.kirigami 2.5 as Kirigami
 import org.kde.iconthemes as KIconThemes
-import org.kde.plasma.core as PlasmaCore
+import org.kde.kcmutils as KCM
+import org.kde.kirigami 2.5 as Kirigami
 import org.kde.kirigami 2.20 as Kirigami
 import org.kde.ksvg 1.0 as KSvg
+import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
-import org.kde.kcmutils as KCM
-
 
 KCM.SimpleKCM {
     id: configAppearance
     property alias cfg_numberColumns: numberColumns.value
     property alias cfg_numberRows: numberRows.value
-
     property alias cfg_appsIconSize: appsIconSize.currentIndex
     property alias cfg_userShape: userShape.currentIndex
-
     property alias cfg_transparencyHead: transparencyHead.value
     property alias cfg_transparencyFooter: transparencyFooter.value
 
-    Kirigami.FormLayout
-    {
-        ComboBox
-        {
-
-            Kirigami.FormData.label: i18n("Avatar User Shape")
+    Kirigami.FormLayout {
+        ComboBox {
             id: userShape
-            model: [
-                i18n("Circle"),
-                i18n("RoundCorner"),
-                i18n("Square"),
-            ]
+            Kirigami.FormData.label: i18n("Avatar User Shape")
+            model: [i18n("Circle"), i18n("RoundCorner"), i18n("Square")]
         }
 
         ComboBox {
             id: appsIconSize
-            Kirigami.FormData.label: i18n("App icons size:")
+            Kirigami.FormData.label: i18n("Icons size:")
             Layout.fillWidth: true
-            model: [i18n("Small"),i18n("Medium"),i18n("Large"), i18n("Huge")]
+            model: [i18n("Small"), i18n("Medium"), i18n("Large"), i18n("Huge")]
         }
 
-        SpinBox{
+        SpinBox {
             id: numberColumns
             from: 3
             to: 15
-            Kirigami.FormData.label: i18n("App number of columns")
-
+            Kirigami.FormData.label: i18n("Number of columns:")
         }
 
-        SpinBox{
+        SpinBox {
             id: numberRows
             from: 1
             to: 15
-            Kirigami.FormData.label: i18n("App number of rows")
+            Kirigami.FormData.label: i18n("Number of rows:")
         }
 
-
-        SpinBox{
+        SpinBox {
             id: transparencyHead
-            from:1
+            from: 1
             to: 100
-            Kirigami.FormData.label: i18n("Porcent Heading Opacity")
-
+            Kirigami.FormData.label: i18n("Header opacity, %:")
         }
 
-        SpinBox{
+        SpinBox {
             id: transparencyFooter
-            from:1
+            from: 1
             to: 100
-            Kirigami.FormData.label: i18n("Porcent Fotter Opacity")
-
+            Kirigami.FormData.label: i18n("Fotter opacity, %:")
         }
-
-
     }
 }

@@ -14,35 +14,40 @@ import "code/tools.js" as Tools
 
 Item {
     id: item
-
     width: GridView.view.cellWidth
     height: GridView.view.cellHeight
-
     enabled: !model.disabled
 
     property bool showLabel: true
-
     property int itemIndex: model.index
     property string favoriteId: model.favoriteId !== undefined ? model.favoriteId : ""
     property url url: model.url !== undefined ? model.url : ""
     property variant icon: model.decoration !== undefined ? model.decoration : ""
     property var m: model
-    property bool hasActionList: ((model.favoriteId !== null)
-        || (("hasActionList" in model) && (model.hasActionList === true)))
+    property bool hasActionList: (
+        (model.favoriteId !== null)
+        || (("hasActionList" in model)
+        && (model.hasActionList === true))
+    )
 
     Accessible.role: Accessible.MenuItem
     Accessible.name: model.display
 
     function openActionMenu(x, y) {
         var actionList = hasActionList ? model.actionList : [];
-        Tools.fillActionMenu(i18n, actionMenu, actionList, GridView.view.model.favoritesModel, model.favoriteId);
+        Tools.fillActionMenu(
+            i18n, actionMenu, actionList, GridView.view.model.favoritesModel, model.favoriteId
+        );
         actionMenu.visualParent = item;
         actionMenu.open(x, y);
     }
 
     function actionTriggered(actionId, actionArgument) {
-        var close = (Tools.triggerAction(GridView.view.model, model.index, actionId, actionArgument) === true);
-
+        var close = (
+            Tools.triggerAction(
+                GridView.view.model, model.index, actionId, actionArgument
+            ) === true
+        );
         if (close) {
             kicker.toggle();
         }
@@ -50,24 +55,26 @@ Item {
 
     Kirigami.Icon {
         id: icon
-
         y: item.showLabel ? (2 * highlightItemSvg.margins.top) : undefined
-
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: item.showLabel ? undefined : parent.verticalCenter
-
         width: iconSize
         height: width
-
         animated: false
-
         source: model.decoration
     }
 
     PlasmaComponents3.Label {
         id: label
-
         visible: item.showLabel
+        horizontalAlignment: Text.AlignHCenter
+        maximumLineCount: 2
+        elide: Text.ElideMiddle
+        wrapMode: Text.Wrap
+        color: Kirigami.Theme.textColor
+        font.pointSize: Kirigami.Theme.defaultFont.pointSize + 0.5
+        text: ("name" in model ? model.name : model.display)
+        textFormat: Text.PlainText
 
         anchors {
             top: icon.bottom
@@ -77,33 +84,18 @@ Item {
             right: parent.right
             rightMargin: highlightItemSvg.margins.right
         }
-
-        horizontalAlignment: Text.AlignHCenter
-
-        maximumLineCount: 2
-        elide: Text.ElideMiddle
-        wrapMode: Text.Wrap
-
-        color: Kirigami.Theme.textColor
-
-        font.pointSize: Kirigami.Theme.defaultFont.pointSize + 0.5
-        text: ("name" in model ? model.name : model.display)
-        textFormat: Text.PlainText
     }
 
     PlasmaCore.ToolTipArea {
         id: toolTip
-
         property string text: model.display
-
         anchors.fill: parent
         active: kicker.visible && label.truncated
         mainItem: toolTipDelegate
-
         onContainsMouseChanged: item.GridView.view.itemContainsMouseChanged(containsMouse)
     }
 
-    Keys.onPressed: event => {
+    Keys.onPressed: (event) => {
         if (event.key === Qt.Key_Menu && hasActionList) {
             event.accepted = true;
             openActionMenu(item);

@@ -21,15 +21,15 @@ import org.kde.kirigami 2.20 as Kirigami
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.private.kicker 0.1 as Kicker
 
-PlasmoidItem
-{
+PlasmoidItem {
     id: kicker
+
     anchors.fill: parent
     signal reset
 
     property bool isDash: Plasmoid.pluginName === "org.kde.plasma.kickerdash"
-    switchWidth: isDash || !fullRepresentationItem ? 0 :fullRepresentationItem.Layout.minimumWidth
-    switchHeight: isDash || !fullRepresentationItem ? 0 :fullRepresentationItem.Layout.minimumHeight
+    switchWidth: isDash || !fullRepresentationItem ? 0 : fullRepresentationItem.Layout.minimumWidth
+    switchHeight: isDash || !fullRepresentationItem ? 0 : fullRepresentationItem.Layout.minimumHeight
     compactRepresentation: isDash ? null : compactRepresentation
     preferredRepresentation: isDash ?fullRepresentation : null
     fullRepresentation: isDash ? compactRepresentation : menuRepresentation
@@ -52,27 +52,61 @@ PlasmoidItem
     readonly property string homeCMD: Plasmoid.configuration.homeSettings
     readonly property string appStoreCMD: Plasmoid.configuration.appStoreSettings
     readonly property string forceQuitCMD: Plasmoid.configuration.forceQuitSettings
-    property bool view_any_controls : Plasmoid.configuration.rebootEnabled || Plasmoid.configuration.shutDownEnabled || Plasmoid.configuration.aboutThisComputerEnabled || Plasmoid.configuration.systemPreferencesEnabled || Plasmoid.configuration.appStoreEnabled || Plasmoid.configuration.forceQuitEnabled ||  Plasmoid.configuration.sleepEnabled || Plasmoid.configuration.lockScreenEnabled  || Plasmoid.configuration.logOutEnabled ||  Plasmoid.configuration.homeEnabled
+    property bool view_any_controls: (
+        Plasmoid.configuration.rebootEnabled
+        || Plasmoid.configuration.shutDownEnabled
+        || Plasmoid.configuration.aboutThisComputerEnabled
+        || Plasmoid.configuration.systemPreferencesEnabled 
+        || Plasmoid.configuration.appStoreEnabled
+        || Plasmoid.configuration.forceQuitEnabled
+        || Plasmoid.configuration.sleepEnabled
+        || Plasmoid.configuration.lockScreenEnabled
+        || Plasmoid.configuration.logOutEnabled
+        || Plasmoid.configuration.homeEnabled
+    )
 
-    // Images & Icons Properties
+    // Images' & icons' properties
     property int sizeImage: Kirigami.Units.iconSizes.large * 2.5
-    property int cellSizeHeight: iconSize + Kirigami.Units.gridUnit * 2 + (2 * Math.max(highlightItemSvg.margins.top +  highlightItemSvg.margins.bottom, highlightItemSvg.margins.left + highlightItemSvg.margins.right))
-    property int cellSizeWidth: cellSizeHeight + Kirigami.Units.gridUnit
 
-    property int iconSize:{switch(Plasmoid.configuration.appsIconSize){
-        case 0: return Kirigami.Units.iconSizes.smallMedium;
-        case 1: return Kirigami.Units.iconSizes.medium;
-        case 2: return Kirigami.Units.iconSizes.large;
-        case 3: return Kirigami.Units.iconSizes.huge;
-        default: return 64}}
+    property int cellSizeHeight: (
+        iconSize + Kirigami.Units.gridUnit * 2
+        + (
+            2 * Math.max(
+                highlightItemSvg.margins.top + highlightItemSvg.margins.bottom,
+                highlightItemSvg.margins.left + highlightItemSvg.margins.right
+            )
+        )
+    )
+    property int cellSizeWidth: (
+        cellSizeHeight + Kirigami.Units.gridUnit
+    )
 
-    Plasmoid.icon: Plasmoid.configuration.useCustomButtonImage ? Plasmoid.configuration.customButtonImage : Plasmoid.configuration.icon
+    property int iconSize: {
+        switch (Plasmoid.configuration.appsIconSize) {
+        case 0:
+            return Kirigami.Units.iconSizes.smallMedium;
+        case 1:
+            return Kirigami.Units.iconSizes.medium;
+        case 2:
+            return Kirigami.Units.iconSizes.large;
+        case 3:
+            return Kirigami.Units.iconSizes.huge;
+        default:
+            return 64;
+        }
+    }
+
+    Plasmoid.icon: (
+        Plasmoid.configuration.useCustomButtonImage
+        ? Plasmoid.configuration.customButtonImage
+        : Plasmoid.configuration.icon
+    )
 
     // Models
     property QtObject globalFavorites: rootModel.favoritesModel
     property QtObject systemFavorites: rootModel.systemFavoritesModel
-    Kicker.RootModel
-    {
+
+    Kicker.RootModel {
         id: rootModel
         autoPopulate: false
         flat: true
@@ -83,11 +117,17 @@ PlasmoidItem
         showRecentApps: false
         showRecentDocs: false
         showPowerSession: true
-        onShowRecentAppsChanged:{ Plasmoid.configuration.showRecentApps = showRecentApps;}
-        onShowRecentDocsChanged: { Plasmoid.configuration.showRecentDocs = showRecentDocs;}
-        onRecentOrderingChanged: {Plasmoid.configuration.recentOrdering = recentOrdering;}
-        Component.onCompleted:
-        {
+
+        onShowRecentAppsChanged: {
+            Plasmoid.configuration.showRecentApps = showRecentApps;
+        }
+        onShowRecentDocsChanged: {
+            Plasmoid.configuration.showRecentDocs = showRecentDocs;
+        }
+        onRecentOrderingChanged: {
+            Plasmoid.configuration.recentOrdering = recentOrdering;
+        }
+        Component.onCompleted: {
             favoritesModel.initForClient("org.kde.plasma.kicker.favorites.instance-" + Plasmoid.id)
             if (!Plasmoid.configuration.favoritesPortedToKAstats)
             {
@@ -99,13 +139,12 @@ PlasmoidItem
             }
         }
     }
-    Kicker.RunnerModel
-    {
+
+    Kicker.RunnerModel {
         id: runnerModel
         appletInterface: kicker
         favoritesModel: globalFavorites
-        runners:
-        {
+        runners: {
             const results = [
                 "krunner_services",
                 "krunner_systemsettings",
@@ -114,34 +153,46 @@ PlasmoidItem
                 "calculator",
                 "unitconverter"
             ];
-            if (Plasmoid.configuration.useExtraRunners)
-            {
-                results.push(...Plasmoid.configuration.extraRunners);
+
+            if (Plasmoid.configuration.useExtraRunners) {
+                results.push(Plasmoid.configuration.extraRunners);
             }
+
             return results;
         }
     }
-    Kicker.DragHelper{id: dragHelper
-    dragIconSize: Kirigami.Units.iconSizes.medium}
-    Kicker.ProcessRunner {id: processRunner}
-    Kicker.WindowSystem { id: windowSystem}
-    Connections
-    {
+
+    Kicker.DragHelper {
+        id: dragHelper
+        dragIconSize: Kirigami.Units.iconSizes.medium
+    }
+    Kicker.ProcessRunner {
+        id: processRunner
+    }
+    Kicker.WindowSystem {
+        id: windowSystem
+    }
+
+    // Model Connections
+    Connections {
         target: globalFavorites
-        function onFavoritesChanged() { Plasmoid.configuration.favoriteApps = target.favorites;}
+        function onFavoritesChanged() {
+            Plasmoid.configuration.favoriteApps = target.favorites;
+        }
     }
-    Connections
-    {
+    Connections {
         target: systemFavorites
-        function onFavoritesChanged() {Plasmoid.configuration.favoriteSystemActions = target.favorites;}
+        function onFavoritesChanged() {
+            Plasmoid.configuration.favoriteSystemActions = target.favorites;
+        }
     }
-    Connections
-    {
+    Connections {
         target: Plasmoid.configuration
-        function onFavoriteAppsChanged () { globalFavorites.favorites = Plasmoid.configuration.favoriteApps;}
+        function onFavoriteAppsChanged () {
+            globalFavorites.favorites = Plasmoid.configuration.favoriteApps;
+        }
     }
-    Connections
-    {
+    Connections {
         target: kicker
         function onExpandedChanged(expanded) {
             if (expanded) {
@@ -154,67 +205,65 @@ PlasmoidItem
     }
 
     // Components UI
-    PlasmaExtras.Menu
-    {   id: contextMenu
-        PlasmaExtras.MenuItem {action: Plasmoid.internalAction("configure")}
+    PlasmaExtras.Menu {
+        id: contextMenu
+        PlasmaExtras.MenuItem {
+            action: Plasmoid.internalAction("configure")
+        }
+
     }
-    PlasmaExtras.Highlight
-    {
+
+    PlasmaExtras.Highlight {
         id: delegateHighlight
         visible: false
         z: -1 // Otherwise it shows on top of the icon/label and tints them slightly
     }
-    Kirigami.Heading
-    {
-     id: dummyHeading
-     visible: false
-     width: 0
-     level: 5
+
+    Kirigami.Heading {
+        id: dummyHeading
+        visible: false
+        width: 0
+        level: 5
     }
 
-    // Svg
-    KSvg.FrameSvgItem
-    {
-        id : panelSvg
+    // SVG
+    KSvg.FrameSvgItem {
+        id: panelSvg
         visible: false
         imagePath: "widgets/panel-background"
     }
-    KSvg.FrameSvgItem
-    {
-        id : scrollbarSvg
+    KSvg.FrameSvgItem {
+        id: scrollbarSvg
         visible: false
         imagePath: "widgets/scrollbar"
     }
-    KSvg.FrameSvgItem
-    {
+    KSvg.FrameSvgItem {
         id: highlightItemSvg
         visible: false
         imagePath: "widgets/viewitem"
         prefix: "hover"
     }
-    KSvg.FrameSvgItem
-    {
+    KSvg.FrameSvgItem {
         id: listItemSvg
         visible: false
         imagePath: "widgets/listitem"
         prefix: "normal"
     }
-    KSvg.FrameSvgItem
-    {
-        id : backgroundSvg
+    KSvg.FrameSvgItem {
+        id: backgroundSvg
         visible: false
         imagePath: "dialogs/background"
     }
 
-    PC3.Label
-    {
+    PC3.Label {
         id: toolTipDelegate
+        property Item toolTip
         width: contentWidth
         height: undefined
-        property Item toolTip
         text: toolTip ? toolTip.text : ""
         textFormat: Text.PlainText
     }
+
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
             text: i18n("Edit Applications…")
@@ -238,10 +287,12 @@ PlasmoidItem
         id: menuRepresentation
         MenuRepresentation {}
     }
-    Component.onCompleted:{
+
+    Component.onCompleted: {
         if (Plasmoid.hasOwnProperty("activationTogglesExpanded")) {
             Plasmoid.activationTogglesExpanded = !kicker.isDash
         }
+
         windowSystem.focusIn.connect(enableHideOnWindowDeactivate);
         kicker.hideOnWindowDeactivate = true;
         kicker.FramelessWindowHint=true;
@@ -253,8 +304,8 @@ PlasmoidItem
 
     // Functions
     function updateSvgMetrics() {}
-    function resetDragSource() { dragSource = null;}
-    function toggle() { kicker.expanded=!kicker.expanded}
-    function action_menuedit() { processRunner.runMenuEditor();}
-    function enableHideOnWindowDeactivate() { kicker.hideOnWindowDeactivate = true;}
+    function resetDragSource() { dragSource = null; }
+    function toggle() { kicker.expanded = !kicker.expanded; }
+    function action_menuedit() { processRunner.runMenuEditor(); }
+    function enableHideOnWindowDeactivate() { kicker.hideOnWindowDeactivate = true; }
 }

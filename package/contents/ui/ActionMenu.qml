@@ -11,33 +11,20 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 Item {
     id: root
-
     property QtObject menu
     property Item visualParent
     property variant actionList
     property bool opened: menu ? (menu.status !== PlasmaExtras.Menu.Closed) : false
 
     signal actionClicked(string actionId, variant actionArgument)
-    signal closed
-
-    onActionListChanged: refreshMenu();
-
-    onOpenedChanged: {
-        if (!opened) {
-            closed();
-        }
-    }
+    signal closed()
 
     function open(x, y) {
         if (!actionList) {
             return;
         }
 
-        if (x && y) {
-            menu.open(x, y);
-        } else {
-            menu.open();
-        }
+        (x && y) ? menu.open(x, y) : menu.open();
     }
 
     function refreshMenu() {
@@ -50,7 +37,6 @@ Item {
         }
 
         menu = contextMenuComponent.createObject(root);
-
         fillMenu(menu, actionList);
     }
 
@@ -58,21 +44,23 @@ Item {
         items.forEach(function(actionItem) {
             if (actionItem.subActions) {
                 // This is a menu
-                var submenuItem = contextSubmenuItemComponent.createObject(
-                                          menu, { "actionItem" : actionItem });
-
+                var submenuItem = contextSubmenuItemComponent.createObject(menu, {
+                    "actionItem": actionItem
+                });
                 fillMenu(submenuItem.submenu, actionItem.subActions);
-
             } else {
-                var item = contextMenuItemComponent.createObject(
-                                menu,
-                                {
-                                    "actionItem": actionItem,
-                                }
-                );
+                var item = contextMenuItemComponent.createObject(menu, {
+                    "actionItem": actionItem
+                });
             }
         });
+    }
 
+    onActionListChanged: refreshMenu()
+    onOpenedChanged: {
+        if (!opened) {
+            closed();
+        }
     }
 
     Component {
@@ -88,15 +76,15 @@ Item {
 
         PlasmaExtras.MenuItem {
             id: submenuItem
-
             property variant actionItem
+            property PlasmaExtras.Menu submenu
+
+            submenu: PlasmaExtras.Menu {
+                visualParent: submenuItem.action
+            }
 
             text: actionItem.text ? actionItem.text : ""
             icon: actionItem.icon ? actionItem.icon : null
-
-            property PlasmaExtras.Menu submenu: PlasmaExtras.Menu {
-                visualParent: submenuItem.action
-            }
         }
     }
 
@@ -106,14 +94,13 @@ Item {
         PlasmaExtras.MenuItem {
             property variant actionItem
 
-            text      : actionItem.text ? actionItem.text : ""
-            enabled   : actionItem.type !== "title" && ("enabled" in actionItem ? actionItem.enabled : true)
-            separator : actionItem.type === "separator"
-            section   : actionItem.type === "title"
-            icon      : actionItem.icon ? actionItem.icon : null
-            checkable : actionItem.checkable ? actionItem.checkable : false
-            checked   : actionItem.checked ? actionItem.checked : false
-
+            text: actionItem.text ? actionItem.text : ""
+            enabled: actionItem.type !== "title" && ("enabled" in actionItem ? actionItem.enabled : true)
+            separator: actionItem.type === "separator"
+            section: actionItem.type === "title"
+            icon: actionItem.icon ? actionItem.icon : null
+            checkable: actionItem.checkable ? actionItem.checkable : false
+            checked: actionItem.checked ? actionItem.checked : false
             onClicked: {
                 root.actionClicked(actionItem.actionId, actionItem.actionArgument);
             }

@@ -11,29 +11,20 @@ import org.kde.kcmutils as KCM
 
 import org.kde.plasma.workspace.dbus as DBus
 
-KCM.SimpleKCM
-{
-
-
+KCM.SimpleKCM {
     property alias cfg_rebootEnabled: rebootEnabled.checked
     property alias cfg_shutDownEnabled: shutDownEnabled.checked
     property alias cfg_logOutEnabled: logOutEnabled.checked
     property alias cfg_sleepEnabled: sleepEnabled.checked
     property alias cfg_lockScreenEnabled: lockScreenEnabled.checked
-
-
     property alias cfg_aboutThisComputerEnabled: aboutThisComputerEnabled.checked
     property alias cfg_aboutThisComputerSettings: aboutThisComputerSettings.text
-
     property alias cfg_systemPreferencesEnabled: systemPreferencesEnabled.checked
     property alias cfg_systemPreferencesSettings: systemPreferencesSettings.text
-
     property alias cfg_appStoreEnabled: appStoreEnabled.checked
     property alias cfg_appStoreSettings: appStoreSettings.text
-
     property alias cfg_forceQuitEnabled: forceQuitEnabled.checked
     property alias cfg_forceQuitSettings: forceQuitSettings.text
-
     property alias cfg_homeEnabled: homeEnabled.checked
     property alias cfg_homeSettings: homeSettings.text
 
@@ -41,15 +32,15 @@ KCM.SimpleKCM
         anchors.left: parent.left
         anchors.right: parent.right
     }
-    ColumnLayout
-    {
+
+    ColumnLayout {
         RowLayout {
             CheckBox {
                 id: rebootEnabled
                 text: i18n("Reset")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    rebootSettings.enabled = checked
+                    rebootSettings.enabled = checked;
                 }
             }
         }
@@ -60,7 +51,7 @@ KCM.SimpleKCM
                 text: i18n("Shut down")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    shutDownSettings.enabled = checked
+                    shutDownSettings.enabled = checked;
                 }
             }
         }
@@ -71,7 +62,7 @@ KCM.SimpleKCM
                 text: i18n("Log Out")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    logOutSettings.enabled = checked
+                    logOutSettings.enabled = checked;
                 }
             }
         }
@@ -82,9 +73,10 @@ KCM.SimpleKCM
                 text: i18n("About This Computer")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    aboutThisComputerSettings.enabled = checked
+                    aboutThisComputerSettings.enabled = checked;
                 }
             }
+
             Kirigami.ActionTextField {
                 id: aboutThisComputerSettings
                 enabled: aboutThisComputerEnabled.checked
@@ -93,8 +85,8 @@ KCM.SimpleKCM
                     enabled: aboutThisComputerSettings.text !== ""
                     text: i18nc("@action:button", "Reset command")
                     onTriggered: {
-                        aboutThisComputerSettings.clear()
-                        root.cfg_aboutThisComputerSettings = ""
+                        aboutThisComputerSettings.clear();
+                        root.cfg_aboutThisComputerSettings = "";
                     }
                 }
             }
@@ -106,7 +98,7 @@ KCM.SimpleKCM
                 text: i18n("System Preferences")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    systemPreferencesSettings.enabled = checked
+                    systemPreferencesSettings.enabled = checked;
                 }
             }
 
@@ -118,8 +110,8 @@ KCM.SimpleKCM
                     enabled: systemPreferencesSettings.text !== ""
                     text: i18nc("@action:button", "Reset command")
                     onTriggered: {
-                        systemPreferencesSettings.clear()
-                        root.cfg_systemPreferencesSettings = ""
+                        systemPreferencesSettings.clear();
+                        root.cfg_systemPreferencesSettings = "";
                     }
                 }
             }
@@ -131,7 +123,7 @@ KCM.SimpleKCM
                 text: i18n("Home Directory")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    homeSettings.enabled = checked
+                    homeSettings.enabled = checked;
                 }
             }
 
@@ -143,8 +135,8 @@ KCM.SimpleKCM
                     enabled: homeSettings.text !== ""
                     text: i18nc("@action:button", "Reset command")
                     onTriggered: {
-                        homeSettings.clear()
-                        root.cfg_systemPreferencesSettings = ""
+                        homeSettings.clear();
+                        root.cfg_systemPreferencesSettings = "";
                     }
                 }
             }
@@ -156,9 +148,10 @@ KCM.SimpleKCM
                 text: i18n("App Store")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    appStoreSettings.enabled = checked
+                    appStoreSettings.enabled = checked;
                 }
             }
+
             Kirigami.ActionTextField {
                 id: appStoreSettings
                 enabled: appStoreEnabled.checked
@@ -167,8 +160,8 @@ KCM.SimpleKCM
                     enabled: appStoreSettings.text !== ""
                     text: i18nc("@action:button", "Reset command")
                     onTriggered: {
-                        appStoreSettings.clear()
-                        root.cfg_appStoreSettings = ""
+                        appStoreSettings.clear();
+                        root.cfg_appStoreSettings = "";
                     }
                 }
             }
@@ -180,9 +173,10 @@ KCM.SimpleKCM
                 text: i18n("Force Quit")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    forceQuitSettings.enabled = checked
+                    forceQuitSettings.enabled = checked;
                 }
             }
+
             Kirigami.ActionTextField {
                 id: forceQuitSettings
                 enabled: forceQuitEnabled.checked
@@ -191,8 +185,8 @@ KCM.SimpleKCM
                     enabled: forceQuitSettings.text !== ""
                     text: i18nc("@action:button", "Reset command")
                     onTriggered: {
-                        forceQuitSettings.clear()
-                            root.cfg_forceQuitSettings = ""
+                        forceQuitSettings.clear();
+                        root.cfg_forceQuitSettings = "";
                     }
                 }
             }
@@ -204,7 +198,7 @@ KCM.SimpleKCM
                 text: i18n("Sleep")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    sleepSettings.enabled = checked
+                    sleepSettings.enabled = checked;
                 }
             }
         }
@@ -215,7 +209,7 @@ KCM.SimpleKCM
                 text: i18n("Lock Screen")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    lockScreenSettings.enabled = checked
+                    lockScreenSettings.enabled = checked;
                 }
             }
         }

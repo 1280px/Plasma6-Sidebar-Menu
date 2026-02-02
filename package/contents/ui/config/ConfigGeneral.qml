@@ -18,18 +18,17 @@
  ***************************************************************************/
 
 import QtQuick 2.15
-import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.0
+
 import org.kde.draganddrop 2.0 as DragDrop
-import org.kde.kirigami 2.5 as Kirigami
 import org.kde.iconthemes as KIconThemes
-import org.kde.plasma.core as PlasmaCore
+import org.kde.kcmutils as KCM
+import org.kde.kirigami 2.5 as Kirigami
 import org.kde.kirigami 2.20 as Kirigami
 import org.kde.ksvg 1.0 as KSvg
+import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid 2.0
-import org.kde.kcmutils as KCM
-
-
 
 KCM.SimpleKCM {
     id: configGeneral
@@ -40,28 +39,26 @@ KCM.SimpleKCM {
     property alias cfg_showInfoUser: showInfoUser.checked
     property alias cfg_showSearch: showSearch.checked
 
-    function getIcon()
-    {
+    function getIcon() {
         const colorContrast = getBackgroundColorContrast();
         return `assets/logo-${colorContrast}.svg`;
     }
 
-    function getBackgroundColorContrast()
-    {
+    function getBackgroundColorContrast() {
         const hex = `${PlasmaCore.Theme.backgroundColor}`.substring(1);
         const r = parseInt(hex.substring(0, 2), 16);
         const g = parseInt(hex.substring(2, 4), 16);
         const b = parseInt(hex.substring(4, 6), 16);
-        const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
+        const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
         return luma > 128 ? "dark" : "light";
     }
 
     Kirigami.FormLayout {
         anchors.left: parent.left
         anchors.right: parent.right
-        Button
-        {
+
+        Button {
             id: iconButton
             Kirigami.FormData.label: i18n("Icon:")
             implicitWidth: previewFrame.width + Kirigami.Units.smallSpacing * 2
@@ -71,6 +68,7 @@ KCM.SimpleKCM {
             checkable: true
             checked: dropArea.containsAcceptableDrag
             onPressed: iconMenu.opened ? iconMenu.close() : iconMenu.open()
+
             DragDrop.DropArea {
                 id: dropArea
                 property bool containsAcceptableDrag: false
@@ -80,12 +78,18 @@ KCM.SimpleKCM {
                     var urlString = event.mimeData.url.toString();
                     // This list is also hardcoded in KIconDialog.
                     var extensions = [".png", ".xpm", ".svg", ".svgz"];
-                    containsAcceptableDrag = urlString.indexOf("file:///") === 0 && extensions.some(function (extension) {
-                        return urlString.indexOf(extension) === urlString.length - extension.length; // "endsWith"
-                    });
+
+                    containsAcceptableDrag = (
+                        (urlString.indexOf("file:///") === 0 && extensions.some(
+                            function(extension) {
+                                return urlString.indexOf(extension) === urlString.length - extension.length; // "endsWith"
+                            }
+                        ))
+                    );
                     if (!containsAcceptableDrag) {
                         event.ignore();
                     }
+
                 }
                 onDragLeave: containsAcceptableDrag = false
                 onDrop: {
@@ -100,19 +104,23 @@ KCM.SimpleKCM {
             KIconThemes.IconDialog {
                 id: iconDialog
                 function setCustomButtonImage(image) {
-                    configGeneral.cfg_customButtonImage = image || Qt.resolvedUrl(getIcon())
+                    configGeneral.cfg_customButtonImage = image || Qt.resolvedUrl(getIcon());
                     configGeneral.cfg_useCustomButtonImage = true;
                 }
-
-                onIconNameChanged: setCustomButtonImage(iconName);
+                onIconNameChanged: setCustomButtonImage(iconName)
             }
 
-            KSvg.FrameSvgItem
-            {
+            KSvg.FrameSvgItem {
                 id: previewFrame
                 anchors.centerIn: parent
-                imagePath: Plasmoid.location === PlasmaCore.Types.Vertical || Plasmoid.location === PlasmaCore.Types.Horizontal
-                           ? "widgets/panel-background" : "widgets/background"
+                imagePath: (
+                    (Plasmoid.location === PlasmaCore.Types.Vertical)
+                    || (
+                        Plasmoid.location === PlasmaCore.Types.Horizontal
+                            ? "widgets/panel-background"
+                            : "widgets/background"
+                    )
+                )
                 width: Kirigami.Units.iconSizes.large + fixedMargins.left + fixedMargins.right
                 height: Kirigami.Units.iconSizes.large + fixedMargins.top + fixedMargins.bottom
 
@@ -120,36 +128,37 @@ KCM.SimpleKCM {
                     anchors.centerIn: parent
                     width: Kirigami.Units.iconSizes.large
                     height: width
-                    source: configGeneral.cfg_useCustomButtonImage ? configGeneral.cfg_customButtonImage : Qt.resolvedUrl(getIcon())
+                    source: (
+                        configGeneral.cfg_useCustomButtonImage
+                            ? configGeneral.cfg_customButtonImage
+                            : Qt.resolvedUrl(getIcon())
+                    )
                 }
             }
 
             Menu {
                 id: iconMenu
-
-                // Appear below the button
-                y: +parent.height
-
-                onClosed: iconButton.checked = false;
+                y: +parent.height // Appear below the button
+                onClosed: iconButton.checked = false
 
                 MenuItem {
                     text: i18nc("@item:inmenu Open icon chooser dialog", "Choose…")
                     icon.name: "document-open-folder"
                     onClicked: iconDialog.open()
                 }
+
                 MenuItem {
                     text: i18nc("@item:inmenu Reset icon to default", "Clear Icon")
                     icon.name: "edit-clear"
                     onClicked: {
-                        configGeneral.cfg_icon = getIcon()
-                        configGeneral.cfg_useCustomButtonImage = false
+                        configGeneral.cfg_icon = getIcon();
+                        configGeneral.cfg_useCustomButtonImage = false;
                     }
                 }
             }
         }
 
-        Item
-        {
+        Item {
             Kirigami.FormData.isSection: true
         }
 
