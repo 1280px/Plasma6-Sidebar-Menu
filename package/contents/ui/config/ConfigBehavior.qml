@@ -12,8 +12,8 @@ import org.kde.kcmutils as KCM
 import org.kde.plasma.workspace.dbus as DBus
 
 KCM.SimpleKCM {
-    property alias cfg_rebootEnabled: rebootEnabled.checked
     property alias cfg_shutDownEnabled: shutDownEnabled.checked
+    property alias cfg_rebootEnabled: rebootEnabled.checked
     property alias cfg_logOutEnabled: logOutEnabled.checked
     property alias cfg_sleepEnabled: sleepEnabled.checked
     property alias cfg_lockScreenEnabled: lockScreenEnabled.checked
@@ -27,6 +27,7 @@ KCM.SimpleKCM {
     property alias cfg_forceQuitSettings: forceQuitSettings.text
     property alias cfg_homeEnabled: homeEnabled.checked
     property alias cfg_homeSettings: homeSettings.text
+    property alias cfg_editApplicationsEnabled: editApplicationsEnabled.checked
 
     Kirigami.FormLayout {
         anchors.left: parent.left
@@ -36,22 +37,22 @@ KCM.SimpleKCM {
     ColumnLayout {
         RowLayout {
             CheckBox {
-                id: rebootEnabled
-                text: i18n("Reset")
+                id: shutDownEnabled
+                text: i18n("Shut Down")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    rebootSettings.enabled = checked;
+                    shutDownSettings.enabled = checked;
                 }
             }
         }
 
         RowLayout {
             CheckBox {
-                id: shutDownEnabled
-                text: i18n("Shut down")
+                id: rebootEnabled
+                text: i18n("Reboot")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    shutDownSettings.enabled = checked;
+                    rebootSettings.enabled = checked;
                 }
             }
         }
@@ -69,50 +70,22 @@ KCM.SimpleKCM {
 
         RowLayout {
             CheckBox {
-                id: aboutThisComputerEnabled
-                text: i18n("About This Computer")
+                id: sleepEnabled
+                text: i18n("Hibernate")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    aboutThisComputerSettings.enabled = checked;
-                }
-            }
-
-            Kirigami.ActionTextField {
-                id: aboutThisComputerSettings
-                enabled: aboutThisComputerEnabled.checked
-                rightActions: QQC2.Action {
-                    icon.name: "edit-clear"
-                    enabled: aboutThisComputerSettings.text !== ""
-                    text: i18nc("@action:button", "Reset command")
-                    onTriggered: {
-                        aboutThisComputerSettings.clear();
-                        root.cfg_aboutThisComputerSettings = "";
-                    }
+                    sleepSettings.enabled = checked;
                 }
             }
         }
 
         RowLayout {
             CheckBox {
-                id: systemPreferencesEnabled
-                text: i18n("System Preferences")
+                id: lockScreenEnabled
+                text: i18n("Lock Screen")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    systemPreferencesSettings.enabled = checked;
-                }
-            }
-
-            Kirigami.ActionTextField {
-                id: systemPreferencesSettings
-                enabled: systemPreferencesEnabled.checked
-                rightActions: QQC2.Action {
-                    icon.name: "edit-clear"
-                    enabled: systemPreferencesSettings.text !== ""
-                    text: i18nc("@action:button", "Reset command")
-                    onTriggered: {
-                        systemPreferencesSettings.clear();
-                        root.cfg_systemPreferencesSettings = "";
-                    }
+                    lockScreenSettings.enabled = checked;
                 }
             }
         }
@@ -136,7 +109,7 @@ KCM.SimpleKCM {
                     text: i18nc("@action:button", "Reset command")
                     onTriggered: {
                         homeSettings.clear();
-                        root.cfg_systemPreferencesSettings = "";
+                        root.cfg_homeSettings = "";
                     }
                 }
             }
@@ -169,8 +142,58 @@ KCM.SimpleKCM {
 
         RowLayout {
             CheckBox {
+                id: systemPreferencesEnabled
+                text: i18n("System Preferences")
+                checked: showAdvancedMode.checked
+                onCheckedChanged: {
+                    systemPreferencesSettings.enabled = checked;
+                }
+            }
+
+            Kirigami.ActionTextField {
+                id: systemPreferencesSettings
+                enabled: systemPreferencesEnabled.checked
+                rightActions: QQC2.Action {
+                    icon.name: "edit-clear"
+                    enabled: systemPreferencesSettings.text !== ""
+                    text: i18nc("@action:button", "Reset command")
+                    onTriggered: {
+                        systemPreferencesSettings.clear();
+                        root.cfg_systemPreferencesSettings = "";
+                    }
+                }
+            }
+        }
+
+        RowLayout {
+            CheckBox {
+                id: aboutThisComputerEnabled
+                text: i18n("About This PC")
+                checked: showAdvancedMode.checked
+                onCheckedChanged: {
+                    aboutThisComputerSettings.enabled = checked;
+                }
+            }
+
+            Kirigami.ActionTextField {
+                id: aboutThisComputerSettings
+                enabled: aboutThisComputerEnabled.checked
+                rightActions: QQC2.Action {
+                    icon.name: "edit-clear"
+                    enabled: aboutThisComputerSettings.text !== ""
+                    text: i18nc("@action:button", "Reset command")
+                    onTriggered: {
+                        aboutThisComputerSettings.clear();
+                        root.cfg_aboutThisComputerSettings = "";
+                    }
+                }
+            }
+        }
+
+        RowLayout {
+            CheckBox {
                 id: forceQuitEnabled
-                text: i18n("Force Quit")
+                text: i18n("Force Quit App")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
                     forceQuitSettings.enabled = checked;
@@ -194,22 +217,11 @@ KCM.SimpleKCM {
 
         RowLayout {
             CheckBox {
-                id: sleepEnabled
-                text: i18n("Sleep")
+                id: editApplicationsEnabled
+                text: i18n("Edit Applications")
                 checked: showAdvancedMode.checked
                 onCheckedChanged: {
-                    sleepSettings.enabled = checked;
-                }
-            }
-        }
-
-        RowLayout {
-            CheckBox {
-                id: lockScreenEnabled
-                text: i18n("Lock Screen")
-                checked: showAdvancedMode.checked
-                onCheckedChanged: {
-                    lockScreenSettings.enabled = checked;
+                    editApplicationsSettings.enabled = checked;
                 }
             }
         }

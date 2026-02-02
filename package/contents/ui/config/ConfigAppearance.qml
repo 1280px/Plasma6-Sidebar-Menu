@@ -20,7 +20,6 @@ import org.kde.plasma.plasmoid 2.0
 KCM.SimpleKCM {
     id: configAppearance
     property alias cfg_numberColumns: numberColumns.value
-    property alias cfg_numberRows: numberRows.value
     property alias cfg_appsIconSize: appsIconSize.currentIndex
     property alias cfg_userShape: userShape.currentIndex
     property alias cfg_transparencyHead: transparencyHead.value
@@ -29,8 +28,8 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         ComboBox {
             id: userShape
-            Kirigami.FormData.label: i18n("Avatar User Shape")
-            model: [i18n("Circle"), i18n("RoundCorner"), i18n("Square")]
+            Kirigami.FormData.label: i18n("User avatar shape:")
+            model: [i18n("Circle"), i18n("Rounded square"), i18n("Square")]
         }
 
         ComboBox {
@@ -44,14 +43,7 @@ KCM.SimpleKCM {
             id: numberColumns
             from: 3
             to: 15
-            Kirigami.FormData.label: i18n("Number of columns:")
-        }
-
-        SpinBox {
-            id: numberRows
-            from: 1
-            to: 15
-            Kirigami.FormData.label: i18n("Number of rows:")
+            Kirigami.FormData.label: i18n("Apps per column:")
         }
 
         SpinBox {
@@ -65,7 +57,7 @@ KCM.SimpleKCM {
             id: transparencyFooter
             from: 1
             to: 100
-            Kirigami.FormData.label: i18n("Fotter opacity, %:")
+            Kirigami.FormData.label: i18n("Footer opacity, %:")
         }
     }
 }

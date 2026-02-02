@@ -63,6 +63,7 @@ PlasmoidItem {
         || Plasmoid.configuration.lockScreenEnabled
         || Plasmoid.configuration.logOutEnabled
         || Plasmoid.configuration.homeEnabled
+        || Plasmoid.configuration.editApplicationsEnabled
     )
 
     // Images' & icons' properties
@@ -266,7 +267,7 @@ PlasmoidItem {
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
-            text: i18n("Edit Applications…")
+            text: i18n("Edit Applications")
             icon.name: "kmenuedit"
             visible: Plasmoid.immutability !== PlasmaCore.Types.SystemImmutable
             onTriggered: processRunner.runMenuEditor()

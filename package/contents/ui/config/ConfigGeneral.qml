@@ -114,9 +114,9 @@ KCM.SimpleKCM {
                 id: previewFrame
                 anchors.centerIn: parent
                 imagePath: (
-                    (Plasmoid.location === PlasmaCore.Types.Vertical)
+                    (Plasmoid.formFactor === PlasmaCore.Types.Vertical)
                     || (
-                        Plasmoid.location === PlasmaCore.Types.Horizontal
+                        Plasmoid.formFactor === PlasmaCore.Types.Horizontal
                             ? "widgets/panel-background"
                             : "widgets/background"
                     )
@@ -169,7 +169,7 @@ KCM.SimpleKCM {
 
         CheckBox {
             id: showInfoUser
-            Kirigami.FormData.label: i18n("Show user")
+            Kirigami.FormData.label: i18n("Show header")
         }
 
         CheckBox {

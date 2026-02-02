@@ -8,10 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dittomenu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-03 02:52+0700\n"
+"POT-Creation-Date: 2026-02-03 05:46+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Edward Karate <edward.karate@ya.ru>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: 1280px <megarainbow29@gmail.com>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +18,11 @@ msgstr ""
 
 #: ../metadata.json
 msgid "Sidebar Menu"
-msgstr ""
+msgstr "Sidebar Menu"
 
 #: ../metadata.json
 msgid "Simple custom full-height sidebar menu, inspired by Budgie."
-msgstr ""
+msgstr "Простое боковое меню во всю высоту экрана, вдохновлено Budgie."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -31,7 +30,7 @@ msgstr "Общие"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
-msgstr ""
+msgstr "Внешний вид"
 
 #: ../contents/config/config.qml
 msgid "Behavior"
@@ -51,178 +50,146 @@ msgstr "По всем видам деятельности"
 
 #: ../contents/ui/code/tools.js
 msgid "On the Current Activity"
-msgstr ""
+msgstr "Для текущей активности"
 
 #: ../contents/ui/code/tools.js
 msgid "Show in Favorites"
-msgstr ""
+msgstr "Показывать в избранном"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Avatar User Shape"
-msgstr ""
+msgid "User avatar shape:"
+msgstr "Форма аватарки пользователя:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Circle"
-msgstr ""
+msgstr "Круг"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "RoundCorner"
-msgstr ""
+msgid "Rounded square"
+msgstr "Скруглённый квадрат"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Square"
-msgstr ""
+msgstr "Квадрат"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icons size:"
-msgstr ""
+msgstr "Размер значков:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Small"
-msgstr ""
+msgstr "Маленькие"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Medium"
-msgstr ""
+msgstr "Средние"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Large"
-msgstr ""
+msgstr "Большие"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Huge"
-msgstr ""
+msgstr "Огромные"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Number of columns:"
-msgstr ""
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Number of rows:"
-msgstr ""
+msgid "Apps per column:"
+msgstr "Приложений в строке:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Header opacity, %:"
-msgstr ""
+msgstr "Непрозрачность шапки в %:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Fotter opacity, %:"
-msgstr ""
+msgid "Footer opacity, %:"
+msgstr "Непрозрачность подвала в %:"
 
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Reset"
-msgstr ""
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Shut Down"
+msgstr "Завершение работы"
 
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Shut down"
-msgstr ""
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Reboot"
+msgstr "Перезагрузка"
 
 #: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
 msgid "Log Out"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "About This Computer"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgctxt "@action:button"
-msgid "Reset command"
-msgstr ""
+msgstr "Завершение сеанса"
 
 #: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
-msgid "System Preferences"
-msgstr "Параметры системы"
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Home Directory"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "App Store"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Force Quit"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Sleep"
-msgstr ""
+msgid "Hibernate"
+msgstr "Гибернация"
 
 #: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
 msgid "Lock Screen"
 msgstr "Заблокировать"
 
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Home Directory"
+msgstr "Домашний каталог"
+
+#: ../contents/ui/config/ConfigBehavior.qml
+msgctxt "@action:button"
+msgid "Reset command"
+msgstr "Сбросить команду"
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "App Store"
+msgstr "Магазин приложений"
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "System Preferences"
+msgstr "Параметры системы"
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "About This PC"
+msgstr "Об этой компьютере"
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Force Quit App"
+msgstr "Завершить приложение"
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
+msgid "Edit Applications"
+msgstr "Изменить приложения"
+
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Icon:"
-msgstr "Значок"
+msgstr "Значок:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
-msgstr ""
+msgstr "Выбрать…"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgctxt "@item:inmenu Reset icon to default"
 msgid "Clear Icon"
-msgstr "Очистить значок"
+msgstr "Убрать значок"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show favorites first"
-msgstr "Сначала показать избранное"
+msgstr "Сначала показывать избранное"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid "Show user"
-msgstr ""
+msgid "Show header"
+msgstr "Отображать шапку"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show search text input"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Leave ..."
-msgstr "Выход ..."
-
-#: ../contents/ui/Footer.qml
-msgid "Reboot ..."
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Hibernate"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Force Close ..."
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "User Home"
-msgstr "Домашняя папка"
-
-#: ../contents/ui/Footer.qml
-msgid "Open Plasma Discover"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "About System"
-msgstr ""
+msgstr "Отображать строку поиска"
 
 #: ../contents/ui/Head.qml
 msgid "Hola, "
-msgstr ""
+msgstr "Привет, "
 
 #: ../contents/ui/Head.qml
 msgid "Keep Open"
-msgstr ""
-
-#: ../contents/ui/main.qml
-msgid "Edit Applications…"
-msgstr ""
+msgstr "Не закрывать"
 
 #: ../contents/ui/Search.qml
-msgid "Type here to search ..."
-msgstr "ГООООООООООООООООООООООООЛ"
+msgid "Start typing to search"
+msgstr "Начните печатать для поиска"
 
 #: ../contents/ui/Search.qml
 msgid "Favorites"
@@ -231,92 +198,3 @@ msgstr "Избранное"
 #: ../contents/ui/Search.qml
 msgid "All apps"
 msgstr "Все приложения"
-
-#~ msgid "Menu position"
-#~ msgstr "Положение меню"
-
-#~ msgid "Default"
-#~ msgstr "По умолчанию"
-
-#~ msgid "Center bottom"
-#~ msgstr "Снизу по центру"
-
-#~ msgid "Show labels in two lines"
-#~ msgstr "Отображать метки в две строки"
-
-#~ msgid "Unhide all hidden applications"
-#~ msgstr "Показать все скрытые приложения"
-
-#~ msgid "Unhidden!"
-#~ msgstr "Показаны!"
-
-#~ msgid "Ditto Menu"
-#~ msgstr "Ditto Menu"
-
-#~ msgid "A configurable launcher menu"
-#~ msgstr "Настраиваемое меню приложений"
-
-#~ msgid "On The Current Activity"
-#~ msgstr "О текущей деятельности"
-
-#~ msgid "Show In Favorites"
-#~ msgstr "Показать в Избранном"
-
-#~ msgctxt "@item:inmenu Open icon chooser dialog"
-#~ msgid "Choose..."
-#~ msgstr "Выбрать..."
-
-#~ msgid "Center"
-#~ msgstr "Центр"
-
-#~ msgid "Number of columns"
-#~ msgstr "Количество колонок"
-
-#~ msgid "Number of rows"
-#~ msgstr "Количество строк"
-
-#~ msgid "Edit Applications..."
-#~ msgstr "Редактировать меню..."
-
-#~ msgid "Hi, "
-#~ msgstr "Привет, "
-
-#~ msgctxt "@action"
-#~ msgid "Lock Screen"
-#~ msgstr "Заблокировать"
-
-#~ msgid "Show applications as:"
-#~ msgstr "Показывать приложения в виде:"
-
-#~ msgid "Name only"
-#~ msgstr "Только имя"
-
-#~ msgid "Description only"
-#~ msgstr "Только описание"
-
-#~ msgid "Name (Description)"
-#~ msgstr "Имя (Описание)"
-
-#~ msgid "Description (Name)"
-#~ msgstr "Описание (Имя)"
-
-#~ msgid "Menu position:"
-#~ msgstr "Позиция меню"
-
-#~ msgid "Search"
-#~ msgstr "Поиск"
-
-#~ msgid "Expand search to bookmarks, files and emails"
-#~ msgstr "Расширить поиск по закладкам, файлам и почте"
-
-#~ msgid "Show user icon"
-#~ msgstr "Показать иконку пользователя"
-
-#~ msgid "Grid"
-#~ msgstr "Сетка"
-
-#~ msgid "Number of columns in grid"
-#~ msgstr "Количество колонок в сетке"
-
-#~ msgid "Number of rows in grid"
-#~ msgstr "Количество строк в сетке"

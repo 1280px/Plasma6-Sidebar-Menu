@@ -14,6 +14,7 @@ import QtQml 2.15
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 
+import org.kde.plasma.core as PlasmaCore
 import org.kde.coreaddons 1.0 as KCoreAddons
 import org.kde.kirigami 2.0 as Kirigami
 // import org.kde.plasma.private.quicklaunch 1.0
@@ -36,14 +37,20 @@ FocusScope {
     property int userShape: calculateUserShape(Plasmoid.configuration.userShape)
 
     property int cuadricula_hg: (
-        kicker.cellSizeHeight * Plasmoid.configuration.numberRows
+        kicker.availableScreenRect.height
+        - rootItem.visible_items
+        - Plasmoid.containment.containmentDisplayHints * ( // Floating mode
+            Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 2 : 3
+        ) // (account for panel height for a horizontal mode)
+        - (Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 9 : -9) // ???
     )
     property int calc_width: (
         (kicker.cellSizeWidth * Plasmoid.configuration.numberColumns)
-        + Kirigami.Units.gridUnit
+        + Kirigami.Units.gridUnit + 4
+        // + (Plasmoid.formFactor !== PlasmaCore.Types.Vertical ? 4 : 0) // ????
     )
     property int calc_height: (
-        cuadricula_hg + (rootItem.visible_items)
+        cuadricula_hg + rootItem.visible_items
     )
     property int space_width: resizeWidth() == 0 ? rootItem.calc_width : resizeWidth()
     property int space_height: resizeHeight() == 0 ? rootItem.calc_height : resizeHeight()
@@ -86,7 +93,7 @@ FocusScope {
             parent.width + backgroundSvg.margins.left + backgroundSvg.margins.right
         )
         height: (
-            footer.Layout.preferredHeight + 2 + Kirigami.Units.smallSpacing * 3
+            footer.Layout.preferredHeight + Kirigami.Units.smallSpacing * 6
         )
         x: backgroundSvg.margins.left
         y: parent.height + Kirigami.Units.smallSpacing * 2 // - (footer.height + Kirigami.Units.smallSpacing)
@@ -100,10 +107,19 @@ FocusScope {
     }
 
     // DEBUGGING
-    Text {
-        id: count
-        text: kicker.keyIn
-    }
+    // Rectangle {
+    //     width: 200
+    //     height: 20
+    //     color: '#fff'
+    //     z: 999
+    //     opacity: 0.66
+
+    //     Text {
+    //         id: count
+    //         text: kicker.keyIn
+    //         color: '#000'
+    //     }
+    // }
 
     // Menu container
     ColumnLayout {
@@ -390,7 +406,8 @@ FocusScope {
         if (
             screen.width > (
                 kicker.cellSizeWidth * Plasmoid.configuration.numberColumns
-            ) + Kirigami.Units.gridUnit
+                + Kirigami.Units.gridUnit
+            )
         ) {
             return 0;
         } else {
@@ -408,8 +425,10 @@ FocusScope {
         );
         if (
             screen.height > (
-                kicker.cellSizeHeight * Plasmoid.configuration.numberRows
-            ) + rootItem.visible_items + Kirigami.Units.gridUnit * 1.5
+                kicker.cellSizeHeight // * Plasmoid.configuration.numberRows
+                + rootItem.visible_items
+                + Kirigami.Units.gridUnit * 1.5
+            )
         ) {
             return 0;
         } else {
@@ -427,11 +446,17 @@ FocusScope {
         rootItem.userShape = calculateUserShape(Plasmoid.configuration.userShape);
 
         rootItem.cuadricula_hg = (
-            kicker.cellSizeHeight * Plasmoid.configuration.numberRows
-        );
+            kicker.availableScreenRect.height
+            - rootItem.visible_items
+            - Plasmoid.containment.containmentDisplayHints * ( // Floating mode
+                Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 2 : 3
+            ) // (account for panel height for a horizontal mode)
+            - (Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 9 : -9) // ???
+        )
         rootItem.calc_width = (
             (kicker.cellSizeWidth * Plasmoid.configuration.numberColumns)
-            + Kirigami.Units.gridUnit
+            + Kirigami.Units.gridUnit + 4
+            // + (Plasmoid.formFactor !== PlasmaCore.Types.Vertical ? 4 : 0) // ????
         );
         rootItem.calc_height = (
             rootItem.cuadricula_hg + rootItem.visible_items
@@ -460,8 +485,7 @@ FocusScope {
     onActiveFocusChanged: {
         if (
             (!activeFocus && kicker.hideOnWindowDeactivate === false)
-            && (head_.item && head_.item.pinButton)
-            && (!head_.item.pinButton.checked)
+            && head_.item && head_.item.pinButton && !head_.item.pinButton.checked
         ) {
             turnclose();
         }

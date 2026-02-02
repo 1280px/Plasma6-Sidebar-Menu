@@ -133,6 +133,7 @@ FocusScope {
 
     function reset() {
         // mainColumn.tryActivate(0,0)
+
         if (kicker.showFavorites) {
             globalFavoritesGrid.tryActivate(0, 0);
             kicker.count = globalFavorites.count;

@@ -29,7 +29,7 @@ Item {
             id: searchField
             visible: rootItem.searchvisible
             Layout.fillWidth: true
-            placeholderText: i18n("Type here to search ...")
+            placeholderText: i18n("Start typing to search")
             topPadding: 10
             bottomPadding: 10
             focus:true
@@ -72,21 +72,22 @@ Item {
             }
 
             function backspace() {
-                if (!kicker.expanded)
+                if (!kicker.expanded) {
                     return;
+                }
 
                 focus = true;
                 text = text.slice(0, -1);
                 if (text == "" || searchField.text == "") {
                     searchField.text = "";
-                    console.log("aqui ando");
                     reset();
                 }
             }
 
             function appendText(newText) {
-                if (!kicker.expanded)
-                    return ;
+                if (!kicker.expanded) {
+                    return;
+                }
 
                 kicker.searching = true;
                 focus = true;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sidebar-Menu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-03 02:52+0700\n"
+"POT-Creation-Date: 2026-02-03 05:46+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgid "Show in Favorites"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Avatar User Shape"
+msgid "User avatar shape:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
@@ -66,7 +66,7 @@ msgid "Circle"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "RoundCorner"
+msgid "Rounded square"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
@@ -94,11 +94,7 @@ msgid "Huge"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Number of columns:"
-msgstr ""
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Number of rows:"
+msgid "Apps per column:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
@@ -106,23 +102,31 @@ msgid "Header opacity, %:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Fotter opacity, %:"
+msgid "Footer opacity, %:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Reset"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Shut Down"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Shut down"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Reboot"
 msgstr ""
 
 #: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
 msgid "Log Out"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "About This Computer"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Hibernate"
+msgstr ""
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Lock Screen"
+msgstr ""
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Home Directory"
 msgstr ""
 
 #: ../contents/ui/config/ConfigBehavior.qml
@@ -131,27 +135,23 @@ msgid "Reset command"
 msgstr ""
 
 #: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
-msgid "System Preferences"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Home Directory"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
 msgid "App Store"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Force Quit"
-msgstr ""
-
-#: ../contents/ui/config/ConfigBehavior.qml
-msgid "Sleep"
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "System Preferences"
 msgstr ""
 
 #: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
-msgid "Lock Screen"
+msgid "About This PC"
+msgstr ""
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+msgid "Force Quit App"
+msgstr ""
+
+#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
+msgid "Edit Applications"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
@@ -173,39 +173,11 @@ msgid "Show favorites first"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid "Show user"
+msgid "Show header"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show search text input"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Leave ..."
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Reboot ..."
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Hibernate"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Force Close ..."
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "User Home"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "Open Plasma Discover"
-msgstr ""
-
-#: ../contents/ui/Footer.qml
-msgid "About System"
 msgstr ""
 
 #: ../contents/ui/Head.qml
@@ -216,12 +188,8 @@ msgstr ""
 msgid "Keep Open"
 msgstr ""
 
-#: ../contents/ui/main.qml
-msgid "Edit Applications…"
-msgstr ""
-
 #: ../contents/ui/Search.qml
-msgid "Type here to search ..."
+msgid "Start typing to search"
 msgstr ""
 
 #: ../contents/ui/Search.qml

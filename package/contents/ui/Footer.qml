@@ -59,7 +59,7 @@ RowLayout {
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
-            ToolTip.text: i18n("Leave ...")
+            ToolTip.text: i18n("Shut Down")
             visible: true !== "" && Plasmoid.configuration.shutDownEnabled
         }
 
@@ -70,7 +70,7 @@ RowLayout {
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
-            ToolTip.text: i18n("Reboot ...")
+            ToolTip.text: i18n("Reboot")
         }
 
         PC3.ToolButton {
@@ -104,23 +104,13 @@ RowLayout {
         }
 
         PC3.ToolButton {
-            icon.name: "dialog-error"
-            visible: true !== "" && Plasmoid.configuration.forceQuitEnabled
-            onClicked: executable.exec(forceQuitCMD)
-            ToolTip.delay: 200
-            ToolTip.timeout: 1000
-            ToolTip.visible: hovered
-            ToolTip.text: i18n("Force Close ...")
-        }
-
-        PC3.ToolButton {
             icon.name: "user-home"
             visible: true !== "" && Plasmoid.configuration.homeEnabled
             onClicked: executable.exec(homeCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
-            ToolTip.text: i18n("User Home")
+            ToolTip.text: i18n("Home Directory")
         }
 
         PC3.ToolButton {
@@ -130,7 +120,7 @@ RowLayout {
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
-            ToolTip.text: i18n("Open Plasma Discover")
+            ToolTip.text: i18n("App Store")
         }
 
         PC3.ToolButton {
@@ -150,7 +140,27 @@ RowLayout {
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
-            ToolTip.text: i18n("About System")
+            ToolTip.text: i18n("About This PC")
+        }
+
+        PC3.ToolButton {
+            icon.name: "dialog-error"
+            visible: true !== "" && Plasmoid.configuration.forceQuitEnabled
+            onClicked: executable.exec(forceQuitCMD)
+            ToolTip.delay: 200
+            ToolTip.timeout: 1000
+            ToolTip.visible: hovered
+            ToolTip.text: i18n("Force Quit App")
+        }
+
+        PC3.ToolButton {
+            icon.name: "kmenuedit"
+            visible: true !== "" && Plasmoid.configuration.editApplicationsEnabled
+            onClicked: executable.exec("kmenuedit")
+            ToolTip.delay: 200
+            ToolTip.timeout: 1000
+            ToolTip.visible: hovered
+            ToolTip.text: i18n("Edit Applications")
         }
 
         Item {
