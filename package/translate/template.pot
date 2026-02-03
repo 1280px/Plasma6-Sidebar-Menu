@@ -57,100 +57,100 @@ msgstr ""
 msgid "Show in Favorites"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "User avatar shape:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Circle"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Rounded square"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Square"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Icons size:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Small"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Medium"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Large"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Huge"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Apps per column:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Header opacity, %:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Footer opacity, %:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Shut Down"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Reboot"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Log Out"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Hibernate"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Lock Screen"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Home Directory"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml
+#: ../contents/ui/config/ConfigFooter.qml
 msgctxt "@action:button"
 msgid "Reset command"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "App Store"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "System Preferences"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "About This PC"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Force Quit App"
 msgstr ""
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
 msgid "Edit Applications"
 msgstr ""
 

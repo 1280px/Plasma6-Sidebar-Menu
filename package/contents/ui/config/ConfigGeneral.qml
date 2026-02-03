@@ -34,15 +34,13 @@ KCM.SimpleKCM {
     id: configGeneral
     property string cfg_icon: plasmoid.configuration.icon
     property bool cfg_useCustomButtonImage: plasmoid.configuration.useCustomButtonImage
-    property string cfg_customButtonImage: plasmoid.configuration.customButtonImageaboutThisComputerSettings
-    property alias cfg_showFavoritesFirst: showFavoritesFirst.checked
-    property alias cfg_showInfoUser: showInfoUser.checked
+    property string cfg_customButtonImage: plasmoid.configuration.customButtonImage
+    property alias cfg_numberColumns: numberColumns.value
+    property alias cfg_appsIconSize: appsIconSize.currentIndex
     property alias cfg_showSearch: showSearch.checked
+    property alias cfg_showFavoritesFirst: showFavoritesFirst.checked
 
-    function getIcon() {
-        const colorContrast = getBackgroundColorContrast();
-        return `assets/logo-${colorContrast}.svg`;
-    }
+    property string defaultIcon: "go-first-symbolic-rtl"
 
     function getBackgroundColorContrast() {
         const hex = `${PlasmaCore.Theme.backgroundColor}`.substring(1);
@@ -104,7 +102,7 @@ KCM.SimpleKCM {
             KIconThemes.IconDialog {
                 id: iconDialog
                 function setCustomButtonImage(image) {
-                    configGeneral.cfg_customButtonImage = image || Qt.resolvedUrl(getIcon());
+                    configGeneral.cfg_customButtonImage = image || defaultIcon;
                     configGeneral.cfg_useCustomButtonImage = true;
                 }
                 onIconNameChanged: setCustomButtonImage(iconName)
@@ -131,7 +129,7 @@ KCM.SimpleKCM {
                     source: (
                         configGeneral.cfg_useCustomButtonImage
                             ? configGeneral.cfg_customButtonImage
-                            : Qt.resolvedUrl(getIcon())
+                            : defaultIcon
                     )
                 }
             }
@@ -151,7 +149,7 @@ KCM.SimpleKCM {
                     text: i18nc("@item:inmenu Reset icon to default", "Clear Icon")
                     icon.name: "edit-clear"
                     onClicked: {
-                        configGeneral.cfg_icon = getIcon();
+                        configGeneral.cfg_icon = defaultIcon;
                         configGeneral.cfg_useCustomButtonImage = false;
                     }
                 }
@@ -162,19 +160,34 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        CheckBox {
-            id: showFavoritesFirst
-            Kirigami.FormData.label: i18n("Show favorites first")
+        SpinBox {
+            id: numberColumns
+            from: 3
+            to: 6
+            Kirigami.FormData.label: i18n("Apps per column:")
         }
 
-        CheckBox {
-            id: showInfoUser
-            Kirigami.FormData.label: i18n("Show header")
+        ComboBox {
+            id: appsIconSize
+            Kirigami.FormData.label: i18n("Icons size:")
+            Layout.fillWidth: true
+            model: [i18n("Small"), i18n("Medium"), i18n("Large"), i18n("Huge")]
         }
 
         CheckBox {
             id: showSearch
             Kirigami.FormData.label: i18n("Show search text input")
+        }
+
+        // ComboBox {
+        //     Kirigami.FormData.label: i18n("Search text input:")
+        //     Layout.fillWidth: true
+        //     model: [i18n("Shown in Header"), i18n("Shown in Footer"), i18n("Hidden (invisible)")]
+        // }
+
+        CheckBox {
+            id: showFavoritesFirst
+            Kirigami.FormData.label: i18n("Open favorites first")
         }
     }
 }

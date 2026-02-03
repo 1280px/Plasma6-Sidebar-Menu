@@ -56,100 +56,100 @@ msgstr "Для текущей активности"
 msgid "Show in Favorites"
 msgstr "Показывать в избранном"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "User avatar shape:"
 msgstr "Форма аватарки пользователя:"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Circle"
 msgstr "Круг"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Rounded square"
 msgstr "Скруглённый квадрат"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Square"
 msgstr "Квадрат"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Icons size:"
 msgstr "Размер значков:"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Small"
 msgstr "Маленькие"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Medium"
 msgstr "Средние"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Large"
 msgstr "Большие"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Huge"
 msgstr "Огромные"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Apps per column:"
 msgstr "Приложений в строке:"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Header opacity, %:"
 msgstr "Непрозрачность шапки в %:"
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Footer opacity, %:"
 msgstr "Непрозрачность подвала в %:"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Shut Down"
 msgstr "Завершение работы"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Reboot"
 msgstr "Перезагрузка"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Log Out"
 msgstr "Завершение сеанса"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Hibernate"
 msgstr "Гибернация"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Lock Screen"
 msgstr "Заблокировать"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Home Directory"
 msgstr "Домашний каталог"
 
-#: ../contents/ui/config/ConfigBehavior.qml
+#: ../contents/ui/config/ConfigFooter.qml
 msgctxt "@action:button"
 msgid "Reset command"
 msgstr "Сбросить команду"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "App Store"
 msgstr "Магазин приложений"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "System Preferences"
 msgstr "Параметры системы"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "About This PC"
 msgstr "Об этой компьютере"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Force Quit App"
 msgstr "Завершить приложение"
 
-#: ../contents/ui/config/ConfigBehavior.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
 msgid "Edit Applications"
 msgstr "Изменить приложения"
 

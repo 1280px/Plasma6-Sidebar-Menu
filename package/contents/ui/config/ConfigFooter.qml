@@ -12,6 +12,9 @@ import org.kde.kcmutils as KCM
 import org.kde.plasma.workspace.dbus as DBus
 
 KCM.SimpleKCM {
+    id: configFooter
+    // property alias cfg_showFooter: showFooter.value
+    property alias cfg_transparencyFooter: transparencyFooter.value
     property alias cfg_shutDownEnabled: shutDownEnabled.checked
     property alias cfg_rebootEnabled: rebootEnabled.checked
     property alias cfg_logOutEnabled: logOutEnabled.checked
@@ -35,6 +38,34 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
+        CheckBox {
+            id: showFooter
+            Kirigami.FormData.label: i18n("Show footer")
+        }
+
+        SpinBox {
+            id: transparencyFooter
+            from: 1
+            to: 100
+            Kirigami.FormData.label: i18n("Background opacity, %:")
+        }
+
+        // Item {
+		// 	Kirigami.FormData.isSection: true
+		// 	Kirigami.FormData.label: i18n("Footer Actions")
+		// }
+        // QQC2.Label {
+        //     QtLayouts.Layout.fillWidth: true
+        //     QtLayouts.Layout.leftMargin: Kirigami.Units.largeSpacing * 2
+        //     QtLayouts.Layout.rightMargin: Kirigami.Units.largeSpacing * 2
+        //     text: i18n(
+        //         "Select action buttons you want to see in menu footer."
+        //     )
+        //     font: Kirigami.Theme.smallFont
+        //     wrapMode: Text.Wrap
+        //     visible: indicatorType.currentIndex == 0
+        // }
+
         RowLayout {
             CheckBox {
                 id: shutDownEnabled

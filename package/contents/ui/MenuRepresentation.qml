@@ -29,7 +29,7 @@ FocusScope {
 
     property bool searchvisible: Plasmoid.configuration.showSearch
     property int visible_items: (
-        (Plasmoid.configuration.showInfoUser ? headingSvg.height : 0)
+        (Plasmoid.configuration.showHeader ? headingSvg.height : 0)
         + (rootItem.searchvisible == true ? rowSearchField.height : 0)
         + (kicker.view_any_controls == true ? footer.height : 0)
         + Kirigami.Units.gridUnit
@@ -74,7 +74,7 @@ FocusScope {
             parent.width + backgroundSvg.margins.left + backgroundSvg.margins.right
         )
         height: (
-            Plasmoid.configuration.showInfoUser
+            Plasmoid.configuration.showHeader
                 ? encabezado.height + Kirigami.Units.smallSpacing
                 : Kirigami.Units.smallSpacing
         )
@@ -82,8 +82,8 @@ FocusScope {
         x: -backgroundSvg.margins.left
         imagePath: "widgets/plasmoidheading"
         prefix: "header"
-        opacity: Plasmoid.configuration.transparencyHead * 0.01
-        visible: Plasmoid.configuration.showInfoUser
+        opacity: Plasmoid.configuration.transparencyHeader * 0.01
+        visible: Plasmoid.configuration.showHeader
     }
 
     KSvg.FrameSvgItem {
@@ -131,7 +131,7 @@ FocusScope {
             id: encabezado
             width: rootItem.space_width
             Layout.preferredHeight: 130
-            visible: Plasmoid.configuration.showInfoUser
+            visible: Plasmoid.configuration.showHeader
 
             Loader {
                 id: head_
@@ -438,7 +438,7 @@ FocusScope {
     function updateLayouts() {
         rootItem.searchvisible = Plasmoid.configuration.showSearch;
         rootItem.visible_items = (
-            (Plasmoid.configuration.showInfoUser ? headingSvg.height : 0)
+            (Plasmoid.configuration.showHeader ? headingSvg.height : 0)
             + (rootItem.searchvisible == true ? rowSearchField.height : 0)
             + (kicker.view_any_controls == true ? footer.height : 0)
             + Kirigami.Units.gridUnit

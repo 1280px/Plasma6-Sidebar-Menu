@@ -24,19 +24,19 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
     ConfigCategory {
         name: i18n("General")
-        icon: "kde"
+        icon: "preferences-desktop-color"
         source: "config/ConfigGeneral.qml"
     }
 
     ConfigCategory {
-        name: i18n("Appearance")
-        icon: "preferences-desktop-color"
-        source: "config/ConfigAppearance.qml"
+        name: i18n("Header")
+        icon: "user-properties-symbolic"
+        source: "config/ConfigHeader.qml"
     }
 
     ConfigCategory {
-        name: i18n("Behavior")
-        icon: "preferences-desktop"
-        source: "config/ConfigBehavior.qml"
+        name: i18n("Footer")
+        icon: "applications-all-symbolic"
+        source: "config/ConfigFooter.qml"
     }
 }

@@ -54,7 +54,7 @@ RowLayout {
 
     ColumnLayout {
         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-        visible: iconUser.source !== "" && Plasmoid.configuration.showInfoUser
+        visible: iconUser.source !== "" && Plasmoid.configuration.showHeader
 
         Rectangle {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
@@ -70,7 +70,7 @@ RowLayout {
                 color: "white"
                 radius: userShape
                 clip: true // This clips rectangle's contents
-                visible: iconUser.source !== "" && Plasmoid.configuration.showInfoUser
+                visible: iconUser.source !== "" && Plasmoid.configuration.showHeader
                 z: 1
 
                 Rectangle {
@@ -87,7 +87,7 @@ RowLayout {
                     height: parent.height
                     source: kuser.faceIconUrl
                     cache: false
-                    visible: source !== "" && Plasmoid.configuration.showInfoUser
+                    visible: source !== "" && Plasmoid.configuration.showHeader
                     sourceSize.width: kicker.sizeImage
                     sourceSize.height: kicker.sizeImage
                     fillMode: Image.PreserveAspectFit
@@ -107,7 +107,7 @@ RowLayout {
                 z: 2
                 radius: userShape
                 clip: true // This clips rectangle's contents
-                visible: iconUser.source !== "" && Plasmoid.configuration.showInfoUser
+                visible: iconUser.source !== "" && Plasmoid.configuration.showHeader
 
                 Rectangle {
                     id: mask
@@ -123,7 +123,7 @@ RowLayout {
                     height: parent.height
                     source: kuser.faceIconUrl
                     cache: false
-                    visible: source !== "" && Plasmoid.configuration.showInfoUser
+                    visible: source !== "" && Plasmoid.configuration.showHeader
                     sourceSize.width: kicker.sizeImage
                     sourceSize.height: kicker.sizeImage
                     fillMode: Image.PreserveAspectFit
@@ -152,7 +152,7 @@ RowLayout {
 
         Kirigami.Heading {
             id: textouser
-            visible: iconUser.source !== "" && Plasmoid.configuration.showInfoUser
+            visible: iconUser.source !== "" && Plasmoid.configuration.showHeader
             Layout.alignment: Qt.AlignVCenter
             color: Kirigami.Theme.textColor
             level: 4
@@ -174,7 +174,7 @@ RowLayout {
         Layout.alignment: Qt.AlignRight | Qt.AlignTop
         visible: (
             Plasmoid.internalAction("configure").enabled
-            || (iconUser.source !== "" && Plasmoid.configuration.showInfoUser)
+            || (iconUser.source !== "" && Plasmoid.configuration.showHeader)
         )
         icon.name: "configure"
         text: Plasmoid.internalAction("configure").text
@@ -189,7 +189,7 @@ RowLayout {
         id: pinButton
         Layout.alignment: Qt.AlignRight | Qt.AlignTop
         visible: (
-            iconUser.source !== "" && Plasmoid.configuration.showInfoUser
+            iconUser.source !== "" && Plasmoid.configuration.showHeader
         )
         checkable: true
         checked: Plasmoid.configuration.pin
