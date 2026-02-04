@@ -54,6 +54,9 @@
     <entry name="showHeader" type="Bool">
     <default>true</default>
     </entry>
+    <entry name="showFooter" type="Bool">
+    <default>true</default>
+    </entry>
     <entry name="userShape" type="Enum">
       <default>0</default>
     </entry>
@@ -80,11 +83,17 @@
     <entry name="homeSettings" type="String">
       <default>dolphin /home</default>
     </entry>
-    <entry name="appStoreEnabled" type="Bool">
+    <entry name="downloadsEnabled" type="Bool">
       <default>false</default>
     </entry>
-    <entry name="appStoreSettings" type="String">
-      <default>plasma-discover</default>
+    <entry name="downloadsSettings" type="String">
+      <default>dolphin "$(xdg-user-dir DOWNLOAD)"</default>
+    </entry>
+    <entry name="desktopEnabled" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="desktopSettings" type="String">
+      <default>dolphin "$(xdg-user-dir DESKTOP)"</default>
     </entry>
     <entry name="systemPreferencesEnabled" type="Bool">
       <default>false</default>

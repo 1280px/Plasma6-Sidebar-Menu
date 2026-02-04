@@ -19,7 +19,7 @@ import org.kde.plasma.private.sessions as Sessions
 Item {
     RowLayout {
         id: searchComponent
-        width: rootItem.resizeWidth()  == 0 ? rootItem.calc_width : rootItem.resizeWidth()
+        width: rootItem.resizeWidth()  == 0 ? rootItem.spaceWidth : rootItem.resizeWidth()
 
         // Item {
         //     Layout.fillWidth: true

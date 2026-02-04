@@ -5,7 +5,7 @@
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
 | Template |      50 |       |
-| ru       |   39/50 |   78% |
+| ru       |   50/50 |  100% |
 
 
 ## New Translations

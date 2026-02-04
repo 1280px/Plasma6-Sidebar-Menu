@@ -30,37 +30,37 @@ FocusScope {
     property int userShape: calculateUserShape(Plasmoid.configuration.userShape)
     property int searchPosition: Plasmoid.configuration.showSearch
 
-    property int visible_items: (
-        (Plasmoid.configuration.showHeader ? headingSvg.height : 0) // Header
+    property int itemsHeight: (
+        (Plasmoid.configuration.showHeader ? (header.height + 4) : -1) // Header
         + (searchPosition != 2 ? 44 : 0) // Search
-        + (kicker.view_any_controls == true ? footer.height : 0) // Footer
-        + Kirigami.Units.gridUnit
+        + (Plasmoid.configuration.showFooter ? (footer.height * 2) : 0) // Footer
+        // + Kirigami.Units.gridUnit
     )
-    property int cuadricula_hg: (
+    property int gridsHeight: (
         kicker.availableScreenRect.height
-        - rootItem.visible_items
+        - rootItem.itemsHeight
         - Plasmoid.containment.containmentDisplayHints * ( // Floating mode
             Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 2 : 3
         ) // (account for panel height for a horizontal mode)
         - (Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 9 : -9) // ???
     )
 
-    property int calc_width: (
+    property int spaceWidth: (
         (kicker.cellSizeWidth * Plasmoid.configuration.numberColumns)
         + Kirigami.Units.gridUnit + 4
         // + (Plasmoid.formFactor !== PlasmaCore.Types.Vertical ? 4 : 0) // ????
     )
-    property int calc_height: (
-        cuadricula_hg + rootItem.visible_items
+    property int spaceHeight: (
+        gridsHeight + rootItem.itemsHeight
     )
 
-    property int dynamicColumns: Math.floor(rootItem.calc_width / kicker.cellSizeWidth)
+    property int dynamicColumns: Math.floor(rootItem.spaceWidth / kicker.cellSizeWidth)
     property int dynamicRows: Math.ceil(kicker.count / dynamicColumns)
 
-    Layout.maximumWidth: calc_width
-    Layout.minimumWidth: calc_width
-    Layout.minimumHeight: calc_height
-    Layout.maximumHeight: calc_height
+    Layout.maximumWidth: spaceWidth
+    Layout.minimumWidth: spaceWidth
+    Layout.minimumHeight: spaceHeight
+    Layout.maximumHeight: spaceHeight
 
     KCoreAddons.KUser {
         id: kuser
@@ -74,7 +74,7 @@ FocusScope {
         )
         height: (
             Plasmoid.configuration.showHeader
-                ? encabezado.height + Kirigami.Units.smallSpacing
+                ? header.height + Kirigami.Units.smallSpacing
                 : Kirigami.Units.smallSpacing
         )
         y: -backgroundSvg.margins.top
@@ -87,7 +87,7 @@ FocusScope {
 
     KSvg.FrameSvgItem {
         id: footerSvg
-        visible: kicker.view_any_controls
+        visible: Plasmoid.configuration.showFooter
         width: (
             parent.width + backgroundSvg.margins.left + backgroundSvg.margins.right
         )
@@ -131,11 +131,11 @@ FocusScope {
     // Menu container
     ColumnLayout {
         id: container
-        Layout.preferredHeight: rootItem.calc_height
+        Layout.preferredHeight: rootItem.spaceHeight
 
         Item {
-            id: encabezado
-            width: rootItem.calc_width
+            id: header
+            width: rootItem.spaceWidth
             Layout.preferredHeight: 130
             visible: Plasmoid.configuration.showHeader
 
@@ -161,14 +161,13 @@ FocusScope {
             visible: rootItem.searchPosition == 0
         }
 
-        // Grid
         Item {
             id: gridComponent
-            width: rootItem.calc_width
+            width: rootItem.spaceWidth
             Layout.preferredHeight: (
                 resizeHeight() == 0
-                    ? rootItem.cuadricula_hg
-                    : resizeHeight() - rootItem.visible_items
+                    ? rootItem.gridsHeight
+                    : resizeHeight() - rootItem.itemsHeight
             )
 
             // Grid for favorites
@@ -184,8 +183,8 @@ FocusScope {
                 width: rootItem.width
                 height: (
                     rootItem.resizeHeight() == 0
-                        ? rootItem.cuadricula_hg
-                        : rootItem.resizeHeight() - rootItem.visible_items
+                        ? rootItem.gridsHeight
+                        : rootItem.resizeHeight() - rootItem.itemsHeight
                 )
                 cellWidth: kicker.cellSizeWidth
                 cellHeight: kicker.cellSizeHeight
@@ -229,8 +228,8 @@ FocusScope {
                         width: rootItem.width
                         height: (
                             rootItem.resizeHeight() == 0
-                                ? rootItem.cuadricula_hg
-                                : rootItem.resizeHeight() - rootItem.visible_items
+                                ? rootItem.gridsHeight
+                                : rootItem.resizeHeight() - rootItem.itemsHeight
                         )
                         cellWidth: kicker.cellSizeWidth
                         cellHeight: kicker.cellSizeHeight
@@ -255,8 +254,8 @@ FocusScope {
                         width: rootItem.width
                         height: (
                             rootItem.resizeHeight() == 0
-                                ? rootItem.cuadricula_hg
-                                : rootItem.resizeHeight() - rootItem.visible_items
+                                ? rootItem.gridsHeight
+                                : rootItem.resizeHeight() - rootItem.itemsHeight
                         )
                         cellWidth: kicker.cellSizeWidth
                         cellHeight: kicker.cellSizeHeight
@@ -312,7 +311,6 @@ FocusScope {
             }
         }
 
-
         // Footer slot for search
         Item {
             id: searchFooter
@@ -323,8 +321,8 @@ FocusScope {
         Item {
             id: footer
             Layout.preferredHeight: 20
-            visible: Plasmoid.configuration.showFooter && kicker.view_any_controls
-            width: rootItem.calc_width
+            visible: Plasmoid.configuration.showFooter
+            width: rootItem.spaceWidth
 
             Loader {
                 id: foot_
@@ -435,7 +433,7 @@ FocusScope {
         if (
             screen.height > (
                 kicker.cellSizeHeight // * Plasmoid.configuration.numberRows
-                + rootItem.visible_items
+                + rootItem.itemsHeight
                 + Kirigami.Units.gridUnit * 1.5
             )
         ) {

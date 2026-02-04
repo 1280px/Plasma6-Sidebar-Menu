@@ -18,7 +18,7 @@ import org.kde.plasma.private.sessions as Sessions
 
 RowLayout {
     id: headComponent
-    width: (rootItem.resizeWidth() == 0 ? rootItem.calc_width : rootItem.resizeWidth())
+    width: (rootItem.resizeWidth() == 0 ? rootItem.spaceWidth : rootItem.resizeWidth())
 
     SequentialAnimation {
         running: true

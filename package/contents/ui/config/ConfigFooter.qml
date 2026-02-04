@@ -13,55 +13,50 @@ import org.kde.plasma.workspace.dbus as DBus
 
 KCM.SimpleKCM {
     id: configFooter
-    // property alias cfg_showFooter: showFooter.value
+    property alias cfg_showFooter: showFooter.checked
     property alias cfg_transparencyFooter: transparencyFooter.value
     property alias cfg_shutDownEnabled: shutDownEnabled.checked
     property alias cfg_rebootEnabled: rebootEnabled.checked
     property alias cfg_logOutEnabled: logOutEnabled.checked
     property alias cfg_sleepEnabled: sleepEnabled.checked
     property alias cfg_lockScreenEnabled: lockScreenEnabled.checked
+    property alias cfg_homeEnabled: homeEnabled.checked
+    property alias cfg_homeSettings: homeSettings.text
+    property alias cfg_downloadsEnabled: downloadsEnabled.checked
+    property alias cfg_downloadsSettings: downloadsSettings.text
+    property alias cfg_desktopEnabled: desktopEnabled.checked
+    property alias cfg_desktopSettings: desktopSettings.text
     property alias cfg_aboutThisComputerEnabled: aboutThisComputerEnabled.checked
     property alias cfg_aboutThisComputerSettings: aboutThisComputerSettings.text
     property alias cfg_systemPreferencesEnabled: systemPreferencesEnabled.checked
     property alias cfg_systemPreferencesSettings: systemPreferencesSettings.text
-    property alias cfg_appStoreEnabled: appStoreEnabled.checked
-    property alias cfg_appStoreSettings: appStoreSettings.text
+    property alias cfg_editApplicationsEnabled: editApplicationsEnabled.checked
     property alias cfg_forceQuitEnabled: forceQuitEnabled.checked
     property alias cfg_forceQuitSettings: forceQuitSettings.text
-    property alias cfg_homeEnabled: homeEnabled.checked
-    property alias cfg_homeSettings: homeSettings.text
-    property alias cfg_editApplicationsEnabled: editApplicationsEnabled.checked
 
     Kirigami.FormLayout {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        CheckBox {
-            id: showFooter
-            Kirigami.FormData.label: i18n("Show footer")
-        }
+        Kirigami.FormLayout {
+            CheckBox {
+                id: showFooter
+                Kirigami.FormData.label: i18n("Show footer")
+            }
 
-        SpinBox {
-            id: transparencyFooter
-            from: 1
-            to: 100
-            Kirigami.FormData.label: i18n("Background opacity, %:")
-        }
+            SpinBox {
+                id: transparencyFooter
+                from: 1
+                to: 100
+                Kirigami.FormData.label: i18n("Background opacity, %:")
+            }
 
-        Item {
-			Kirigami.FormData.isSection: true
-			Kirigami.FormData.label: i18n("Footer Actions")
-		}
-        QQC2.Label {
-            QtLayouts.Layout.fillWidth: true
-            QtLayouts.Layout.leftMargin: Kirigami.Units.largeSpacing * 2
-            QtLayouts.Layout.rightMargin: Kirigami.Units.largeSpacing * 2
-            text: i18n(
-                "Select action buttons you want to see in menu footer."
-            )
-            font: Kirigami.Theme.smallFont
-            wrapMode: Text.Wrap
-            visible: indicatorType.currentIndex == 0
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n(
+                    "Select action buttons to be displayed in menu footer:"
+                )
+            }
         }
 
         ColumnLayout {
@@ -123,7 +118,7 @@ KCM.SimpleKCM {
             RowLayout {
                 CheckBox {
                     id: homeEnabled
-                    text: i18n("Home Directory")
+                    text: i18n("User Home")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
                         homeSettings.enabled = checked;
@@ -147,24 +142,49 @@ KCM.SimpleKCM {
 
             RowLayout {
                 CheckBox {
-                    id: appStoreEnabled
-                    text: i18n("App Store")
+                    id: downloadsEnabled
+                    text: i18n("Downloads")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
-                        appStoreSettings.enabled = checked;
+                        downloadsSettings.enabled = checked;
                     }
                 }
 
                 Kirigami.ActionTextField {
-                    id: appStoreSettings
-                    enabled: appStoreEnabled.checked
+                    id: downloadsSettings
+                    enabled: downloadsEnabled.checked
                     rightActions: QQC2.Action {
                         icon.name: "edit-clear"
-                        enabled: appStoreSettings.text !== ""
+                        enabled: downloadsSettings.text !== ""
                         text: i18nc("@action:button", "Reset command")
                         onTriggered: {
-                            appStoreSettings.clear();
-                            root.cfg_appStoreSettings = "";
+                            downloadsSettings.clear();
+                            root.cfg_downloadsSettings = "";
+                        }
+                    }
+                }
+            }
+
+            RowLayout {
+                CheckBox {
+                    id: desktopEnabled
+                    text: i18n("Desktop")
+                    checked: showAdvancedMode.checked
+                    onCheckedChanged: {
+                        desktopSettings.enabled = checked;
+                    }
+                }
+
+                Kirigami.ActionTextField {
+                    id: desktopSettings
+                    enabled: desktopEnabled.checked
+                    rightActions: QQC2.Action {
+                        icon.name: "edit-clear"
+                        enabled: desktopSettings.text !== ""
+                        text: i18nc("@action:button", "Reset command")
+                        onTriggered: {
+                            desktopSettings.clear();
+                            root.cfg_desktopSettings = "";
                         }
                     }
                 }
@@ -222,6 +242,17 @@ KCM.SimpleKCM {
 
             RowLayout {
                 CheckBox {
+                    id: editApplicationsEnabled
+                    text: i18n("Edit Applications")
+                    checked: showAdvancedMode.checked
+                    onCheckedChanged: {
+                        editApplicationsSettings.enabled = checked;
+                    }
+                }
+            }
+
+            RowLayout {
+                CheckBox {
                     id: forceQuitEnabled
                     text: i18n("Force Quit App")
                     checked: showAdvancedMode.checked
@@ -241,17 +272,6 @@ KCM.SimpleKCM {
                             forceQuitSettings.clear();
                             root.cfg_forceQuitSettings = "";
                         }
-                    }
-                }
-            }
-
-            RowLayout {
-                CheckBox {
-                    id: editApplicationsEnabled
-                    text: i18n("Edit Applications")
-                    checked: showAdvancedMode.checked
-                    onCheckedChanged: {
-                        editApplicationsSettings.enabled = checked;
                     }
                 }
             }

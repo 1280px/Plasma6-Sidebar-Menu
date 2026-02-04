@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sidebar-Menu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-04 12:28+0700\n"
+"POT-Creation-Date: 2026-02-04 17:54+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,11 +66,7 @@ msgid "Background opacity, %:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigFooter.qml
-msgid "Footer Actions"
-msgstr ""
-
-#: ../contents/ui/config/ConfigFooter.qml
-msgid "Select action buttons you want to see in menu footer."
+msgid "Select action buttons to be displayed in menu footer:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
@@ -94,7 +90,7 @@ msgid "Lock Screen"
 msgstr ""
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
-msgid "Home Directory"
+msgid "User Home"
 msgstr ""
 
 #: ../contents/ui/config/ConfigFooter.qml
@@ -103,7 +99,11 @@ msgid "Reset command"
 msgstr ""
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
-msgid "App Store"
+msgid "Downloads"
+msgstr ""
+
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
+msgid "Desktop"
 msgstr ""
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
@@ -114,12 +114,12 @@ msgstr ""
 msgid "About This PC"
 msgstr ""
 
-#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
-msgid "Force Quit App"
-msgstr ""
-
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
 msgid "Edit Applications"
+msgstr ""
+
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
+msgid "Force Quit App"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml

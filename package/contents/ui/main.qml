@@ -47,24 +47,12 @@ PlasmoidItem {
     property string keyIn: ""
 
     // Commands
-    readonly property string aboutThisComputerCMD: Plasmoid.configuration.aboutThisComputerSettings
-    readonly property string systemPreferencesCMD: Plasmoid.configuration.systemPreferencesSettings
     readonly property string homeCMD: Plasmoid.configuration.homeSettings
-    readonly property string appStoreCMD: Plasmoid.configuration.appStoreSettings
+    readonly property string downloadsCMD: Plasmoid.configuration.downloadsSettings
+    readonly property string desktopCMD: Plasmoid.configuration.desktopSettings
+    readonly property string systemPreferencesCMD: Plasmoid.configuration.systemPreferencesSettings
+    readonly property string aboutThisComputerCMD: Plasmoid.configuration.aboutThisComputerSettings
     readonly property string forceQuitCMD: Plasmoid.configuration.forceQuitSettings
-    property bool view_any_controls: (
-        Plasmoid.configuration.rebootEnabled
-        || Plasmoid.configuration.shutDownEnabled
-        || Plasmoid.configuration.aboutThisComputerEnabled
-        || Plasmoid.configuration.systemPreferencesEnabled 
-        || Plasmoid.configuration.appStoreEnabled
-        || Plasmoid.configuration.forceQuitEnabled
-        || Plasmoid.configuration.sleepEnabled
-        || Plasmoid.configuration.lockScreenEnabled
-        || Plasmoid.configuration.logOutEnabled
-        || Plasmoid.configuration.homeEnabled
-        || Plasmoid.configuration.editApplicationsEnabled
-    )
 
     // Images' & icons' properties
     property int sizeImage: Kirigami.Units.iconSizes.large * 2.5

@@ -18,7 +18,7 @@ import org.kde.plasma.private.sessions as Sessions
 
 RowLayout {
     id: footerComponent
-    width: (rootItem.resizeWidth() == 0 ? rootItem.calc_width : rootItem.resizeWidth())
+    width: (rootItem.resizeWidth() == 0 ? rootItem.spaceWidth : rootItem.resizeWidth())
 
     Sessions.SessionManagement {
         id: cmd_desk
@@ -103,23 +103,33 @@ RowLayout {
         }
 
         PC3.ToolButton {
-            icon.name: "user-home"
+            icon.name: "user-home-symbolic"
             visible: true !== "" && Plasmoid.configuration.homeEnabled
             onClicked: executable.exec(homeCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
-            ToolTip.text: i18n("Home Directory")
+            ToolTip.text: i18n("User Home")
         }
 
         PC3.ToolButton {
-            icon.name: "system-software-install"
-            visible: true !== "" && Plasmoid.configuration.appStoreEnabled
-            onClicked: executable.exec(appStoreCMD)
+            icon.name: "folder-downloads-symbolic"
+            visible: true !== "" && Plasmoid.configuration.downloadsEnabled
+            onClicked: executable.exec(downloadsCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
-            ToolTip.text: i18n("App Store")
+            ToolTip.text: i18n("Downloads")
+        }
+
+        PC3.ToolButton {
+            icon.name: "user-desktop-symbolic"
+            visible: true !== "" && Plasmoid.configuration.desktopEnabled
+            onClicked: executable.exec(desktopCMD)
+            ToolTip.delay: 200
+            ToolTip.timeout: 1000
+            ToolTip.visible: hovered
+            ToolTip.text: i18n("Desktop")
         }
 
         PC3.ToolButton {
@@ -143,16 +153,6 @@ RowLayout {
         }
 
         PC3.ToolButton {
-            icon.name: "dialog-error"
-            visible: true !== "" && Plasmoid.configuration.forceQuitEnabled
-            onClicked: executable.exec(forceQuitCMD)
-            ToolTip.delay: 200
-            ToolTip.timeout: 1000
-            ToolTip.visible: hovered
-            ToolTip.text: i18n("Force Quit App")
-        }
-
-        PC3.ToolButton {
             icon.name: "kmenuedit"
             visible: true !== "" && Plasmoid.configuration.editApplicationsEnabled
             onClicked: executable.exec("kmenuedit")
@@ -160,6 +160,16 @@ RowLayout {
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
             ToolTip.text: i18n("Edit Applications")
+        }
+
+        PC3.ToolButton {
+            icon.name: "process-stop-symbolic"
+            visible: true !== "" && Plasmoid.configuration.forceQuitEnabled
+            onClicked: executable.exec(forceQuitCMD)
+            ToolTip.delay: 200
+            ToolTip.timeout: 1000
+            ToolTip.visible: hovered
+            ToolTip.text: i18n("Force Quit App")
         }
 
         Item {

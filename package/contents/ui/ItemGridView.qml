@@ -554,7 +554,7 @@ FocusScope {
                              function updateDimensions()
                              {
                              // Recalcula el número dinámico de columnas y filas
-                             dynamicColumns = Math.floor((resizeWidth()  == 0 ? rootItem.calc_width : resizeWidth()) / kicker.cellSizeWidth);
+                             dynamicColumns = Math.floor((resizeWidth()  == 0 ? rootItem.spaceWidth : resizeWidth()) / kicker.cellSizeWidth);
                              dynamicRows = Math.ceil(kicker.count / dynamicColumns);
                              }
 

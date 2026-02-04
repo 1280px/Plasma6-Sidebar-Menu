@@ -16,8 +16,8 @@ import org.kde.plasma.private.quicklaunch 1.0
 FocusScope {
     id: gridComponent
     height: rootItem.resizeHeight() == 0 
-        ? rootItem.cuadricula_hg
-        : rootItem.resizeHeight() - rootItem.visible_items
+        ? rootItem.gridsHeight
+        : rootItem.resizeHeight() - rootItem.itemsHeight
 
     // Favorite apps
     ItemGridView {
@@ -31,8 +31,8 @@ FocusScope {
         width: rootItem.width
         height: (
             rootItem.resizeHeight() == 0
-                ? rootItem.cuadricula_hg
-                : rootItem.resizeHeight() - rootItem.visible_items
+                ? rootItem.gridsHeight
+                : rootItem.resizeHeight() - rootItem.itemsHeight
         )
         focus: true
         cellWidth: kicker.cellSizeWidth
@@ -65,8 +65,8 @@ FocusScope {
             width: rootItem.width
             height: (
                 rootItem.resizeHeight() == 0
-                    ? rootItem.cuadricula_hg
-                    : rootItem.resizeHeight() - rootItem.visible_items
+                    ? rootItem.gridsHeight
+                    : rootItem.resizeHeight() - rootItem.itemsHeight
             )
 
             // All apps
@@ -75,8 +75,8 @@ FocusScope {
                 width: rootItem.width
                 height: (
                     resizeHeight() == 0
-                        ? rootItem.cuadricula_hg
-                        : resizeHeight() - rootItem.visible_items
+                        ? rootItem.gridsHeight
+                        : resizeHeight() - rootItem.itemsHeight
                 )
                 cellWidth: kicker.cellSizeWidth
                 cellHeight: kicker.cellSizeHeight
@@ -99,8 +99,8 @@ FocusScope {
                 width: rootItem.width
                 height: (
                     rootItem.resizeHeight() == 0
-                        ? rootItem.cuadricula_hg
-                        : rootItem.resizeHeight() - rootItem.visible_items
+                        ? rootItem.gridsHeight
+                        : rootItem.resizeHeight() - rootItem.itemsHeight
                 )
                 cellWidth: kicker.cellSizeWidth
                 cellHeight: kicker.cellSizeHeight

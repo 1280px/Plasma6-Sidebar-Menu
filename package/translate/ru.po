@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dittomenu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-04 12:28+0700\n"
+"POT-Creation-Date: 2026-02-04 17:54+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: 1280px <megarainbow29@gmail.com>\n"
 "Language: ru\n"
@@ -65,12 +65,8 @@ msgid "Background opacity, %:"
 msgstr "Непрозрачность фона в %:"
 
 #: ../contents/ui/config/ConfigFooter.qml
-msgid "Footer Actions"
-msgstr "Кнопки действий"
-
-#: ../contents/ui/config/ConfigFooter.qml
-msgid "Select action buttons you want to see in menu footer."
-msgstr "Выберите кнопки, которые вы хотите видеть в подвале."
+msgid "Select action buttons to be displayed in menu footer:"
+msgstr "Выберите кнопки действий для отображения в подвале:"
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Shut Down"
@@ -93,8 +89,8 @@ msgid "Lock Screen"
 msgstr "Заблокировать"
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
-msgid "Home Directory"
-msgstr "Домашний каталог"
+msgid "User Home"
+msgstr "Домашняя папка"
 
 #: ../contents/ui/config/ConfigFooter.qml
 msgctxt "@action:button"
@@ -102,8 +98,12 @@ msgid "Reset command"
 msgstr "Сбросить команду"
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
-msgid "App Store"
-msgstr "Магазин приложений"
+msgid "Downloads"
+msgstr "Загрузки"
+
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
+msgid "Desktop"
+msgstr "Рабочий стол"
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "System Preferences"
@@ -111,15 +111,15 @@ msgstr "Параметры системы"
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "About This PC"
-msgstr "Об этой компьютере"
-
-#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
-msgid "Force Quit App"
-msgstr "Завершить приложение"
+msgstr "Об этом компьютере"
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml ../contents/ui/main.qml
 msgid "Edit Applications"
 msgstr "Изменить приложения"
+
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
+msgid "Force Quit App"
+msgstr "Завершить приложение"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Icon:"
