@@ -37,7 +37,7 @@ KCM.SimpleKCM {
     property string cfg_customButtonImage: plasmoid.configuration.customButtonImage
     property alias cfg_numberColumns: numberColumns.value
     property alias cfg_appsIconSize: appsIconSize.currentIndex
-    property alias cfg_showSearch: showSearch.checked
+    property alias cfg_showSearch: showSearch.currentIndex
     property alias cfg_showFavoritesFirst: showFavoritesFirst.checked
 
     property string defaultIcon: "go-first-symbolic-rtl"
@@ -174,16 +174,12 @@ KCM.SimpleKCM {
             model: [i18n("Small"), i18n("Medium"), i18n("Large"), i18n("Huge")]
         }
 
-        CheckBox {
+        ComboBox {
             id: showSearch
-            Kirigami.FormData.label: i18n("Show search text input")
+            Kirigami.FormData.label: i18n("Search text input:")
+            Layout.fillWidth: true
+            model: [i18n("Shown below header"), i18n("Shown above footer"), i18n("Hidden (invisible)")]
         }
-
-        // ComboBox {
-        //     Kirigami.FormData.label: i18n("Search text input:")
-        //     Layout.fillWidth: true
-        //     model: [i18n("Shown in Header"), i18n("Shown in Footer"), i18n("Hidden (invisible)")]
-        // }
 
         CheckBox {
             id: showFavoritesFirst

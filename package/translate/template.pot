@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sidebar-Menu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-03 05:46+0700\n"
+"POT-Creation-Date: 2026-02-04 12:28+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,11 @@ msgid "General"
 msgstr ""
 
 #: ../contents/config/config.qml
-msgid "Appearance"
+msgid "Header"
 msgstr ""
 
 #: ../contents/config/config.qml
-msgid "Behavior"
+msgid "Footer"
 msgstr ""
 
 #: ../contents/ui/code/tools.js
@@ -57,52 +57,20 @@ msgstr ""
 msgid "Show in Favorites"
 msgstr ""
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "User avatar shape:"
+#: ../contents/ui/config/ConfigFooter.qml
+msgid "Show footer"
 msgstr ""
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Circle"
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/config/ConfigHeader.qml
+msgid "Background opacity, %:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Rounded square"
+#: ../contents/ui/config/ConfigFooter.qml
+msgid "Footer Actions"
 msgstr ""
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Square"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Icons size:"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Small"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Medium"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Large"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Huge"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Apps per column:"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Header opacity, %:"
-msgstr ""
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Footer opacity, %:"
+#: ../contents/ui/config/ConfigFooter.qml
+msgid "Select action buttons you want to see in menu footer."
 msgstr ""
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
@@ -169,15 +137,67 @@ msgid "Clear Icon"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid "Show favorites first"
+msgid "Apps per column:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
+msgid "Icons size:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Small"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Medium"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Large"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Huge"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Search text input:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Shown below header"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Shown above footer"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Hidden (invisible)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Open favorites first"
+msgstr ""
+
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Show header"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Show search text input"
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "User avatar shape:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "Circle"
+msgstr ""
+
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "Rounded square"
+msgstr ""
+
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "Square"
 msgstr ""
 
 #: ../contents/ui/Head.qml

@@ -27,15 +27,15 @@ FocusScope {
     id: rootItem
     focus: true
 
-    property bool searchvisible: Plasmoid.configuration.showSearch
+    property int userShape: calculateUserShape(Plasmoid.configuration.userShape)
+    property int searchPosition: Plasmoid.configuration.showSearch
+
     property int visible_items: (
-        (Plasmoid.configuration.showHeader ? headingSvg.height : 0)
-        + (rootItem.searchvisible == true ? rowSearchField.height : 0)
-        + (kicker.view_any_controls == true ? footer.height : 0)
+        (Plasmoid.configuration.showHeader ? headingSvg.height : 0) // Header
+        + (searchPosition != 2 ? 44 : 0) // Search
+        + (kicker.view_any_controls == true ? footer.height : 0) // Footer
         + Kirigami.Units.gridUnit
     )
-    property int userShape: calculateUserShape(Plasmoid.configuration.userShape)
-
     property int cuadricula_hg: (
         kicker.availableScreenRect.height
         - rootItem.visible_items
@@ -44,6 +44,7 @@ FocusScope {
         ) // (account for panel height for a horizontal mode)
         - (Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 9 : -9) // ???
     )
+
     property int calc_width: (
         (kicker.cellSizeWidth * Plasmoid.configuration.numberColumns)
         + Kirigami.Units.gridUnit + 4
@@ -52,16 +53,14 @@ FocusScope {
     property int calc_height: (
         cuadricula_hg + rootItem.visible_items
     )
-    property int space_width: resizeWidth() == 0 ? rootItem.calc_width : resizeWidth()
-    property int space_height: resizeHeight() == 0 ? rootItem.calc_height : resizeHeight()
 
-    property int dynamicColumns: Math.floor(rootItem.space_width / kicker.cellSizeWidth)
+    property int dynamicColumns: Math.floor(rootItem.calc_width / kicker.cellSizeWidth)
     property int dynamicRows: Math.ceil(kicker.count / dynamicColumns)
 
-    Layout.maximumWidth: space_width
-    Layout.minimumWidth: space_width
-    Layout.minimumHeight: space_height
-    Layout.maximumHeight: space_height
+    Layout.maximumWidth: calc_width
+    Layout.minimumWidth: calc_width
+    Layout.minimumHeight: calc_height
+    Layout.maximumHeight: calc_height
 
     KCoreAddons.KUser {
         id: kuser
@@ -93,7 +92,7 @@ FocusScope {
             parent.width + backgroundSvg.margins.left + backgroundSvg.margins.right
         )
         height: (
-            footer.Layout.preferredHeight + Kirigami.Units.smallSpacing * 6
+            footer.Layout.preferredHeight + Kirigami.Units.smallSpacing * 7
         )
         x: backgroundSvg.margins.left
         y: parent.height + Kirigami.Units.smallSpacing * 2 // - (footer.height + Kirigami.Units.smallSpacing)
@@ -104,6 +103,14 @@ FocusScope {
             angle: 180
             origin.x: width / 2
         }
+    }
+
+
+    // Search loader
+    Loader {
+        id: searchLoader
+        sourceComponent: searchComponent
+        visible: rootItem.searchPosition != 2
     }
 
     // DEBUGGING
@@ -124,12 +131,11 @@ FocusScope {
     // Menu container
     ColumnLayout {
         id: container
-        Layout.preferredHeight: rootItem.space_height
+        Layout.preferredHeight: rootItem.calc_height
 
-        // Heading
         Item {
             id: encabezado
-            width: rootItem.space_width
+            width: rootItem.calc_width
             Layout.preferredHeight: 130
             visible: Plasmoid.configuration.showHeader
 
@@ -148,10 +154,17 @@ FocusScope {
             }
         }
 
+        // Header slot for search
+        Item {
+            id: searchHeader
+            Layout.preferredHeight: rootItem.searchPosition == 0 ? 40 : 0
+            visible: rootItem.searchPosition == 0
+        }
+
         // Grid
         Item {
             id: gridComponent
-            width: rootItem.space_width
+            width: rootItem.calc_width
             Layout.preferredHeight: (
                 resizeHeight() == 0
                     ? rootItem.cuadricula_hg
@@ -299,23 +312,19 @@ FocusScope {
             }
         }
 
-        Item {
-            id: rowSearchField
-            visible: rootItem.searchvisible
-            Layout.preferredHeight: 45
-            width: rootItem.space_width
 
-            Loader {
-                id: searchLoader
-                sourceComponent: searchComponent
-            }
+        // Footer slot for search
+        Item {
+            id: searchFooter
+            Layout.preferredHeight: rootItem.searchPosition == 1 ? 40 : 0
+            visible: rootItem.searchPosition == 1
         }
 
         Item {
             id: footer
-            Layout.preferredHeight: 25
-            visible: kicker.view_any_controls
-            width: rootItem.space_width
+            Layout.preferredHeight: 20
+            visible: Plasmoid.configuration.showFooter && kicker.view_any_controls
+            width: rootItem.calc_width
 
             Loader {
                 id: foot_
@@ -364,16 +373,16 @@ FocusScope {
     }
 
     Component {
+        id: headComponent
+        Head { }
+    }
+    Component {
         id: footerComponent
         Footer { }
     }
     Component {
         id: searchComponent
         Search { }
-    }
-    Component {
-        id: headComponent
-        Head { }
     }
 
     function turnclose() {
@@ -411,7 +420,7 @@ FocusScope {
         ) {
             return 0;
         } else {
-            return screen.width - Kirigami.Units.gridUnit * 2;
+            return screen.width;
         }
     }
     function resizeHeight() {
@@ -432,39 +441,15 @@ FocusScope {
         ) {
             return 0;
         } else {
-            return screen.height - Kirigami.Units.gridUnit * 2;
+            return screen.height;
         }
     }
+
     function updateLayouts() {
-        rootItem.searchvisible = Plasmoid.configuration.showSearch;
-        rootItem.visible_items = (
-            (Plasmoid.configuration.showHeader ? headingSvg.height : 0)
-            + (rootItem.searchvisible == true ? rowSearchField.height : 0)
-            + (kicker.view_any_controls == true ? footer.height : 0)
-            + Kirigami.Units.gridUnit
-        );
-        rootItem.userShape = calculateUserShape(Plasmoid.configuration.userShape);
-
-        rootItem.cuadricula_hg = (
-            kicker.availableScreenRect.height
-            - rootItem.visible_items
-            - Plasmoid.containment.containmentDisplayHints * ( // Floating mode
-                Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 2 : 3
-            ) // (account for panel height for a horizontal mode)
-            - (Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 9 : -9) // ???
-        )
-        rootItem.calc_width = (
-            (kicker.cellSizeWidth * Plasmoid.configuration.numberColumns)
-            + Kirigami.Units.gridUnit + 4
-            // + (Plasmoid.formFactor !== PlasmaCore.Types.Vertical ? 4 : 0) // ????
-        );
-        rootItem.calc_height = (
-            rootItem.cuadricula_hg + rootItem.visible_items
-        );
-
-        kicker.keyIn = "Layout updated";
+        userShape = calculateUserShape(Plasmoid.configuration.userShape);
+        searchPosition = Plasmoid.configuration.showSearch;
+        calculateSearchParent();
     }
-
     function calculateUserShape(shape) {
         switch (shape) {
         case 2:
@@ -476,12 +461,20 @@ FocusScope {
             return (kicker.sizeImage * 0.85) / 2;
         }
     }
+    function calculateSearchParent() {
+        searchLoader.parent = (
+            (searchPosition == 0)
+                ? searchHeader
+                : (searchPosition == 1)
+                    ? searchFooter
+                    : rootItem
+        );
+    }
 
     function setModels() {
         globalFavoritesGrid.model = globalFavorites;
         allAppsGrid.model = rootModel.modelForRow(0);
     }
-
     onActiveFocusChanged: {
         if (
             (!activeFocus && kicker.hideOnWindowDeactivate === false)
@@ -490,11 +483,13 @@ FocusScope {
             turnclose();
         }
     }
+    onSearchPositionChanged: calculateSearchParent()
 
     Component.onCompleted: {
         rootModel.refreshed.connect(setModels);
         rootModel.refresh();
 
+        calculateSearchParent();
         kicker.showFavorites
             ? globalFavoritesGrid.tryActivate(0, 0)
             : mainColumn.tryActivate(0, 0);

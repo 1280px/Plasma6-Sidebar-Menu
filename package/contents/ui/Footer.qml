@@ -19,6 +19,7 @@ import org.kde.plasma.private.sessions as Sessions
 RowLayout {
     id: footerComponent
     width: (rootItem.resizeWidth() == 0 ? rootItem.calc_width : rootItem.resizeWidth())
+
     Sessions.SessionManagement {
         id: cmd_desk
     }
@@ -47,8 +48,6 @@ RowLayout {
     }
 
     RowLayout {
-        Layout.alignment: Qt.AlignHcenter | Qt.AlignBottom
-
         Item {
             Layout.fillWidth: true
         }

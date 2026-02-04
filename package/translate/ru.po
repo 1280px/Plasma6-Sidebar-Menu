@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dittomenu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-03 05:46+0700\n"
+"POT-Creation-Date: 2026-02-04 12:28+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: 1280px <megarainbow29@gmail.com>\n"
 "Language: ru\n"
@@ -29,12 +29,12 @@ msgid "General"
 msgstr "Общие"
 
 #: ../contents/config/config.qml
-msgid "Appearance"
-msgstr "Внешний вид"
+msgid "Header"
+msgstr "Шапка"
 
 #: ../contents/config/config.qml
-msgid "Behavior"
-msgstr "Поведение"
+msgid "Footer"
+msgstr "Подвал"
 
 #: ../contents/ui/code/tools.js
 msgid "Remove from Favorites"
@@ -56,53 +56,21 @@ msgstr "Для текущей активности"
 msgid "Show in Favorites"
 msgstr "Показывать в избранном"
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "User avatar shape:"
-msgstr "Форма аватарки пользователя:"
+#: ../contents/ui/config/ConfigFooter.qml
+msgid "Show footer"
+msgstr "Отображать подвал"
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Circle"
-msgstr "Круг"
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/config/ConfigHeader.qml
+msgid "Background opacity, %:"
+msgstr "Непрозрачность фона в %:"
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Rounded square"
-msgstr "Скруглённый квадрат"
+#: ../contents/ui/config/ConfigFooter.qml
+msgid "Footer Actions"
+msgstr "Кнопки действий"
 
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Square"
-msgstr "Квадрат"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Icons size:"
-msgstr "Размер значков:"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Small"
-msgstr "Маленькие"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Medium"
-msgstr "Средние"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Large"
-msgstr "Большие"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Huge"
-msgstr "Огромные"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Apps per column:"
-msgstr "Приложений в строке:"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Header opacity, %:"
-msgstr "Непрозрачность шапки в %:"
-
-#: ../contents/ui/config/ConfigHeader.qml
-msgid "Footer opacity, %:"
-msgstr "Непрозрачность подвала в %:"
+#: ../contents/ui/config/ConfigFooter.qml
+msgid "Select action buttons you want to see in menu footer."
+msgstr "Выберите кнопки, которые вы хотите видеть в подвале."
 
 #: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
 msgid "Shut Down"
@@ -168,16 +136,68 @@ msgid "Clear Icon"
 msgstr "Убрать значок"
 
 #: ../contents/ui/config/ConfigGeneral.qml
-msgid "Show favorites first"
-msgstr "Сначала показывать избранное"
+msgid "Apps per column:"
+msgstr "Приложений в строке:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+msgid "Icons size:"
+msgstr "Размер значков:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Small"
+msgstr "Маленькие"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Medium"
+msgstr "Средние"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Large"
+msgstr "Большие"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Huge"
+msgstr "Огромные"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Search text input:"
+msgstr "Строка поиска:"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Shown below header"
+msgstr "Отображается под шапкой"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Shown above footer"
+msgstr "Отображается над подвалом"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Hidden (invisible)"
+msgstr "Не отображается (скрытая)"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Open favorites first"
+msgstr "Сначала открывать избранное"
+
+#: ../contents/ui/config/ConfigHeader.qml
 msgid "Show header"
 msgstr "Отображать шапку"
 
-#: ../contents/ui/config/ConfigGeneral.qml
-msgid "Show search text input"
-msgstr "Отображать строку поиска"
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "User avatar shape:"
+msgstr "Форма аватарки пользователя:"
+
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "Circle"
+msgstr "Круг"
+
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "Rounded square"
+msgstr "Скруглённый квадрат"
+
+#: ../contents/ui/config/ConfigHeader.qml
+msgid "Square"
+msgstr "Квадрат"
 
 #: ../contents/ui/Head.qml
 msgid "Hola, "

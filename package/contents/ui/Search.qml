@@ -27,15 +27,15 @@ Item {
 
         PC3.TextField {
             id: searchField
-            visible: rootItem.searchvisible
+            visible: true
             Layout.fillWidth: true
             placeholderText: i18n("Start typing to search")
-            topPadding: 10
-            bottomPadding: 10
-            focus:true
+            topPadding: 6
+            bottomPadding: 6
+            focus: true
             leftPadding: Kirigami.Units.gridUnit + Kirigami.Units.iconSizes.small
             text: ""
-            font.pointSize: Kirigami.Theme.defaultFont.pointSize + 2
+            font.pointSize: Kirigami.Theme.defaultFont.pointSize + 1
 
             Kirigami.Icon {
                 source: "search"
@@ -102,7 +102,7 @@ Item {
         PC3.ToolButton {
             id: btnFavorites
             icon.name: "favorites"
-            visible: rootItem.searchvisible
+            visible: true
             flat: !kicker.showFavorites
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -120,7 +120,7 @@ Item {
             id: btnAllApps
             icon.name: "view-list-icons"
             flat: kicker.showFavorites
-            visible: rootItem.searchvisible
+            visible: true
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered

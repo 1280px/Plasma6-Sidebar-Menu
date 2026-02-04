@@ -12,8 +12,8 @@
     <entry name="appsIconSize" type="Enum">
       <default>2</default>
     </entry>
-    <entry name="showSearch" type="Bool">
-      <default>true</default>
+    <entry name="showSearch" type="Enum">
+      <default>1</default>
     </entry>
     <entry name="icon" type="String">
       <default>go-first-symbolic-rtl</default>
