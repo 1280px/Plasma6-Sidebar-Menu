@@ -15,9 +15,7 @@ import org.kde.plasma.private.quicklaunch 1.0
 
 FocusScope {
     id: gridComponent
-    height: rootItem.resizeHeight() == 0 
-        ? rootItem.gridsHeight
-        : rootItem.resizeHeight() - rootItem.itemsHeight
+    height: rootItem.gridsHeight
 
     // Favorite apps
     ItemGridView {
@@ -29,11 +27,7 @@ FocusScope {
         dragEnabled: true
         dropEnabled: true
         width: rootItem.width
-        height: (
-            rootItem.resizeHeight() == 0
-                ? rootItem.gridsHeight
-                : rootItem.resizeHeight() - rootItem.itemsHeight
-        )
+        height: rootItem.gridsHeight
         focus: true
         cellWidth: kicker.cellSizeWidth
         cellHeight: kicker.cellSizeHeight
@@ -51,6 +45,9 @@ FocusScope {
 
         Item {
             id: mainColumn
+            width: rootItem.width
+            height: rootItem.gridsHeight
+
             property Item visibleGrid: allAppsGrid
 
             // Positioning functions
@@ -62,22 +59,11 @@ FocusScope {
                 }
             }
 
-            width: rootItem.width
-            height: (
-                rootItem.resizeHeight() == 0
-                    ? rootItem.gridsHeight
-                    : rootItem.resizeHeight() - rootItem.itemsHeight
-            )
-
             // All apps
             ItemGridView {
                 id: allAppsGrid
                 width: rootItem.width
-                height: (
-                    resizeHeight() == 0
-                        ? rootItem.gridsHeight
-                        : resizeHeight() - rootItem.itemsHeight
-                )
+                height: rootItem.gridsHeight
                 cellWidth: kicker.cellSizeWidth
                 cellHeight: kicker.cellSizeHeight
                 iconSize: kicker.iconSize
@@ -97,11 +83,7 @@ FocusScope {
             ItemMultiGridView {
                 id: runnerGrid
                 width: rootItem.width
-                height: (
-                    rootItem.resizeHeight() == 0
-                        ? rootItem.gridsHeight
-                        : rootItem.resizeHeight() - rootItem.itemsHeight
-                )
+                height: rootItem.gridsHeight
                 cellWidth: kicker.cellSizeWidth
                 cellHeight: kicker.cellSizeHeight
                 enabled: (opacity == 1) ? 1 : 0
@@ -131,7 +113,7 @@ FocusScope {
         }
     }
 
-    function reset() {
+    /* function reset() {
         // mainColumn.tryActivate(0,0)
 
         if (kicker.showFavorites) {
@@ -156,7 +138,7 @@ FocusScope {
         } else {
             mainColumn.tryActivate(0, 0);
         }
-    }
+    } */
 
     function setModels() {
         globalFavoritesGrid.model = globalFavorites;

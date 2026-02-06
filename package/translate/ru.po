@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dittomenu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-04 17:54+0700\n"
+"POT-Creation-Date: 2026-02-06 22:40+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: 1280px <megarainbow29@gmail.com>\n"
 "Language: ru\n"
@@ -200,7 +200,7 @@ msgid "Square"
 msgstr "Квадрат"
 
 #: ../contents/ui/Head.qml
-msgid "Hola, "
+msgid "Hello, "
 msgstr "Привет, "
 
 #: ../contents/ui/Head.qml

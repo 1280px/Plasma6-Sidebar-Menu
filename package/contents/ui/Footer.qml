@@ -18,7 +18,8 @@ import org.kde.plasma.private.sessions as Sessions
 
 RowLayout {
     id: footerComponent
-    width: (rootItem.resizeWidth() == 0 ? rootItem.spaceWidth : rootItem.resizeWidth())
+    // width: rootItem.spaceWidth
+    spacing: Kirigami.Units.smallSpacing
 
     Sessions.SessionManagement {
         id: cmd_desk
@@ -48,10 +49,6 @@ RowLayout {
     }
 
     RowLayout {
-        Item {
-            Layout.fillWidth: true
-        }
-
         PC3.ToolButton {
             icon.name: "system-shutdown"
             onClicked: cmd_desk.requestShutdown()
@@ -170,10 +167,6 @@ RowLayout {
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
             ToolTip.text: i18n("Force Quit App")
-        }
-
-        Item {
-            Layout.fillWidth: true
         }
     }
 }

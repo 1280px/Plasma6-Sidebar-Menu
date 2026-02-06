@@ -31,18 +31,26 @@ FocusScope {
     property int searchPosition: Plasmoid.configuration.showSearch
 
     property int itemsHeight: (
-        (Plasmoid.configuration.showHeader ? (header.height + 4) : -1) // Header
-        + (searchPosition != 2 ? 44 : 0) // Search
-        + (Plasmoid.configuration.showFooter ? (footer.height * 2) : 0) // Footer
-        // + Kirigami.Units.gridUnit
+        (Plasmoid.configuration.showHeader ? (header.height) : 0) // Header
+        + (searchPosition !== 2 ? 30 : -3) // Search @ any position
+        + (searchPosition === 1 ? Kirigami.Units.smallSpacing : 0) // Search @ footer
+        + (Plasmoid.configuration.showFooter
+            ? (footer.height * 2 + Kirigami.Units.smallSpacing * 2.5)
+            : 0) // Footer
     )
     property int gridsHeight: (
         kicker.availableScreenRect.height
         - rootItem.itemsHeight
-        - Plasmoid.containment.containmentDisplayHints * ( // Floating mode
-            Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 2 : 3
-        ) // (account for panel height for a horizontal mode)
-        - (Plasmoid.formFactor === PlasmaCore.Types.Vertical ? 9 : -9) // ???
+        - Plasmoid.containmentDisplayHints * (
+            Plasmoid.formFactor == PlasmaCore.Types.Vertical
+                ? 2 // Floating mode @ vertical plasmoid margins
+                : 3 // Floating mode @ horizontal plasmoid margins
+        )
+        - (
+            Plasmoid.formFactor == PlasmaCore.Types.Vertical
+                ? +8 // Remove gap for vertical panels
+                : -8 // Add bigger gap for horizontal panel
+        )
     )
 
     property int spaceWidth: (
@@ -74,7 +82,7 @@ FocusScope {
         )
         height: (
             Plasmoid.configuration.showHeader
-                ? header.height + Kirigami.Units.smallSpacing
+                ? 132 + Kirigami.Units.smallSpacing
                 : Kirigami.Units.smallSpacing
         )
         y: -backgroundSvg.margins.top
@@ -92,10 +100,10 @@ FocusScope {
             parent.width + backgroundSvg.margins.left + backgroundSvg.margins.right
         )
         height: (
-            footer.Layout.preferredHeight + Kirigami.Units.smallSpacing * 7
+            footer.Layout.preferredHeight * 2 + Kirigami.Units.smallSpacing * 2
         )
         x: backgroundSvg.margins.left
-        y: parent.height + Kirigami.Units.smallSpacing * 2 // - (footer.height + Kirigami.Units.smallSpacing)
+        y: parent.height // - (footer.height + Kirigami.Units.smallSpacing)
         imagePath: "widgets/plasmoidheading"
         prefix: "header"
         opacity: Plasmoid.configuration.transparencyFooter * 0.01
@@ -132,11 +140,14 @@ FocusScope {
     ColumnLayout {
         id: container
         Layout.preferredHeight: rootItem.spaceHeight
+        spacing: 0
 
         Item {
             id: header
             width: rootItem.spaceWidth
-            Layout.preferredHeight: 130
+            Layout.preferredHeight: (
+                132 + (rootItem.searchPosition == 0 ? Kirigami.Units.smallSpacing : 0)
+            )
             visible: Plasmoid.configuration.showHeader
 
             Loader {
@@ -157,18 +168,14 @@ FocusScope {
         // Header slot for search
         Item {
             id: searchHeader
-            Layout.preferredHeight: rootItem.searchPosition == 0 ? 40 : 0
             visible: rootItem.searchPosition == 0
+            Layout.preferredHeight: rootItem.searchPosition == 0 ? 32 : 0
         }
 
         Item {
             id: gridComponent
             width: rootItem.spaceWidth
-            Layout.preferredHeight: (
-                resizeHeight() == 0
-                    ? rootItem.gridsHeight
-                    : resizeHeight() - rootItem.itemsHeight
-            )
+            Layout.preferredHeight: rootItem.gridsHeight
 
             // Grid for favorites
             ItemGridView {
@@ -181,11 +188,7 @@ FocusScope {
                 dragEnabled: true
                 dropEnabled: true
                 width: rootItem.width
-                height: (
-                    rootItem.resizeHeight() == 0
-                        ? rootItem.gridsHeight
-                        : rootItem.resizeHeight() - rootItem.itemsHeight
-                )
+                height: rootItem.gridsHeight
                 cellWidth: kicker.cellSizeWidth
                 cellHeight: kicker.cellSizeHeight
                 iconSize: kicker.iconSize
@@ -226,11 +229,7 @@ FocusScope {
                     ItemGridView {
                         id: allAppsGrid
                         width: rootItem.width
-                        height: (
-                            rootItem.resizeHeight() == 0
-                                ? rootItem.gridsHeight
-                                : rootItem.resizeHeight() - rootItem.itemsHeight
-                        )
+                        height: rootItem.gridsHeight
                         cellWidth: kicker.cellSizeWidth
                         cellHeight: kicker.cellSizeHeight
                         iconSize: kicker.iconSize
@@ -252,11 +251,7 @@ FocusScope {
                     ItemMultiGridView {
                         id: runnerGrid
                         width: rootItem.width
-                        height: (
-                            rootItem.resizeHeight() == 0
-                                ? rootItem.gridsHeight
-                                : rootItem.resizeHeight() - rootItem.itemsHeight
-                        )
+                        height: rootItem.gridsHeight
                         cellWidth: kicker.cellSizeWidth
                         cellHeight: kicker.cellSizeHeight
                         enabled: (opacity == 1) ? 1 : 0
@@ -314,19 +309,34 @@ FocusScope {
         // Footer slot for search
         Item {
             id: searchFooter
-            Layout.preferredHeight: rootItem.searchPosition == 1 ? 40 : 0
             visible: rootItem.searchPosition == 1
+            Layout.preferredHeight: rootItem.searchPosition == 1 ? 32 : 0
         }
 
         Item {
             id: footer
-            Layout.preferredHeight: 20
+            Layout.preferredHeight: 4 + Kirigami.Units.smallSpacing * 3
             visible: Plasmoid.configuration.showFooter
             width: rootItem.spaceWidth
 
-            Loader {
-                id: foot_
-                sourceComponent: footerComponent
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: 0
+
+                Item {
+                    Layout.preferredHeight: (
+                        Math.ceil(
+                            Kirigami.Units.smallSpacing * 1.5
+                            + (searchPosition === 1 ? Kirigami.Units.smallSpacing : 0)
+                        ) + 0.333
+                    )
+                }
+
+                Loader {
+                    id: footerContent
+                    sourceComponent: footerComponent
+                    Layout.alignment: Qt.AlignHCenter
+                }
             }
         }
     }
@@ -401,48 +411,6 @@ FocusScope {
             : mainColumn.tryActivate(0, 0);
     }
 
-    function resizeWidth() {
-        var screenAvail = kicker.availableScreenRect;
-        var screenGeom = kicker.screenGeometry;
-        var screen = Qt.rect(
-            screenAvail.x + screenGeom.x,
-            screenAvail.y + screenGeom.y,
-            screenAvail.width,
-            screenAvail.height
-        );
-        if (
-            screen.width > (
-                kicker.cellSizeWidth * Plasmoid.configuration.numberColumns
-                + Kirigami.Units.gridUnit
-            )
-        ) {
-            return 0;
-        } else {
-            return screen.width;
-        }
-    }
-    function resizeHeight() {
-        var screenAvail = kicker.availableScreenRect;
-        var screenGeom = kicker.screenGeometry;
-        var screen = Qt.rect(
-            screenAvail.x + screenGeom.x,
-            screenAvail.y + screenGeom.y,
-            screenAvail.width,
-            screenAvail.height
-        );
-        if (
-            screen.height > (
-                kicker.cellSizeHeight // * Plasmoid.configuration.numberRows
-                + rootItem.itemsHeight
-                + Kirigami.Units.gridUnit * 1.5
-            )
-        ) {
-            return 0;
-        } else {
-            return screen.height;
-        }
-    }
-
     function updateLayouts() {
         userShape = calculateUserShape(Plasmoid.configuration.userShape);
         searchPosition = Plasmoid.configuration.showSearch;
@@ -468,11 +436,11 @@ FocusScope {
                     : rootItem
         );
     }
-
     function setModels() {
         globalFavoritesGrid.model = globalFavorites;
         allAppsGrid.model = rootModel.modelForRow(0);
     }
+
     onActiveFocusChanged: {
         if (
             (!activeFocus && kicker.hideOnWindowDeactivate === false)
@@ -488,6 +456,7 @@ FocusScope {
         rootModel.refresh();
 
         calculateSearchParent();
+
         kicker.showFavorites
             ? globalFavoritesGrid.tryActivate(0, 0)
             : mainColumn.tryActivate(0, 0);

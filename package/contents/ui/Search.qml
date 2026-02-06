@@ -19,7 +19,8 @@ import org.kde.plasma.private.sessions as Sessions
 Item {
     RowLayout {
         id: searchComponent
-        width: rootItem.resizeWidth()  == 0 ? rootItem.spaceWidth : rootItem.resizeWidth()
+        width: rootItem.spaceWidth
+        // Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
         // Item {
         //     Layout.fillWidth: true
@@ -56,7 +57,7 @@ Item {
             }
 
             Keys.onPressed: (event) => {
-                kicker.keyIn = "search : " + event.key;
+                kicker.keyIn = "Search: " + event.key;
                 if (event.modifiers & Qt.ControlModifier || event.modifiers & Qt.ShiftModifier) {
                     focus:
                     true;
@@ -82,6 +83,8 @@ Item {
                     searchField.text = "";
                     reset();
                 }
+
+                // return searchField.text = `${rootItem.spaceHeight} ${rootItem.gridsHeight}`;
             }
 
             function appendText(newText) {

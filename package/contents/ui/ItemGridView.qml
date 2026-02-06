@@ -469,7 +469,7 @@ FocusScope {
     }
 }
 
-/*Keys.onPressed: (event) =>
+/* Keys.onPressed: (event) =>
  { *
  event.accepted = true; // Asume que todos los eventos se aceptan a menos que se especifique lo contrario
  if (event.modifiers & (Qt.ControlModifier | Qt.ShiftModifier)) { searchLoader.item.gofocus(); return;}
@@ -493,7 +493,7 @@ FocusScope {
      }
      function handleTab() {
      if (kicker.searching) {gridLoader.item.run();}
-     else { gridLoader.item.cargar();}
+     else { gridLoader.item.reset();}
      }
      function moveColumn(direction) {
      if (kicker.currentIndex + direction < 0){kicker.currentIndex=0; kicker.currentRow=0; kicker.currentColumn=0;}
@@ -554,7 +554,7 @@ FocusScope {
                              function updateDimensions()
                              {
                              // Recalcula el número dinámico de columnas y filas
-                             dynamicColumns = Math.floor((resizeWidth()  == 0 ? rootItem.spaceWidth : resizeWidth()) / kicker.cellSizeWidth);
+                             dynamicColumns = Math.floor(rootItem.spaceWidth / kicker.cellSizeWidth);
                              dynamicRows = Math.ceil(kicker.count / dynamicColumns);
                              }
 
@@ -562,4 +562,4 @@ function gridtryActivate(row, col)
 {
     if (kicker.showFavorites) {globalFavoritesGrid.tryActivate(row,col);kicker.count = globalFavorites.count; }
     else {mainColumn.tryActivate(row,col); kicker.count = mainColumn.visibleGrid.count; }
-}*/
+} */

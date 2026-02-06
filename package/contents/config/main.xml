@@ -81,7 +81,7 @@
       <default>false</default>
     </entry>
     <entry name="homeSettings" type="String">
-      <default>dolphin /home</default>
+      <default>dolphin "$(xdg-user-dir)"</default>
     </entry>
     <entry name="downloadsEnabled" type="Bool">
       <default>false</default>

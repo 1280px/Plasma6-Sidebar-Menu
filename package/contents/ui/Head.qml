@@ -18,14 +18,14 @@ import org.kde.plasma.private.sessions as Sessions
 
 RowLayout {
     id: headComponent
-    width: (rootItem.resizeWidth() == 0 ? rootItem.spaceWidth : rootItem.resizeWidth())
+    width: rootItem.spaceWidth
 
     SequentialAnimation {
         running: true
         loops: Animation.Infinite
 
         PropertyAnimation {
-            target: alo_user
+            target: userAvatar
             property: "opacity"
             from: 0.2
             to: 0.8
@@ -33,7 +33,7 @@ RowLayout {
             easing.type: Easing.InOutQuad
         }
         PropertyAnimation {
-            target: alo_user
+            target: userAvatar
             property: "opacity"
             from: 0.8
             to: 0.2
@@ -55,22 +55,22 @@ RowLayout {
     ColumnLayout {
         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
         visible: iconUser.source !== "" && Plasmoid.configuration.showHeader
+        spacing: 0
 
         Rectangle {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            width: kicker.sizeImage * 0.83
-            height: width
+            width: kicker.sizeImage * 0.8
+            height: width + 8
             color: "transparent"
 
             Rectangle {
-                id: alo_user
+                id: userAvatar
                 anchors.centerIn: parent
-                width: kicker.sizeImage * 0.83
+                width: kicker.sizeImage * 0.8
                 height: width
                 color: "white"
                 radius: userShape
                 clip: true // This clips rectangle's contents
-                visible: iconUser.source !== "" && Plasmoid.configuration.showHeader
                 z: 1
 
                 Rectangle {
@@ -101,7 +101,7 @@ RowLayout {
 
             Rectangle {
                 anchors.centerIn: parent
-                width: kicker.sizeImage * 0.7
+                width: kicker.sizeImage * 0.8
                 height: width
                 color: "transparent"
                 z: 2
@@ -151,12 +151,12 @@ RowLayout {
         }
 
         Kirigami.Heading {
-            id: textouser
+            id: userText
             visible: iconUser.source !== "" && Plasmoid.configuration.showHeader
             Layout.alignment: Qt.AlignVCenter
             color: Kirigami.Theme.textColor
             level: 4
-            text: i18n("Hola, ") + kuser.fullName
+            text: i18n("Hello, ") + kuser.fullName
             font.weight: Font.Bold
         }
 

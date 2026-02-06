@@ -37,7 +37,7 @@ KCM.SimpleKCM {
 
         SpinBox {
             id: transparencyHeader
-            from: 1
+            from: 0
             to: 100
             Kirigami.FormData.label: i18n("Background opacity, %:")
         }
