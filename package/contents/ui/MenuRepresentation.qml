@@ -32,8 +32,8 @@ FocusScope {
 
     property int itemsHeight: (
         (Plasmoid.configuration.showHeader ? (header.height) : 0) // Header
-        + (searchPosition !== 2 ? 30 : -2) // Search @ any position
-        + (searchPosition === 1 ? 5 : 0) // Search @ footer
+        + (searchPosition !== 2 ? 30 : -2) // Search field
+        + (searchPosition === 1 ? 5 : 0) // Gap for search @ footer
         + (Plasmoid.configuration.showFooter
             ? (footer.height * 2 + Kirigami.Units.smallSpacing * 2.5)
             : 0) // Footer
@@ -41,15 +41,16 @@ FocusScope {
     property int gridsHeight: (
         kicker.availableScreenRect.height
         - rootItem.itemsHeight
-        - Plasmoid.containmentDisplayHints * (
-            Plasmoid.formFactor == PlasmaCore.Types.Vertical
-                ? 2 // Floating mode @ vertical plasmoid margins
-                : 1 // Floating mode @ horizontal plasmoid margins
-        )
-        - (
-            Plasmoid.formFactor == PlasmaCore.Types.Vertical
-                ? +8 // Remove gap for vertical panels
-                : +8 // -8 // Gap for horizontal panel (not needed anymore?)
+        - (Plasmoid.formFactor == PlasmaCore.Types.Vertical
+            ? ( // In V mode, we add floating mode margins on top and bottom
+                Plasmoid.containmentDisplayHints * 2
+                + 9 // Remove gap for vertical panels
+            )
+            : ( // In H mode, we want to reverse logic, so plasmoid fills 100% unless floating
+                Plasmoid.containmentDisplayHints
+                    ? Kirigami.Units.smallSpacing * 5
+                    : - 6 // Add tiny gap to prevent overlapping with horizontal panel
+            )
         )
     )
 
@@ -445,6 +446,7 @@ FocusScope {
 
         updateLayouts();
     }
+
     onActiveFocusChanged: {
         if (
             (!activeFocus && kicker.hideOnWindowDeactivate === false)

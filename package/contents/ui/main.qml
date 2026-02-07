@@ -284,7 +284,7 @@ PlasmoidItem {
 
         windowSystem.focusIn.connect(enableHideOnWindowDeactivate);
         kicker.hideOnWindowDeactivate = true;
-        kicker.FramelessWindowHint=true;
+        kicker.FramelessWindowHint = true;
         updateSvgMetrics();
         PlasmaCore.Theme.themeChanged.connect(updateSvgMetrics);
         rootModel.refreshed.connect(reset);
