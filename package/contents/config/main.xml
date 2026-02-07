@@ -10,7 +10,7 @@
       <default>false</default>
     </entry>
     <entry name="appsIconSize" type="Enum">
-      <default>2</default>
+      <default>1</default>
     </entry>
     <entry name="showSearch" type="Enum">
       <default>1</default>
@@ -78,7 +78,7 @@
     </entry>
 
     <entry name="homeEnabled" type="Bool">
-      <default>false</default>
+      <default>true</default>
     </entry>
     <entry name="homeSettings" type="String">
       <default>dolphin "$(xdg-user-dir)"</default>

@@ -32,8 +32,8 @@ FocusScope {
 
     property int itemsHeight: (
         (Plasmoid.configuration.showHeader ? (header.height) : 0) // Header
-        + (searchPosition !== 2 ? 30 : -3) // Search @ any position
-        + (searchPosition === 1 ? Kirigami.Units.smallSpacing : 0) // Search @ footer
+        + (searchPosition !== 2 ? 30 : -2) // Search @ any position
+        + (searchPosition === 1 ? 5 : 0) // Search @ footer
         + (Plasmoid.configuration.showFooter
             ? (footer.height * 2 + Kirigami.Units.smallSpacing * 2.5)
             : 0) // Footer
@@ -44,19 +44,18 @@ FocusScope {
         - Plasmoid.containmentDisplayHints * (
             Plasmoid.formFactor == PlasmaCore.Types.Vertical
                 ? 2 // Floating mode @ vertical plasmoid margins
-                : 3 // Floating mode @ horizontal plasmoid margins
+                : 1 // Floating mode @ horizontal plasmoid margins
         )
         - (
             Plasmoid.formFactor == PlasmaCore.Types.Vertical
                 ? +8 // Remove gap for vertical panels
-                : -8 // Add bigger gap for horizontal panel
+                : +8 // -8 // Gap for horizontal panel (not needed anymore?)
         )
     )
 
     property int spaceWidth: (
         (kicker.cellSizeWidth * Plasmoid.configuration.numberColumns)
-        + Kirigami.Units.gridUnit + 4
-        // + (Plasmoid.formFactor !== PlasmaCore.Types.Vertical ? 4 : 0) // ????
+        + Kirigami.Units.smallSpacing + Kirigami.Units.gridUnit
     )
     property int spaceHeight: (
         gridsHeight + rootItem.itemsHeight
@@ -65,10 +64,8 @@ FocusScope {
     property int dynamicColumns: Math.floor(rootItem.spaceWidth / kicker.cellSizeWidth)
     property int dynamicRows: Math.ceil(kicker.count / dynamicColumns)
 
-    Layout.maximumWidth: spaceWidth
     Layout.minimumWidth: spaceWidth
-    Layout.minimumHeight: spaceHeight
-    Layout.maximumHeight: spaceHeight
+    Layout.maximumWidth: spaceWidth
 
     KCoreAddons.KUser {
         id: kuser
@@ -100,10 +97,10 @@ FocusScope {
             parent.width + backgroundSvg.margins.left + backgroundSvg.margins.right
         )
         height: (
-            footer.Layout.preferredHeight * 2 + Kirigami.Units.smallSpacing * 2
+            footer.Layout.preferredHeight * 2 + Kirigami.Units.smallSpacing * 3
         )
         x: backgroundSvg.margins.left
-        y: parent.height // - (footer.height + Kirigami.Units.smallSpacing)
+        y: parent.height + Kirigami.Units.smallSpacing // - (footer.height + Kirigami.Units.smallSpacing)
         imagePath: "widgets/plasmoidheading"
         prefix: "header"
         opacity: Plasmoid.configuration.transparencyFooter * 0.01
@@ -315,26 +312,27 @@ FocusScope {
 
         Item {
             id: footer
-            Layout.preferredHeight: 4 + Kirigami.Units.smallSpacing * 3
+            Layout.preferredHeight: Kirigami.Units.smallSpacing * 4
             visible: Plasmoid.configuration.showFooter
             width: rootItem.spaceWidth
 
             ColumnLayout {
-                anchors.fill: parent
+                width: rootItem.spaceWidth
                 spacing: 0
 
                 Item {
                     Layout.preferredHeight: (
                         Math.ceil(
-                            Kirigami.Units.smallSpacing * 1.5
-                            + (searchPosition === 1 ? Kirigami.Units.smallSpacing : 0)
-                        ) + 0.333
+                            Kirigami.Units.smallSpacing * 2
+                            + (searchPosition === 1 ? 5 : 0)
+                        ) - 0.666
                     )
                 }
 
                 Loader {
                     id: footerContent
                     sourceComponent: footerComponent
+                    width: rootItem.spaceWidth
                     Layout.alignment: Qt.AlignHCenter
                 }
             }
@@ -419,9 +417,9 @@ FocusScope {
     function calculateUserShape(shape) {
         switch (shape) {
         case 2:
-            return 0;
-        case 1:
             return 8;
+        case 1:
+            return (kicker.sizeImage * 0.85) / 4;
         case 0:
         default:
             return (kicker.sizeImage * 0.85) / 2;
@@ -441,6 +439,12 @@ FocusScope {
         allAppsGrid.model = rootModel.modelForRow(0);
     }
 
+    onSpaceHeightChanged: {
+        Layout.minimumHeight = spaceHeight + 1; // Prevent overflow from breaking layout
+        Layout.maximumHeight = spaceHeight + 1; // Prevent overflow from breaking layout
+
+        updateLayouts();
+    }
     onActiveFocusChanged: {
         if (
             (!activeFocus && kicker.hideOnWindowDeactivate === false)

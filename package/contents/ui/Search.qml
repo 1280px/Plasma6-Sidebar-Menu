@@ -83,8 +83,6 @@ Item {
                     searchField.text = "";
                     reset();
                 }
-
-                // return searchField.text = `${rootItem.spaceHeight} ${rootItem.gridsHeight}`;
             }
 
             function appendText(newText) {

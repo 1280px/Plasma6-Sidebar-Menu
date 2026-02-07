@@ -136,9 +136,9 @@ PlasmoidItem {
         runners: {
             const results = [
                 "krunner_services",
-                "krunner_systemsettings",
                 "krunner_sessions",
-                "krunner_powerdevil",
+                "krunner_shell",
+                "krunner_systemsettings",
                 "calculator",
                 "unitconverter"
             ];
