@@ -33,6 +33,7 @@ KCM.SimpleKCM {
     property alias cfg_editApplicationsEnabled: editApplicationsEnabled.checked
     property alias cfg_forceQuitEnabled: forceQuitEnabled.checked
     property alias cfg_forceQuitSettings: forceQuitSettings.text
+    property alias cfg_keepOpenEnabled: keepOpenEnabled.checked
 
     Kirigami.FormLayout {
         anchors.left: parent.left
@@ -65,9 +66,6 @@ KCM.SimpleKCM {
                     id: shutDownEnabled
                     text: i18n("Shut Down")
                     checked: showAdvancedMode.checked
-                    onCheckedChanged: {
-                        shutDownSettings.enabled = checked;
-                    }
                 }
             }
 
@@ -76,9 +74,6 @@ KCM.SimpleKCM {
                     id: rebootEnabled
                     text: i18n("Reboot")
                     checked: showAdvancedMode.checked
-                    onCheckedChanged: {
-                        rebootSettings.enabled = checked;
-                    }
                 }
             }
 
@@ -87,9 +82,6 @@ KCM.SimpleKCM {
                     id: logOutEnabled
                     text: i18n("Log Out")
                     checked: showAdvancedMode.checked
-                    onCheckedChanged: {
-                        logOutSettings.enabled = checked;
-                    }
                 }
             }
 
@@ -98,9 +90,6 @@ KCM.SimpleKCM {
                     id: sleepEnabled
                     text: i18n("Hibernate")
                     checked: showAdvancedMode.checked
-                    onCheckedChanged: {
-                        sleepSettings.enabled = checked;
-                    }
                 }
             }
 
@@ -109,10 +98,11 @@ KCM.SimpleKCM {
                     id: lockScreenEnabled
                     text: i18n("Lock Screen")
                     checked: showAdvancedMode.checked
-                    onCheckedChanged: {
-                        lockScreenSettings.enabled = checked;
-                    }
                 }
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: false
             }
 
             RowLayout {
@@ -121,7 +111,7 @@ KCM.SimpleKCM {
                     text: i18n("User Home")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
-                        homeSettings.enabled = checked;
+                        homeSettings.enabled = checked
                     }
                 }
 
@@ -133,8 +123,8 @@ KCM.SimpleKCM {
                         enabled: homeSettings.text !== ""
                         text: i18nc("@action:button", "Reset command")
                         onTriggered: {
-                            homeSettings.clear();
-                            root.cfg_homeSettings = "";
+                            homeSettings.clear()
+                            root.cfg_homeSettings = ""
                         }
                     }
                 }
@@ -146,7 +136,7 @@ KCM.SimpleKCM {
                     text: i18n("Downloads")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
-                        downloadsSettings.enabled = checked;
+                        downloadsSettings.enabled = checked
                     }
                 }
 
@@ -158,8 +148,8 @@ KCM.SimpleKCM {
                         enabled: downloadsSettings.text !== ""
                         text: i18nc("@action:button", "Reset command")
                         onTriggered: {
-                            downloadsSettings.clear();
-                            root.cfg_downloadsSettings = "";
+                            downloadsSettings.clear()
+                            root.cfg_downloadsSettings = ""
                         }
                     }
                 }
@@ -171,7 +161,7 @@ KCM.SimpleKCM {
                     text: i18n("Desktop")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
-                        desktopSettings.enabled = checked;
+                        desktopSettings.enabled = checked
                     }
                 }
 
@@ -183,11 +173,15 @@ KCM.SimpleKCM {
                         enabled: desktopSettings.text !== ""
                         text: i18nc("@action:button", "Reset command")
                         onTriggered: {
-                            desktopSettings.clear();
-                            root.cfg_desktopSettings = "";
+                            desktopSettings.clear()
+                            root.cfg_desktopSettings = ""
                         }
                     }
                 }
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: false
             }
 
             RowLayout {
@@ -196,7 +190,7 @@ KCM.SimpleKCM {
                     text: i18n("System Preferences")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
-                        systemPreferencesSettings.enabled = checked;
+                        systemPreferencesSettings.enabled = checked
                     }
                 }
 
@@ -208,8 +202,8 @@ KCM.SimpleKCM {
                         enabled: systemPreferencesSettings.text !== ""
                         text: i18nc("@action:button", "Reset command")
                         onTriggered: {
-                            systemPreferencesSettings.clear();
-                            root.cfg_systemPreferencesSettings = "";
+                            systemPreferencesSettings.clear()
+                            root.cfg_systemPreferencesSettings = ""
                         }
                     }
                 }
@@ -221,7 +215,7 @@ KCM.SimpleKCM {
                     text: i18n("About This PC")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
-                        aboutThisComputerSettings.enabled = checked;
+                        aboutThisComputerSettings.enabled = checked
                     }
                 }
 
@@ -233,8 +227,8 @@ KCM.SimpleKCM {
                         enabled: aboutThisComputerSettings.text !== ""
                         text: i18nc("@action:button", "Reset command")
                         onTriggered: {
-                            aboutThisComputerSettings.clear();
-                            root.cfg_aboutThisComputerSettings = "";
+                            aboutThisComputerSettings.clear()
+                            root.cfg_aboutThisComputerSettings = ""
                         }
                     }
                 }
@@ -245,9 +239,6 @@ KCM.SimpleKCM {
                     id: editApplicationsEnabled
                     text: i18n("Edit Applications")
                     checked: showAdvancedMode.checked
-                    onCheckedChanged: {
-                        editApplicationsSettings.enabled = checked;
-                    }
                 }
             }
 
@@ -257,7 +248,7 @@ KCM.SimpleKCM {
                     text: i18n("Force Quit App")
                     checked: showAdvancedMode.checked
                     onCheckedChanged: {
-                        forceQuitSettings.enabled = checked;
+                        forceQuitSettings.enabled = checked
                     }
                 }
 
@@ -269,10 +260,18 @@ KCM.SimpleKCM {
                         enabled: forceQuitSettings.text !== ""
                         text: i18nc("@action:button", "Reset command")
                         onTriggered: {
-                            forceQuitSettings.clear();
-                            root.cfg_forceQuitSettings = "";
+                            forceQuitSettings.clear()
+                            root.cfg_forceQuitSettings = ""
                         }
                     }
+                }
+            }
+
+            RowLayout {
+                CheckBox {
+                    id: keepOpenEnabled
+                    text: i18n("Keep Open")
+                    checked: showAdvancedMode.checked
                 }
             }
         }

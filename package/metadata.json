@@ -8,15 +8,18 @@
 			}
 		],
 		"Category": "Application Launchers",
-		"Description": "Simple custom full-height sidebar menu, inspired by Budgie.",
-		"Description[ru]": "Простое боковое меню во всю высоту экрана, вдохновлено Budgie.",
+		"Description": "Simple full-height applications menu, inspired by Budgie.",
+		"Description[nl]": "Een eenvoudig, hoog applicatiemenu, geïnspireerd op dat van Budgie.",
+		"Description[ru]": "Простое меню приложений во всю высоту экрана, вдохновлено Budgie.",
 		"EnabledByDefault": true,
 		"Icon": "go-first-symbolic-rtl",
 		"Id": "Sidebar-Menu",
 		"License": "GPL-2.0+",
 		"Name": "Sidebar Menu",
-		"Name[ru]": "Sidebar Menu",
-		"Website": "https://github.com/1280px/Plasma6-Sidebar-Menu"
+		"Name[nl]": "Zijmenu",
+		"Name[ru]": "Боковое меню",
+		"Website": "https://github.com/1280px/Plasma6-Sidebar-Menu",
+		"Version": "1.2"
 	},
 	"X-Plasma-API-Minimum-Version": "6.0",
 	"X-Plasma-Provides": [

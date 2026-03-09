@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sidebar-Menu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-06 22:40+0700\n"
+"POT-Creation-Date: 2026-03-09 23:21+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgid "Sidebar Menu"
 msgstr ""
 
 #: ../metadata.json
-msgid "Simple custom full-height sidebar menu, inspired by Budgie."
+msgid "Simple full-height applications menu, inspired by Budgie."
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -122,6 +122,10 @@ msgstr ""
 msgid "Force Quit App"
 msgstr ""
 
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml ../contents/ui/Head.qml
+msgid "Keep Open"
+msgstr ""
+
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Icon:"
 msgstr ""
@@ -202,10 +206,6 @@ msgstr ""
 
 #: ../contents/ui/Head.qml
 msgid "Hello, "
-msgstr ""
-
-#: ../contents/ui/Head.qml
-msgid "Keep Open"
 msgstr ""
 
 #: ../contents/ui/Search.qml

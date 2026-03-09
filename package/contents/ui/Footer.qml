@@ -56,12 +56,12 @@ RowLayout {
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
             ToolTip.text: i18n("Shut Down")
-            visible: true !== "" && Plasmoid.configuration.shutDownEnabled
+            visible: Plasmoid.configuration.shutDownEnabled
         }
 
         PC3.ToolButton {
             icon.name: "system-reboot"
-            visible: true !== "" && Plasmoid.configuration.rebootEnabled
+            visible: Plasmoid.configuration.rebootEnabled
             onClicked: cmd_desk.requestReboot() // executable.exec(restartCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -71,7 +71,7 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "system-log-out"
-            visible: true !== "" && Plasmoid.configuration.logOutEnabled
+            visible: Plasmoid.configuration.logOutEnabled
             onClicked: cmd_desk.requestLogout() // executable.exec(logOutCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -81,7 +81,7 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "system-suspend"
-            visible: true !== "" && Plasmoid.configuration.sleepEnabled
+            visible: Plasmoid.configuration.sleepEnabled
             onClicked: cmd_desk.suspend()
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -91,7 +91,7 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "system-lock-screen"
-            visible: true !== "" && Plasmoid.configuration.lockScreenEnabled
+            visible: Plasmoid.configuration.lockScreenEnabled
             onClicked: cmd_desk.lock()
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -99,9 +99,18 @@ RowLayout {
             ToolTip.text: i18n("Lock Screen")
         }
 
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            visible: (
+                (Plasmoid.configuration.homeEnabled ? 1 : 0)
+                + (Plasmoid.configuration.downloadsEnabled ? 1 : 0)
+                + (Plasmoid.configuration.desktopEnabled ? 1 : 0)
+            ) >= 2 // Do not show if only one item from category is enabled
+        }
+
         PC3.ToolButton {
             icon.name: "user-home-symbolic"
-            visible: true !== "" && Plasmoid.configuration.homeEnabled
+            visible: Plasmoid.configuration.homeEnabled
             onClicked: executable.exec(homeCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -111,7 +120,7 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "folder-downloads-symbolic"
-            visible: true !== "" && Plasmoid.configuration.downloadsEnabled
+            visible: Plasmoid.configuration.downloadsEnabled
             onClicked: executable.exec(downloadsCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -121,7 +130,7 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "user-desktop-symbolic"
-            visible: true !== "" && Plasmoid.configuration.desktopEnabled
+            visible: Plasmoid.configuration.desktopEnabled
             onClicked: executable.exec(desktopCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -129,9 +138,20 @@ RowLayout {
             ToolTip.text: i18n("Desktop")
         }
 
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            visible: (
+                (Plasmoid.configuration.systemPreferencesEnabled ? 1 : 0)
+                + (Plasmoid.configuration.aboutThisComputerEnabled ? 1 : 0)
+                + (Plasmoid.configuration.editApplicationsEnabled ? 1 : 0)
+                + (Plasmoid.configuration.forceQuitEnabled ? 1 : 0)
+                + (Plasmoid.configuration.keepOpenEnabled ? 1 : 0)
+            ) >= 2 // Do not show if only one item from category is enabled
+        }
+
         PC3.ToolButton {
             icon.name: "configure"
-            visible: true !== "" && Plasmoid.configuration.systemPreferencesEnabled
+            visible: Plasmoid.configuration.systemPreferencesEnabled
             onClicked: executable.exec(systemPreferencesCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -141,7 +161,7 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "info"
-            visible: true !== "" && Plasmoid.configuration.aboutThisComputerEnabled
+            visible: Plasmoid.configuration.aboutThisComputerEnabled
             onClicked: { movePopupController.movePopup(100, 100) } // executable.exec(aboutThisComputerCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -151,7 +171,7 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "kmenuedit"
-            visible: true !== "" && Plasmoid.configuration.editApplicationsEnabled
+            visible: Plasmoid.configuration.editApplicationsEnabled
             onClicked: executable.exec("kmenuedit")
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -161,12 +181,30 @@ RowLayout {
 
         PC3.ToolButton {
             icon.name: "process-stop-symbolic"
-            visible: true !== "" && Plasmoid.configuration.forceQuitEnabled
+            visible: Plasmoid.configuration.forceQuitEnabled
             onClicked: executable.exec(forceQuitCMD)
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
             ToolTip.text: i18n("Force Quit App")
+        }
+
+        PC3.ToolButton {
+            id: pinButton
+            visible: Plasmoid.configuration.keepOpenEnabled
+            checkable: true
+            checked: Plasmoid.configuration.pin
+            icon.name: "window-pin"
+            ToolTip.delay: 200
+            ToolTip.timeout: 1000
+            ToolTip.visible: hovered
+            ToolTip.text: i18n("Keep Open")
+            onToggled: Plasmoid.configuration.pin = checked
+            Binding {
+                target: kicker
+                property: "hideOnWindowDeactivate"
+                value: !Plasmoid.configuration.pin
+            }
         }
     }
 }

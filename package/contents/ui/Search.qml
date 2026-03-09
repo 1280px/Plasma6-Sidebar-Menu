@@ -20,6 +20,7 @@ Item {
     RowLayout {
         id: searchComponent
         width: rootItem.spaceWidth
+
         // Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
         // Item {
@@ -28,6 +29,7 @@ Item {
 
         PC3.TextField {
             id: searchField
+            activeFocusOnTab: true
             visible: true
             Layout.fillWidth: true
             placeholderText: i18n("Start typing to search")
@@ -50,25 +52,42 @@ Item {
                 }
             }
 
-            onTextChanged:
-            {
+            onTextChanged: {
                 runnerModel.query = text;
                 kicker.searching = text == "" ? false : true;
             }
 
             Keys.onPressed: (event) => {
                 kicker.keyIn = "Search: " + event.key;
-                if (event.modifiers & Qt.ControlModifier || event.modifiers & Qt.ShiftModifier) {
-                    focus:
-                    true;
-                    return;
-                } else if (event.key === Qt.Key_Tab) {
-                    event.accepted = true;
-                    focus:
-                    true;
-                } else if (event.key === Qt.Key_Escape) {
-                    event.accepted = true;
-                    rootItem.turnclose();
+
+                switch (event.key) {
+                    case Qt.Key_Escape:
+                        event.accepted = true;
+                        // Close onl7 if search is already empty
+                        if (kicker.searching) {
+                            emptysearch();
+                            rootItem.reset();
+                        } else {
+                            rootItem.turnclose();
+                        }
+                        break;
+                    case Qt.Key_Backspace:
+                        // Let TextField handle it natively
+                        break;
+                    case Qt.Key_Down:
+                        event.accepted = true;
+                        kicker.showFavorites
+                            ? globalFavoritesGrid.tryActivate(0, 0)
+                            : mainColumn.tryActivate(0, 0);
+                        break;
+                    case Qt.Key_Tab:
+                    case Qt.Key_Backtab:
+                    case Qt.Key_Up:
+                    case Qt.Key_Enter:
+                    case Qt.Key_Return:
+                    default:
+                        // Propagate naturally
+                        break;
                 }
             }
 
@@ -81,7 +100,6 @@ Item {
                 text = text.slice(0, -1);
                 if (text == "" || searchField.text == "") {
                     searchField.text = "";
-                    reset();
                 }
             }
 
@@ -96,14 +114,10 @@ Item {
             }
         }
 
-        Item {
-            Layout.fillWidth: true
-        }
-
         PC3.ToolButton {
             id: btnFavorites
             icon.name: "favorites"
-            visible: true
+            visible: true // === false
             flat: !kicker.showFavorites
             ToolTip.delay: 200
             ToolTip.timeout: 1000
@@ -121,7 +135,7 @@ Item {
             id: btnAllApps
             icon.name: "view-list-icons"
             flat: kicker.showFavorites
-            visible: true
+            visible: true // === false
             ToolTip.delay: 200
             ToolTip.timeout: 1000
             ToolTip.visible: hovered
@@ -146,5 +160,6 @@ Item {
     }
     function gofocus() {
         searchField.focus = true;
+        // searchField.forceActiveFocus();
     }
 }

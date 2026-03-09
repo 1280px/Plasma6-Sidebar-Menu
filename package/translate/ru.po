@@ -1,14 +1,14 @@
-# Translation of dittomenu in pl
-# Copyright (C) 2022
-# This file is distributed under the same license as the dittomenu package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR..
+# Translation of Sidebar-Menu in ru
+# Copyright (C) 2026
+# This file is distributed under the same license as the Sidebar-Menu package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: dittomenu\n"
+"Project-Id-Version: Sidebar-Menu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-06 22:40+0700\n"
+"POT-Creation-Date: 2026-03-09 23:21+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: 1280px <megarainbow29@gmail.com>\n"
 "Language: ru\n"
@@ -18,11 +18,11 @@ msgstr ""
 
 #: ../metadata.json
 msgid "Sidebar Menu"
-msgstr "Sidebar Menu"
+msgstr "Боковое меню"
 
 #: ../metadata.json
-msgid "Simple custom full-height sidebar menu, inspired by Budgie."
-msgstr "Простое боковое меню во всю высоту экрана, вдохновлено Budgie."
+msgid "Simple full-height applications menu, inspired by Budgie."
+msgstr "Простое меню приложений во всю высоту экрана, вдохновлено Budgie."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -121,6 +121,10 @@ msgstr "Изменить приложения"
 msgid "Force Quit App"
 msgstr "Завершить приложение"
 
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml ../contents/ui/Head.qml
+msgid "Keep Open"
+msgstr "Не закрывать"
+
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Icon:"
 msgstr "Значок:"
@@ -202,10 +206,6 @@ msgstr "Квадрат"
 #: ../contents/ui/Head.qml
 msgid "Hello, "
 msgstr "Привет, "
-
-#: ../contents/ui/Head.qml
-msgid "Keep Open"
-msgstr "Не закрывать"
 
 #: ../contents/ui/Search.qml
 msgid "Start typing to search"

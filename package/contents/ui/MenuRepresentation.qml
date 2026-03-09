@@ -191,20 +191,25 @@ FocusScope {
                 cellHeight: kicker.cellSizeHeight
                 iconSize: kicker.iconSize
 
-                onKeyNavUp: searchLoader.item.gofocus()
-
                 // Favorites key event
                 Keys.onPressed: (event) => {
-                    kicker.keyIn = "Favorites: " + event.key;
-                    if (event.modifiers & Qt.ControlModifier || event.modifiers & Qt.ShiftModifier) {
-                        searchLoader.item.gofocus();
-                        return;
-                    } else if (event.key === Qt.Key_Tab) {
-                        event.accepted = true;
-                        searchLoader.item.gofocus();
-                    } else if (event.key === Qt.Key_Escape) {
-                        event.accepted = true;
-                        rootItem.turnclose();
+                    switch (event.key) {
+                        case Qt.Key_Escape:
+                            event.accepted = true;
+                            kicker.searching ? rootItem.reset() : rootItem.turnclose();
+                            break;
+                        case Qt.Key_Backspace:
+                            event.accepted = true;
+                            searchLoader.item.backspace();
+                            searchLoader.item.gofocus();
+                            break;
+                        default:
+                            if (event.text !== "") {
+                                event.accepted = true;
+                                searchLoader.item.appendText(event.text);
+                                searchLoader.item.gofocus();
+                            }
+                            break;
                     }
                 }
             }
@@ -242,7 +247,6 @@ FocusScope {
                                 mainColumn.visibleGrid = allAppsGrid;
                             }
                         }
-                        onKeyNavUp: searchLoader.item.gofocus()
                     }
 
                     // Grid for search results
@@ -263,7 +267,6 @@ FocusScope {
                                 mainColumn.visibleGrid = runnerGrid;
                             }
                         }
-                        onKeyNavUp: searchLoader.item.gofocus()
                     }
 
                     // Grid activation function
@@ -275,29 +278,23 @@ FocusScope {
 
                     // Keys that are reactionary to events
                     Keys.onPressed: (event) => {
-                        kicker.keyIn = "Grids or Search: " + event.key;
-                        if (
-                            (event.modifiers & Qt.ControlModifier)
-                            || (event.modifiers & Qt.ShiftModifier)
-                        ) {
-                            searchLoader.item.gofocus();
-                            return;
-                        }
-                        if (event.key === Qt.Key_Tab) {
-                            event.accepted = true;
-                            searchLoader.item.gofocus();
-                        } else if (event.key === Qt.Key_Backspace) {
-                            event.accepted = true;
-                            if (kicker.searching) {
+                        switch (event.key) {
+                            case Qt.Key_Escape:
+                                event.accepted = true;
+                                kicker.searching ? rootItem.reset() : rootItem.turnclose();
+                                break;
+                            case Qt.Key_Backspace:
+                                event.accepted = true;
                                 searchLoader.item.backspace();
-                            }
-                            searchLoader.item.gofocus();
-                        } else if (event.key === Qt.Key_Escape) {
-                            event.accepted = true;
-                            (kicker.searching) ? rootItem.reset() : rootItem.turnclose();
-                        } else if (event.text !== "") {
-                            event.accepted = true;
-                            searchLoader.item.appendText(event.text);
+                                searchLoader.item.gofocus();
+                                break;
+                            default:
+                                if (event.text !== "") {
+                                    event.accepted = true;
+                                    searchLoader.item.appendText(event.text);
+                                    searchLoader.item.gofocus();
+                                }
+                                break;
                         }
                     }
                 }
@@ -344,39 +341,37 @@ FocusScope {
     Keys.onPressed: (event) => {
         kicker.keyIn = "Menu Representation: " + event.key;
 
-        // Assume all events are accepted unless proven otherwise
-        event.accepted = true;
-
-        if (event.modifiers & (Qt.ControlModifier | Qt.ShiftModifier)) {
-            searchLoader.item.gofocus();
-            return;
-        }
+        // if (event.modifiers & (Qt.ControlModifier | Qt.ShiftModifier)) {
+        //     searchLoader.item.gofocus();
+        //     return;
+        // }
 
         switch (event.key) {
             case Qt.Key_Escape:
                 turnclose();
+                searchLoader.item.gofocus();
                 break;
             case Qt.Key_Backspace:
                 searchLoader.item.backspace();
+                searchLoader.item.gofocus();
                 break;
             case Qt.Key_Tab:
             case Qt.Key_Backtab:
-            case Qt.Key_Down:
             case Qt.Key_Up:
+            case Qt.Key_Down:
             case Qt.Key_Left:
+            case Qt.Key_Right:
             case Qt.Key_Enter:
             case Qt.Key_Return:
-            case Qt.Key_Right:
-                reset();
                 break;
             default:
-                (/^[a-zA-Z0-9]$/.test(event.text))
-                    ? searchLoader.item.appendText(event.text)
-                    : reset();
+                if (event.text !== "") {
+                    event.accepted = true;
+                    searchLoader.item.appendText(event.text);
+                    searchLoader.item.gofocus();
+                }
                 break;
         }
-
-        searchLoader.item.gofocus();
     }
 
     Component {
@@ -392,22 +387,16 @@ FocusScope {
         Search { }
     }
 
-    function turnclose() {
-        searchLoader.item.emptysearch();
-
-        kicker.searching = false;     
-        kicker.showFavorites
-            ? globalFavoritesGrid.tryActivate(0, 0)
-            : mainColumn.tryActivate(0, 0);
-        kicker.expanded = false;
-    }
     function reset() {
         searchLoader.item.emptysearch();
-
         kicker.searching = false;
         kicker.showFavorites
             ? globalFavoritesGrid.tryActivate(0, 0)
             : mainColumn.tryActivate(0, 0);
+    }
+    function turnclose() {
+        reset();
+        kicker.expanded = false;
     }
 
     function updateLayouts() {
@@ -415,6 +404,7 @@ FocusScope {
         searchPosition = Plasmoid.configuration.showSearch;
         calculateSearchParent();
     }
+
     function calculateUserShape(shape) {
         switch (shape) {
         case 2:
@@ -435,9 +425,26 @@ FocusScope {
                     : rootItem
         );
     }
+
     function setModels() {
         globalFavoritesGrid.model = globalFavorites;
         allAppsGrid.model = rootModel.modelForRow(0);
+    }
+
+    Connections {
+        target: kicker
+        function onExpandedChanged(expanded) {
+            if (!expanded) {
+                searchLoader.item.emptysearch();
+                kicker.searching = false;
+                kicker.showFavorites
+                    ? globalFavoritesGrid.tryActivate(0, 0)
+                    : mainColumn.tryActivate(0, 0);
+            } else {
+                // Small delay so the component is visible before we steal focus
+                Qt.callLater(() => searchLoader.item.gofocus());
+            }
+        }
     }
 
     onSpaceHeightChanged: {

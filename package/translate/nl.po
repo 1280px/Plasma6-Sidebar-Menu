@@ -1,4 +1,4 @@
-# Translation of Sidebar-Menu in LANGUAGE
+# Translation of Sidebar-Menu in nl
 # Copyright (C) 2026
 # This file is distributed under the same license as the Sidebar-Menu package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sidebar-Menu\n"
 "Report-Msgid-Bugs-To: https://github.com/1280px/Plasma6-Sidebar-Menu\n"
-"POT-Creation-Date: 2026-02-06 22:40+0700\n"
+"POT-Creation-Date: 2026-03-09 23:21+0700\n"
 "PO-Revision-Date: 2026-03-04 11:29+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -23,8 +23,8 @@ msgid "Sidebar Menu"
 msgstr "Zijmenu"
 
 #: ../metadata.json
-msgid "Simple custom full-height sidebar menu, inspired by Budgie."
-msgstr "Een eenvoudig, hoog zijmenu, geïnspireerd op dat van Budgie."
+msgid "Simple full-height applications menu, inspired by Budgie."
+msgstr "Een eenvoudig, hoog applicatiemenu, geïnspireerd op dat van Budgie."
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -125,6 +125,11 @@ msgstr "Programma's bewerken"
 msgid "Force Quit App"
 msgstr "Programma gedwongen afsluiten"
 
+#: ../contents/ui/config/ConfigFooter.qml ../contents/ui/Footer.qml
+#: ../contents/ui/Head.qml
+msgid "Keep Open"
+msgstr "Openhouden"
+
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Icon:"
 msgstr "Pictogram:"
@@ -206,10 +211,6 @@ msgstr "Vierkant"
 #: ../contents/ui/Head.qml
 msgid "Hello, "
 msgstr "Hallo, "
-
-#: ../contents/ui/Head.qml
-msgid "Keep Open"
-msgstr "Openhouden"
 
 #: ../contents/ui/Search.qml
 msgid "Start typing to search"
